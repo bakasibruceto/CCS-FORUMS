@@ -16,7 +16,10 @@ class CheckRole
     public function handle(Request $request, Closure $next, string $role)
     {
         if ($role == 'admin' && auth()->user()->role != 'admin') {
-            abort(403);
+            if (!$request->is('login')) {
+                // abort(403);
+                return redirect()->back();
+            }
         }
         if ($role == 'user' && auth()->user()->role != 'user') {
             abort(403);
