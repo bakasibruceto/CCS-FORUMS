@@ -1,11 +1,11 @@
 # CCS FORUMS
 
 
-<p align="center">Framework Stack</p>
+<p align="center"><b>Framework Stack</b></p>
 <table align="center" >
     <tr>
         <td>
-              <a href="https://tailwindcss.com" target="_blank"><img src="https://www.steadygo.digital/media/snmcksnc/tailwindcss.png" width="200" alt="Tailwind Logo"></a>
+              <a href="https://tailwindcss.com" target="_blank"><img src="https://github.com/bakasibruceto/web-app/blob/main/ye.svg" width="200" alt="Tailwind Logo"></a>
         </td>
         <td>
             
@@ -15,7 +15,7 @@
     </tr>
     <tr>
     </tr>
-     <tr height="95">
+     <tr height="120">
         <td>
              <a href="https://alpinejs.dev/" target="_blank"><img src="https://alpinejs.dev/alpine_long.svg" width="200" alt="Alpine Logo"></a>
         </td>
