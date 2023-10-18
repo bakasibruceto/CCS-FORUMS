@@ -1,11 +1,11 @@
 # CCS FORUMS
 
 
-<p align="center"><b>Framework Stack</b></p>
+<p align="center"><b>Framework Stack:</b></p>
 <table align="center" >
-    <tr>
+    <tr height="110">
         <td>
-              <a href="https://tailwindcss.com" target="_blank"><img src="https://github.com/bakasibruceto/web-app/blob/main/ye.svg" width="200" alt="Tailwind Logo"></a>
+              <a href="https://tailwindcss.com" target="_blank"><img src="https://github.com/bakasibruceto/web-app/blob/main/log.svg" width="200" alt="Tailwind Logo"></a>
         </td>
         <td>
             
