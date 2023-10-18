@@ -5,7 +5,7 @@
 <table align="center" >
     <tr height="110">
         <td>
-              <a href="https://tailwindcss.com" target="_blank"><img src="https://github.com/bakasibruceto/web-app/blob/main/log.svg" width="200" alt="Tailwind Logo"></a>
+              <a href="https://tailwindcss.com" target="_blank"><img src="https://github.com/bakasibruceto/web-app/blob/main/logo.svg" width="200" alt="Tailwind Logo"></a>
         </td>
         <td>
             
