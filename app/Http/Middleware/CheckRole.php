@@ -21,9 +21,9 @@ class CheckRole
                 return redirect()->back();
             }
         }
-        if ($role == 'user' && auth()->user()->role != 'user') {
-            abort(403);
-        }
+        // if ($role == 'user' && auth()->user()->role != 'user') {
+        //     abort(403);
+        // }
 
         return $next($request);
     }
