@@ -3,7 +3,7 @@
         {{ $slot }}
        
     </div>
-    <div class="order-first sm:order-first">
+    <div class="order-first sm:order-first h-screen flex justify-center items-center">
        
         {{ $logo }}
     </div>

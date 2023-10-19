@@ -8,7 +8,7 @@
                 testing
             </div>
         </div> --}}
-        <x-slot name="logo">
+        <x-slot name="logo" >
             <x-authentication-card-logo />
         </x-slot>
 
