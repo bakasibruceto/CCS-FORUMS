@@ -1,6 +1,6 @@
 <?php
-use App\Http\Controllers\User\ViewController;
-use App\Http\Controllers\Admin\AdminViewController;
+use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,17 +10,21 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::group(['middleware' => 'role:user'], function () {
     
-        Route::resource('/', ViewController::class)->names([
+        Route::resource('/', UserController::class)->names([
+            //method from UserController => route name
             'index' => 'user.index',
+      
         ]);
-        Route::get('{user:username}', [ViewController::class, 'show'])->name('user.show');
+        // Use the 'username' as the route name for showing user profile
+        Route::get('{user:username}', [UserController::class, 'show'])->name('user.show');
 
     });
 
     Route::group(['middleware' => 'role:admin'], function () {
-        Route::resource('admin', AdminViewController::class)->names([
-            'index' =>'admin.index', // Define the route name for the index action
-            // You can define names for other resource actions if needed
+        Route::resource('admin', AdminController::class)->names([
+            //method    route name
+            'index' =>'admin.index', 
+
         ]);
     });
 
