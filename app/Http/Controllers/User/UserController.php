@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+
 class UserController extends Controller
 {
     /**
@@ -12,17 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-      
-
-        //check the search value with out database
-        // $search = User::orderby('created_at','desc')->paginate(10);
-
-        //check if there is a search
-        // if(request()->has('search')){
-        //     $search = $search->where('content','like','%'.request()->get('search'.'').'%');
-
-        // }
-
+        
         return view('user-dashboard');
     }
     /**
@@ -32,11 +23,29 @@ class UserController extends Controller
     {
         $user = User::where('username', $username)->first();
 
-    if (!$user) {
-        abort(404); // Handle when the user is not found
+        if (!$user) {
+            abort(404); // Handle when the user is not found
+        }
+
+        return view('users.shows', compact('user'));
     }
 
-    return view('users.shows', compact('user'));
+    public function search(Request $request)
+    {
+        // input search textfield
+        $search = $request->input('search');
+
+       
+
+        if (empty($search)) {
+            return back(); // Redirect back to the previous page or perform any other action you prefer.
+        }
+
+        //Select * from User where username like userInput
+        $results = User::where('username', 'like', '%' . $search . '%')->get();
+
+        // return result
+        return view('search-results', compact('results'));
     }
 
     /**
@@ -55,7 +64,7 @@ class UserController extends Controller
         //
     }
 
- 
+
 
     /**
      * Show the form for editing the specified resource.
