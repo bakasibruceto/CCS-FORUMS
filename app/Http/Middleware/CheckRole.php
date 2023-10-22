@@ -20,14 +20,16 @@ class CheckRole
             //     // abort(403);
             //     return redirect()->back();
             // }
-            abort(403);
+            // abort(403);
+            return back();
         }
         if ($role == 'user' && auth()->user()->role != 'user') {
             // if (!$request->is('login')) {
             //     // abort(403);
             //     return redirect()->back();
             // }
-            abort(403);
+            
+            return redirect('admin');
         }
 
         return $next($request);
