@@ -4,8 +4,6 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
-
 class UserController extends Controller
 {
     /**
@@ -13,39 +11,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        
         return view('user-dashboard');
     }
+
     /**
      * Display the specified resource.
      */
-    public function show($username)
+    public function show(string $id)
     {
-        $user = User::where('username', $username)->first();
-
-        if (!$user) {
-            abort(404); // Handle when the user is not found
-        }
-
-        return view('users.shows', compact('user'));
-    }
-
-    public function search(Request $request)
-    {
-        // input search textfield
-        $search = $request->input('search');
-
-       
-
-        if (empty($search)) {
-            return back(); // Redirect back to the previous page or perform any other action you prefer.
-        }
-
-        //Select * from User where username like userInput
-        $results = User::where('username', 'like', '%' . $search . '%')->get();
-
-        // return result
-        return view('search-results', compact('results'));
+      //
     }
 
     /**
@@ -63,8 +37,6 @@ class UserController extends Controller
     {
         //
     }
-
-
 
     /**
      * Show the form for editing the specified resource.
