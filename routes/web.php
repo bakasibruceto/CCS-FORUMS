@@ -9,10 +9,12 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::group(['middleware' => 'role:user'], function () {
-        Route::resource('user', ViewController::class)->names([
-            'index' => 'user.index', // Define the route name for the index action
-            // You can define names for other resource actions if needed
+    
+        Route::resource('/', ViewController::class)->names([
+            'index' => 'user.index',
         ]);
+        Route::get('{user:username}', [ViewController::class, 'show'])->name('user.show');
+
     });
 
     Route::group(['middleware' => 'role:admin'], function () {

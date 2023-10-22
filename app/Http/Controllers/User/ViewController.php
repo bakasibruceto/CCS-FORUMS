@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\User;
 class ViewController extends Controller
 {
     /**
@@ -12,7 +12,31 @@ class ViewController extends Controller
      */
     public function index()
     {
+      
+
+        //check the search value with out database
+        // $search = User::orderby('created_at','desc')->paginate(10);
+
+        //check if there is a search
+        // if(request()->has('search')){
+        //     $search = $search->where('content','like','%'.request()->get('search'.'').'%');
+
+        // }
+
         return view('user-dashboard');
+    }
+    /**
+     * Display the specified resource.
+     */
+    public function show($username)
+    {
+        $user = User::where('username', $username)->first();
+
+    if (!$user) {
+        abort(404); // Handle when the user is not found
+    }
+
+    return view('users.shows', compact('user'));
     }
 
     /**
@@ -20,7 +44,7 @@ class ViewController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -31,13 +55,7 @@ class ViewController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+ 
 
     /**
      * Show the form for editing the specified resource.
