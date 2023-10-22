@@ -16,14 +16,19 @@ class CheckRole
     public function handle(Request $request, Closure $next, string $role)
     {
         if ($role == 'admin' && auth()->user()->role != 'admin') {
-            if (!$request->is('login')) {
-                // abort(403);
-                return redirect()->back();
-            }
+            // if (!$request->is('login')) {
+            //     // abort(403);
+            //     return redirect()->back();
+            // }
+            abort(403);
         }
-        // if ($role == 'user' && auth()->user()->role != 'user') {
-        //     abort(403);
-        // }
+        if ($role == 'user' && auth()->user()->role != 'user') {
+            // if (!$request->is('login')) {
+            //     // abort(403);
+            //     return redirect()->back();
+            // }
+            abort(403);
+        }
 
         return $next($request);
     }
