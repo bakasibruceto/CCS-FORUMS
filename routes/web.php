@@ -1,60 +1,45 @@
 <?php
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
+// Initial route
 Route::get('/', function () {
     return view('dashboard');
 });
 
+// Check if user is logged
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Check if role is user
     Route::group(['middleware' => 'role:user'], function () {
-    
-        Route::resource('/', UserController::class)->names([
-            // method => route name
-            'index' => 'user.index',
-      
-        ]);
-
-        // Used the 'username' as the route name for showing user profile
-        Route::get('{user:username}', [UserController::class, 'show'])->name('user.show');
-
+        Route::get('/', [UserController::class, 'index'])->name('user.index');
     });
 
     // Check if role is admin
     Route::group(['middleware' => 'role:admin'], function () {
-        Route::resource('admin', AdminController::class)->names([
-            // method    route name
-            'index' =>'admin.index', 
-
-        ]);
+        Route::resource('admin', AdminController::class)->names('admin');
     });
 
-    // Create a 'dashboard' route to redirect based on the user's role
-    Route::get('dashboard', function () {
-        if (auth()->user()->role === 'user') {
+    // Search Bar
+    Route::get('search', [SearchController::class, 'search'])->name('search');
 
-            // Use the named route for the 'user' resource index
-            return redirect()->route('user.index'); 
-
-        } elseif (auth()->user()->role === 'admin') {
-
-            // Use the named route for the 'admin' resource index
-            return redirect()->route('admin.index'); 
-        }
-    })->name('dashboard');
+    // Used the 'username' as the route name for showing user profile
+    Route::get('{user:username}', [SearchController::class, 'show'])->name('user.show');
 });
 
-
-// Handle undefined routes for all users
-Route::fallback(function () {
-    // For authenticated users, redirect to dashboard page
-    if (auth()->check()) {
-        return redirect()->route('dashboard');
+// Redirect user roles
+Route::get('dashboard', function () {
+    if (auth()->user()->role === 'user') {
+        return redirect()->route('user.index');
+    } elseif (auth()->user()->role === 'admin') {
+        return redirect()->route('admin.index');
     }
+})->name('dashboard');
 
-    // For non-authenticated users, redirect to login page
+
+// Handle undefined routes if user is not logged-in
+Route::fallback(function () {
     return redirect()->route('login');
 });
