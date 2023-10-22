@@ -9,24 +9,24 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-    //Check if role is user
+    // Check if role is user
     Route::group(['middleware' => 'role:user'], function () {
     
         Route::resource('/', UserController::class)->names([
-            //method => route name
+            // method => route name
             'index' => 'user.index',
       
         ]);
-        
+
         // Used the 'username' as the route name for showing user profile
         Route::get('{user:username}', [UserController::class, 'show'])->name('user.show');
 
     });
 
-    //Check if role is admin
+    // Check if role is admin
     Route::group(['middleware' => 'role:admin'], function () {
         Route::resource('admin', AdminController::class)->names([
-            //method    route name
+            // method    route name
             'index' =>'admin.index', 
 
         ]);
