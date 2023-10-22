@@ -5,9 +5,22 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="/">
-                        <x-application-mark class="block h-9 w-auto" />
-                    </a>
+                    @auth
+                        @if (auth()->user()->role === 'admin')
+                            <a href="admin">
+                                <x-application-mark class="block h-9 w-auto" />
+                            </a>
+                        @endif
+
+                        @if (auth()->user()->role === 'user')
+                            <a href="/">
+                                <x-application-mark class="block h-9 w-auto" />
+                            </a>
+                        @endif
+                    @endauth
+
+
+
                 </div>
 
                 <!-- Navigation Links -->
@@ -24,15 +37,13 @@
                         </x-nav-link>
                     @endif
                 </div>
-                
+
                 <div class="m-auto pl-14">
                     <div class="relative text-gray-600 focus-within:text-gray-400">
-                        <form
-                            action="{{ auth()->user()->role === 'user' ? route('user.index') : route('admin.index') }}"
-                            method="GET">
+                        <form action="{{ route('search') }}" method="GET">
                             <input
                                 class="py-2 pr-4 border border-gray-300 rounded-full focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
-                                type="text" placeholder="Search..." name="search" />
+                                type="text" placeholder="Search..." name="q" />
                         </form>
                     </div>
                 </div>
