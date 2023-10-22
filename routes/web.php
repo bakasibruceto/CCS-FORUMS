@@ -8,18 +8,22 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    //Check if role is user
     Route::group(['middleware' => 'role:user'], function () {
     
         Route::resource('/', UserController::class)->names([
-            //method from UserController => route name
+            //method => route name
             'index' => 'user.index',
       
         ]);
-        // Use the 'username' as the route name for showing user profile
+        
+        // Used the 'username' as the route name for showing user profile
         Route::get('{user:username}', [UserController::class, 'show'])->name('user.show');
 
     });
 
+    //Check if role is admin
     Route::group(['middleware' => 'role:admin'], function () {
         Route::resource('admin', AdminController::class)->names([
             //method    route name
@@ -31,9 +35,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Create a 'dashboard' route to redirect based on the user's role
     Route::get('dashboard', function () {
         if (auth()->user()->role === 'user') {
-            return redirect()->route('user.index'); // Use the named route for the 'user' resource index
+
+            // Use the named route for the 'user' resource index
+            return redirect()->route('user.index'); 
+
         } elseif (auth()->user()->role === 'admin') {
-            return redirect()->route('admin.index'); // Use the named route for the 'admin' resource index
+
+            // Use the named route for the 'admin' resource index
+            return redirect()->route('admin.index'); 
         }
     })->name('dashboard');
 });
@@ -41,9 +50,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 // Handle undefined routes for all users
 Route::fallback(function () {
+    // For authenticated users, redirect to dashboard page
     if (auth()->check()) {
         return redirect()->route('dashboard');
     }
-    // For non-authenticated users, redirect to the login page
+
+    // For non-authenticated users, redirect to login page
     return redirect()->route('login');
 });
