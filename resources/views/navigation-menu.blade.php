@@ -24,6 +24,18 @@
                         </x-nav-link>
                     @endif
                 </div>
+                
+                <div class="m-auto pl-14">
+                    <div class="relative text-gray-600 focus-within:text-gray-400">
+                        <form
+                            action="{{ auth()->user()->role === 'user' ? route('user.index') : route('admin.index') }}"
+                            method="GET">
+                            <input
+                                class="py-2 pr-4 border border-gray-300 rounded-full focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
+                                type="text" placeholder="Search..." name="search" />
+                        </form>
+                    </div>
+                </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
