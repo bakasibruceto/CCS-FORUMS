@@ -12,6 +12,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -20,6 +21,8 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+
+
 
     /**
      * The attributes that are mass assignable.
@@ -62,6 +65,19 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+    // Follow Feature
+    public function followers(): belongsToMany //relationship
+    {
+                                                 //table name     //foreign key   //related key
+        return $this->belongsToMany(User::class, 'user_follower', 'following_id', 'follower_id');
+    }
+    public function following(): belongsToMany 
+    {                                           
+        return $this->belongsToMany(User::class, 'user_follower', 'follower_id', 'following_id');
+    }
+
+    // Email Feature
 
     public function sendPasswordResetNotification($token){
         $this->notify(new NewResetPasswordNotification($token));

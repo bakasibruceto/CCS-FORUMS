@@ -25,18 +25,23 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 @if ($results->count() > 0)
-                <ul>
-                    @foreach ($results as $result)
-                    <a href="{{ route('user.show', ['user' => $result->username]) }}">
-                        {{ $result->username }}
-                    </a>
-                    <br>
-                    @endforeach
-                </ul>
-            @else
-                <p>No results found.</p>
-            @endif
-            
+                    <ul>
+                        @foreach ($results as $result)
+                            <a href="{{ route('user.show', ['user' => $result->username]) }}">
+                                {{ $result->username }}
+                            </a>
+                            @auth
+                                @if(auth()->user()->username != $result->username)
+                                    @livewire('user-follow', ['userId' => $result->id])
+                                @endif
+                            @endauth
+                            <br>
+                        @endforeach
+                    </ul>
+                @else
+                    <p>No results found.</p>
+                @endif
+
             </div>
         </div>
     </div>

@@ -24,6 +24,8 @@
                 <p class="text-gray-600">{{ $user->email }}</p>
 
                 <!-- Add any additional user information here -->
+                <p>following {{ $totalFollowing }} users.</p>
+                <p>follower {{ $totalFollowers }}.</p>
             </div>
         </div>
     </main>

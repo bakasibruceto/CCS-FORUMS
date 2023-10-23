@@ -9,6 +9,13 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
+        // not sure how this this work and how I'll user it but it works the same as this:
+        // $user = auth()->user();
+
+        $user = User::when(auth()->check(),function($query){
+            $query->where('id', '!=', auth()->id());
+        })->paginate();
+     
         // input search textfield
         $search = $request->input('q');
 
@@ -17,19 +24,21 @@ class SearchController extends Controller
             // Redirect back to the previous page.
             return back(); 
         }
-
+        
         //Select * from User where username like userInput
         $results = User::where('username', 'like', '%' . $search . '%')->get();
 
         // return result
-        return view('search-results', compact('results'));
+        return view('search-results', compact('results', 'user'));
     }
 
     public function show($username)
     {
         $user = User::where('username', $username)->first();
-        $role = auth()->user()->role; // Get the role of the user
+        $totalFollowing = $user->following->count();
+        $totalFollowers = $user->followers->count();
 
+        $role = auth()->user()->role; // Get the role of the user
         if (!$user) {
             if ($role == 'user') {
 
@@ -48,6 +57,6 @@ class SearchController extends Controller
             }
         }
 
-        return view('users.shows', compact('user'));
+        return view('users.shows', compact('user','totalFollowing',"totalFollowers"));
     }
 }
