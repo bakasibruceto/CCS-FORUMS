@@ -1,37 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <!-- Include your CSS and JavaScript files if needed -->
-</head>
-<body>
-    <header>
-        <!-- Include your navigation bar or header content here -->
-    </header>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('User-Dashboard') }}
+        </h2>
+    </x-slot>
 
-    <main class="container mx-auto p-4">
-        <div class="bg-white rounded-lg shadow-lg p-4">
-            <div class="text-center">
-                <!-- Display user's profile picture -->
-                <img src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}" class="w-32 h-32 rounded-full mx-auto mb-4">
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                <main class="container mx-auto p-4">
+                        <div class="text-center">
+                            <!-- Display user's profile picture -->
+                            <img src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}"
+                                class="w-32 h-32 rounded-full mx-auto mb-4">
 
-                <!-- Display user's name -->
-                <h1 class="text-2xl font-bold">{{ $user->username }}</h1>
+                            <!-- Display user's name -->
+                            <h1 class="text-2xl font-bold">{{ $user->username }}</h1>
+                            @auth
+                                @if (auth()->user()->username != $user->username)
+                                    @livewire('user-follow', ['userId' => $user->id])
+                                @endif
 
-                <!-- Display user's email -->
-                <p class="text-gray-600">{{ $user->email }}</p>
+                            @endauth
 
-                <!-- Add any additional user information here -->
-                <p>following {{ $totalFollowing }} users.</p>
-                <p>follower {{ $totalFollowers }}.</p>
+                            <p>following {{ $totalFollowing }} </p>
+                            <p>follower {{ $totalFollowers }}</p>
+                        </div>
+
+
+                </main>
             </div>
         </div>
-    </main>
+    </div>
+</x-app-layout>
 
-    <footer>
-        <!-- Include your footer content here -->
-    </footer>
-</body>
-</html>
+
+
+

@@ -72,8 +72,8 @@ class User extends Authenticatable implements MustVerifyEmail
                                                  //table name     //foreign key   //related key
         return $this->belongsToMany(User::class, 'user_follower', 'following_id', 'follower_id');
     }
-    public function following(): belongsToMany 
-    {                                           
+    public function following(): belongsToMany
+    {
         return $this->belongsToMany(User::class, 'user_follower', 'follower_id', 'following_id');
     }
 
@@ -82,7 +82,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token){
         $this->notify(new NewResetPasswordNotification($token));
     }
-    
+
     public function sendEmailVerificationNotification(){
         $this->notify(new NewEmailVerificationNotification);
     }
