@@ -41,10 +41,19 @@
                 <div class="m-auto pl-14">
                     <div class="relative text-gray-600 focus-within:text-gray-400">
                         <form action="{{ route('search') }}" method="GET">
-                            <input
-                                class="py-2 pr-4 border border-gray-300 rounded-full focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
-                                type="text" placeholder="Search..." name="q" />
+                            <div class="flex">
+                                <input
+                                    class="py-2 pr-4 border border-gray-300 rounded-l-full focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
+                                    type="text"
+                                    placeholder="Search..."
+                                    name="q"
+                                    value="{{ old('search') }}"
+                                />
+                                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-r-full">Search</button>
+                            </div>
                         </form>
+
+
                     </div>
                 </div>
             </div>
@@ -112,8 +121,10 @@
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <button
                                     class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
+                                    {{ Auth::user()->username }}
                                     <img class="h-8 w-8 rounded-full object-cover"
                                         src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+
                                 </button>
                             @else
                                 <span class="inline-flex rounded-md">
@@ -137,7 +148,9 @@
                                 {{ __('Manage Account') }}
                             </div>
 
-                            <x-dropdown-link href="">
+                            <x-dropdown-link
+                                href="{{ route('user.show', ['user' => auth()->user()->username]) }}
+                                ">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
 
