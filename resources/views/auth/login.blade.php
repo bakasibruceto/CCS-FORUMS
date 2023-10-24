@@ -26,8 +26,9 @@
             <div>
                 <x-label for="email" value="{{ __('Email / Username') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="text" placeholder="Email / Username"
-                    name="login" :value="old('email')" autofocus autocomplete="username" />
+                    name="login" :value="old('login')" autofocus autocomplete="name" />
             </div>
+
 
             <div class="mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />
