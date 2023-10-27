@@ -23,5 +23,13 @@
     Fugit eos similique adipisci nam magnam doloremque sapiente, in numquam voluptate itaque exercitationem quam est
     tenetur totam.
 </div>
-    
+
 </div>
+<div id="editor">
+    <!-- You can place initial content here, but it's optional -->
+    <p>Hello World!</p>
+    <p>Some initial <strong>bold</strong> text</p>
+    <p><br></p>
+</div>
+
+
