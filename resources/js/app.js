@@ -2,39 +2,41 @@ import './bootstrap';
 // Import Quill.js
 import Quill from 'quill';
 
-// Create a function to initialize Quill
-function initializeQuill() {
-    // Initialize Quill with additional options and modules
-    var quill = new Quill('#editor', {
-        theme: 'snow', // or 'bubble' for a different theme
-
-        // Add modules for toolbar and clipboard
-        modules: {
-            toolbar: false
-            // toolbar: [
-            //     [{ 'header': '1' }, { 'header': '2' }],
-            //     ['bold', 'italic', 'underline', 'strike'],
-            //     [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-            //     ['link'],
-            //     ['clean']
-            // ],
-            // clipboard: {
-            //     matchVisual: false,
-            // }
-        }
-    });
-
-    // Add event listeners or other custom functionality as needed
-    quill.on('text-change', function() {
-        // This event is triggered when the content changes
-        console.log('Content changed');
-    });
-
-    // Access Quill's API functions, e.g., quill.getContents(), quill.insertText(), etc.
-}
-
-// Call the initialization function when the DOM is ready
-document.addEventListener('DOMContentLoaded', function () {
-    initializeQuill();
+// Initialize Quill editor
+var quill = new Quill('#editor', {
+    theme: 'snow',
+    modules: {
+        toolbar: [
+            [{ 'header': '1' }, { 'header': '2' }],
+            ['bold', 'italic', 'underline'],
+            ['link'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+            ['clean']
+        ]
+    }
 });
+
+// Event handler for the "Save" button
+document.getElementById('saveButton').addEventListener('click', function () {
+    var content = quill.root.innerHTML;
+
+    // Send the content to your Laravel backend for insertion
+    fetch('/insert', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({ content: content })
+    })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response from your server (e.g., show a success message)
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+});
+
 
