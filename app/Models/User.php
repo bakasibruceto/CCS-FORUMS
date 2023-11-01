@@ -14,6 +14,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
@@ -76,6 +77,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(User::class, 'user_follower', 'follower_id', 'following_id');
     }
+
+    public function forumPosts()
+    {
+        return $this->hasMany(ForumPost::class, 'user_id','id');
+    }
+
+
+
 
     // Email Feature
 
