@@ -78,6 +78,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(User::class, 'user_follower', 'follower_id', 'following_id');
     }
 
+    // not sure if necessary feel ko para sa livewire to
     public function forumPosts()
     {
         return $this->hasMany(ForumPost::class, 'user_id','id');
