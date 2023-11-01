@@ -2,6 +2,7 @@
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\EditorController;
 use Illuminate\Support\Facades\Route;
 
 // Initial route
@@ -27,6 +28,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Used the 'username' as the route name for showing user profile
     Route::get('{user:username}', [SearchController::class, 'show'])->name('user.show');
+
+    Route::post('insert', [EditorController::class, 'insert'])->name('insert');
 });
 
 // Redirect user roles
