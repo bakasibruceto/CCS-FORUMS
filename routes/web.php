@@ -13,14 +13,25 @@ Route::get('/', function () {
 // Check if user is logged
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-    // Check if role is user
     Route::group(['middleware' => 'role:user'], function () {
-        Route::get('/', [UserController::class, 'index'])->name('user.index');
+        Route::get('/', function () {
+
+            // Reset the "previous_search" session value here
+            session()->forget('previous_search');
+            return app(UserController::class)->index();
+
+        })->name('user.index');
     });
 
     // Check if role is admin
     Route::group(['middleware' => 'role:admin'], function () {
-        Route::resource('admin', AdminController::class)->names('admin');
+        Route::get('admin', function () {
+
+            // Reset the "previous_search" session value here
+            session()->forget('previous_search');
+            return app(AdminController::class)->index();
+
+        })->name('admin.index');
     });
 
     // Search Bar

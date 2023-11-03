@@ -37,25 +37,30 @@
                         </x-nav-link>
                     @endif
                 </div>
-
-                <div class="m-auto pl-14">
+                {{-- Search --}}
+                <div class="m-auto pl-10">
                     <div class="relative text-gray-600 focus-within:text-gray-400">
                         <form action="{{ route('search') }}" method="GET">
                             <div class="flex">
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-5 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="none" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                    </svg>
+                                </div>
+
                                 <input
-                                    class="py-2 pr-4 border border-gray-300 rounded-l-full focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
+                                    class="block w-full md:w-80 p-3 pl-12 text-sm rounded-full text-gray-900 border border-gray-300 bg-gray-50 dark:placeholder-gray-400 dark:text"
                                     type="text"
                                     placeholder="Search..."
                                     name="q"
-                                    value="{{ old('search') }}"
+                                    {{--user session stored value--}}
+                                    value="{{ session('previous_search') }}"
                                 />
-                                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-r-full">Search</button>
                             </div>
                         </form>
-
-
                     </div>
                 </div>
+
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -114,6 +119,13 @@
                     </div>
                 @endif
 
+                <div class="relative pr-5">
+                    <ion-icon class="text-2xl ml-1"  name="notifications"></ion-icon>
+                </div>
+                <div class="relative pr-5">
+                    <ion-icon class="text-2xl ml-1" name="mail"></ion-icon>
+                </div>
+
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
                     <x-dropdown align="right" width="48">
@@ -121,7 +133,7 @@
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <button
                                     class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                    {{ Auth::user()->username }}
+                                    {{-- {{ Auth::user()->username }} --}}
                                     <img class="h-8 w-8 rounded-full object-cover"
                                         src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
 
@@ -185,6 +197,12 @@
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
+                <div class="relative pr-5">
+                    <ion-icon class="text-2xl ml-1"  name="notifications"></ion-icon>
+                </div>
+                <div class="relative pr-5">
+                    <ion-icon class="text-2xl ml-1" name="mail"></ion-icon>
+                </div>
                 <button @click="open = ! open"
                     class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -195,17 +213,19 @@
                             stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
+
             </div>
         </div>
     </div>
 
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="" :active="request()->routeIs('dashboard')">
+        {{-- <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link href="" :active="request()->routeIs('/')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-        </div>
+        </div> --}}
+
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
@@ -222,6 +242,13 @@
                     <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
                 </div>
             </div>
+            {{-- <x-responsive-nav-link href="" :active="request()->routeIs('/')">
+                <ion-icon class="text-2xl ml-1"  name="notifications"></ion-icon>
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="" :active="request()->routeIs('/')">
+                <ion-icon class="text-2xl ml-1" name="mail"></ion-icon>
+            </x-responsive-nav-link> --}}
+
 
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->

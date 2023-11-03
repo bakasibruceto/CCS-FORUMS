@@ -17,11 +17,15 @@ class SearchController extends Controller
             $query->where('id', '!=', auth()->id());
         })->paginate();
 
+
         // Select * from forum post
         // for each
         // end foreach
         // input search textfield
         $search = $request->input('q');
+
+        // store search value in session
+        session(['previous_search' => $search]);
 
         if (empty($search)) {
 
@@ -33,7 +37,7 @@ class SearchController extends Controller
         $results = User::where('username', 'like', '%' . $search . '%')->get();
 
         // return result
-        return view('search-results', compact('results', 'user'));
+        return view('search-results', compact('results', 'user') );
     }
 
     public function show($username)
