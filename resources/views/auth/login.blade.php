@@ -19,7 +19,7 @@
                 {{ session('status') }}
             </div>
         @endif
-
+        <h2 class="text-4xl font-extrabold pb-10">Welcome, clever fox!</h2>
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -36,29 +36,31 @@
                     autocomplete="current-password" />
             </div>
 
-            <div class="mt-4 grid grid-cols-2 gap-20">
+            <div class="mt-4 grid grid-cols-2 gap-36">
+
                 <div>
-                    <label for="remember_me" class="flex items-center">
+                    <label for="remember_me" class="flex items-center ">
                         <x-checkbox id="remember_me" name="remember" />
-                        <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                        <span class="ml-2 text-sm dark:text-gray-300">{{ __('Remember me') }}</span>
                     </label>
                 </div>
 
-                <div>
+                <div class="justify-end">
                     @if (Route::has('password.request'))
                         <a class="underline text-sm text-gray-600 hover:text-blue-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             href="{{ route('password.request') }}">
-                            {{ __('Forgot your password?') }}
+                            {{ __('Forget Password?') }}
                         </a>
                     @endif
                 </div>
 
+
             </div>
 
             <div class="flex items-center justify-center mt-7">
-                <x-button class="ml-4 font-bold">
-                    {{ __('Log in') }}
-                </x-button>
+                <x-buttonGuest class="font-bold w-full">
+                    {{ __('Sign in') }}
+                </x-buttonGuest>
             </div>
             <div class="flex items-center justify-center mt-4">
                 <p>
