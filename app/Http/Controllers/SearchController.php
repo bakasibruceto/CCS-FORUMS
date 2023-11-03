@@ -11,20 +11,24 @@ class SearchController extends Controller
     {
         // not sure how this this work and how I'll user it but it works the same as this:
         // $user = auth()->user();
+        // $user = auth()->forumpost()->user_id;
 
         $user = User::when(auth()->check(),function($query){
             $query->where('id', '!=', auth()->id());
         })->paginate();
-     
+
+        // Select * from forum post
+        // for each
+        // end foreach
         // input search textfield
         $search = $request->input('q');
 
         if (empty($search)) {
-            
+
             // Redirect back to the previous page.
-            return back(); 
+            return back();
         }
-        
+
         //Select * from User where username like userInput
         $results = User::where('username', 'like', '%' . $search . '%')->get();
 
@@ -43,17 +47,17 @@ class SearchController extends Controller
             if ($role == 'user') {
 
                 // Handle when the user is not found
-                return back(); 
+                return back();
 
             } elseif ($role == 'admin') {
 
                 // Redirect to the admin view if the user's role is "admin"
-                return view('admin-dashboard'); 
+                return view('admin-dashboard');
 
             } else {
 
                 // Redirect back if the user's role is neither "user" nor "admin"
-                return back(); 
+                return back();
             }
         }
 

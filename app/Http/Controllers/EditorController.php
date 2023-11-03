@@ -22,4 +22,9 @@ class EditorController extends Controller
             return response()->json(['error' => 'An error occurred while inserting text'], 500);
         }
     }
+
+    public function show(Request $request) {
+
+    }
+
 }
