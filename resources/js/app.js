@@ -16,12 +16,12 @@ var quill = new Quill('#editor', {
     }
 });
 
-var customClipboard = new QuillClipboard(quill, {
-    matchers: [
-        [Node.TEXT_NODE, handleTextPaste],
-        [Node.ELEMENT_NODE, handleElementPaste]
-    ]
-});
+// var customClipboard = new QuillClipboard(quill, {
+//     matchers: [
+//         [Node.TEXT_NODE, handleTextPaste],
+//         [Node.ELEMENT_NODE, handleElementPaste]
+//     ]
+// });
 
 function handleTextPaste(node, delta) {
     const text = node.data.trim();
