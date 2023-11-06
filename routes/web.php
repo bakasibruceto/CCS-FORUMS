@@ -3,6 +3,7 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\EditorController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 // Initial route
@@ -36,11 +37,17 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Search Bar
     Route::get('search', [SearchController::class, 'search'])->name('search');
+    Route::get('/', [PostController::class, 'show'])->name('/');
+
 
     // Used the 'username' as the route name for showing user profile
     Route::get('{user:username}', [SearchController::class, 'show'])->name('user.show');
 
     Route::post('insert', [EditorController::class, 'insert'])->name('insert');
+
+    // Show all post at landing page
+    // Route::get('/', [PostController::class, 'showPost'])->name('post');
+
 });
 
 // Redirect user roles
