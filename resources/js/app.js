@@ -16,6 +16,40 @@ var quill = new Quill('#editor', {
     }
 });
 
+var customClipboard = new QuillClipboard(quill, {
+    matchers: [
+        [Node.TEXT_NODE, handleTextPaste],
+        [Node.ELEMENT_NODE, handleElementPaste]
+    ]
+});
+
+function handleTextPaste(node, delta) {
+    const text = node.data.trim();
+    if (/^https?:\/\/\S+\.\S+/.test(text)) {
+        // It's a URL, let's convert it into a link
+        const ops = [];
+        ops.push({ insert: text, attributes: { link: text } });
+        quill.updateContents(new Delta(ops));
+        return false;
+    }
+    return true;
+}
+
+function handleElementPaste(node, delta) {
+    if (node.tagName === 'A' && node.href) {
+        // Extract the link and its text from the <a> element
+        const link = node.href;
+        const text = node.textContent;
+        const ops = [];
+        ops.push({ insert: text, attributes: { link } });
+        quill.updateContents(new Delta(ops));
+        return false;
+    }
+    return true;
+}
+
+
+
 // Event handler for the "Save" button
 document.getElementById('saveButton').addEventListener('click', function () {
     var content = quill.root.innerHTML;
