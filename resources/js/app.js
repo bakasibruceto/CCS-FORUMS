@@ -2,15 +2,21 @@ import './bootstrap';
 // Import Quill.js
 import Quill from 'quill';
 
+
 // Initialize Quill editor
 var quill = new Quill('#editor', {
     theme: 'snow',
     modules: {
-        toolbar: [
-            ['bold', 'italic', 'underline'],
-        ]
+        toolbar: false,
+        // [
+        //     ['bold', 'italic', 'underline'],
+        // ],
+
     }
 });
+
+// var toolbar = quill.getModule('toolbar');
+// document.getElementById('toolbar').appendChild(toolbar.container);
 
 // var customClipboard = new QuillClipboard(quill, {
 //     matchers: [
@@ -68,5 +74,7 @@ document.getElementById('saveButton').addEventListener('click', function () {
             console.error('Error:', error);
         });
 });
+
+
 
 
