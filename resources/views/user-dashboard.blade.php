@@ -1,18 +1,9 @@
 <x-app-layout>
-    {{-- <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('User-Dashboard') }}
-        </h2>
-    </x-slot> --}}
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            {{-- <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg"> --}}
-            {{-- <x-welcome /> --}}
-            <section class="items-center justify-center">
-                <div class=" bg-white rounded-lg mb-6 p-4 mx-5 md:mx-auto max-w-md md:max-w-xl ">
-                    <!--horizantil margin is just for display-->
-                    {{-- <textarea name="message" placeholder="Share your thoughts..." class="w-full rounded-lg p-2 text-sm bg-gray-100 border border-transparent appearance-none rounded-tg placeholder-gray-400"></textarea> --}}
+    <div class="flex flex-1 overflow-hidden">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-0 flex justify-between grid-cols-3 w-full">
+            <x-sidebar/>
+            <div class="items-center justify-center pt-20">
+                <div class=" bg-white rounded-lg mb-6 p-4 mx-5 md:mx-auto max-w-md md:max-w-xl">
                     @csrf
                     <div id="editor"></div>
                     <footer class="flex justify-between mt-2">
@@ -52,7 +43,10 @@
 
 
 
-
+                <div class="flex items-center gap-2 font-semibold text-gray-800 text-sm pb-2">
+                    <ion-icon class="bg-sky-950 rounded-full text-white p-2" name="chatbox-ellipses-outline"></ion-icon>
+                    <p>Threads & Discussions</p>
+                </div>
 
                 @foreach ($forumPosts as $post)
                     <!-- POSTED WITH COMMENT -->
@@ -81,7 +75,7 @@
                             </div>
                         </div>
 
-                        <!-- FOR CAPTION -->                            <!--!! convert html tag !!-->
+                        <!-- FOR CAPTION --> <!--!! convert html tag !!-->
                         <div class="text-gray-500 text-sm mb-6 mx-3 px-2">{!! $post->text !!}</div>
 
                         <!-- COMMENTS AND LIKES... -->
@@ -115,17 +109,8 @@
                     </div>
                 @endforeach
 
-            </section>
-
-
-
-
-
-
-
-
-
-
+                </div>
+            <x-left-box/>
         </div>
     </div>
 </x-app-layout>
