@@ -9,12 +9,17 @@ class EditorController extends Controller
 {
     public function insert(Request $request) {
         try {
-            $quillContent = $request->input('content');
             $userId = auth()->user()->id;
+            $title = $request->input('post_title');
+            $tags = $request->input('post_tag');
+            $markdown = $request->input('post_markdown');
+
 
             ForumPost::create([
                 'user_id'=> $userId,
-                'text' => $quillContent,
+                'title' => $title,
+                'tags' => $tags,
+                'markdown' => $markdown,
             ]);
 
             return response()->json(['message' => 'Text inserted successfully']);
