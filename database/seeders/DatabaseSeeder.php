@@ -8,6 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 class DatabaseSeeder extends Seeder
 {
+    //php artisan db:seed --class=DatabaseSeeder
     /**
      * Seed the application's database.
      */
@@ -22,7 +23,9 @@ class DatabaseSeeder extends Seeder
         Schema::create('forum_posts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->longText('text');
+            $table->string('title');
+            $table->string('tags')->nullable(true);
+            $table->longText('markdown');
             $table->timestamps();
         });
     }
