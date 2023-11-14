@@ -5,6 +5,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\EditorController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use Michelf\Markdown;
 
 // Initial route
 Route::get('/', function () {
@@ -19,7 +20,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
             // Reset the "previous_search" session value here
             session()->forget('previous_search');
-            return app(UserController::class)->index();
+
+            // return app(UserController::class)->index();
 
         })->name('user.index');
     });
@@ -43,6 +45,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/forumpost', function () {
         return view('user-post');
     });
+
+    Route::get('/createthread', function () {
+
+        return view('create-thread');
+    });
+
+    // Route::get('/createthread', 'create-thread');
+
 
 
     // Used the 'username' as the route name for showing user profile
