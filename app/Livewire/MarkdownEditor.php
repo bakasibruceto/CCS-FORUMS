@@ -3,24 +3,26 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Michelf\Markdown;
-use Parsedown;
 
 class MarkdownEditor extends Component
 {
-    public $markdownText = '';
+    public $markdown = '';
     public $previewMode = false;
 
     public function render()
     {
-        $htmlContent = $this->previewMode ? Markdown::defaultTransform($this->markdownText) : '';
-
-        return view('livewire.markdown-editor', ['htmlContent' => $htmlContent]);
+        return view('livewire.markdown-editor', [
+            'parsedMarkdown' => $this->parseMarkdown(),
+        ]);
     }
-    public function togglePreviewMode()
+
+    private function parseMarkdown()
+    {
+        return \Parsedown::instance()->text($this->markdown);
+    }
+
+    public function togglePreview()
     {
         $this->previewMode = !$this->previewMode;
     }
-
-
 }
