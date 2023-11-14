@@ -39,6 +39,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('search', [SearchController::class, 'search'])->name('search');
     Route::get('/', [PostController::class, 'show'])->name('/');
 
+    // Forum post
+    Route::get('/forumpost', function () {
+        return view('user-post');
+    });
+
 
     // Used the 'username' as the route name for showing user profile
     Route::get('{user:username}', [SearchController::class, 'show'])->name('user.show');
