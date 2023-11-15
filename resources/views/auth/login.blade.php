@@ -1,5 +1,5 @@
-<x-guest-layout>
-    <x-authentication-card>
+<x-guest-layout >
+    <x-authentication-card >
         {{-- <div>
             <div>
                 testing
@@ -8,7 +8,7 @@
                 testing
             </div>
         </div> --}}
-        <x-slot name="logo" >
+        <x-slot name="logo">
             <x-authentication-card-logo />
         </x-slot>
 
