@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-0 flex justify-between grid-cols-3 w-full">
             {{-- <x-sidebar /> --}}
             <div>
-                <div class="pt-20 grid grid-cols-1 lg:grid-cols-2">
+                <div class="pt-5 grid grid-cols-1 lg:grid-cols-2">
                     <div class="rounded-lg bg-gray-100">
                         <h1>Forum</h1>
                     </div>
@@ -56,8 +56,10 @@
                             Tags: {{ $post->tags }}
                         </div>
                     </div>
-                    <div class="rounded-lg bg-gray-100 p-3 mt-2">
-                        <h2>{{ $post->title }}</h2>
+                    <div class="rounded-lg bg-gray-100 p-3 mt-2 prose">
+                        <a href="{{ route('user-post.show', ['postId' => $post->id]) }}">
+                            <h2>Titile:{{ $post->title }}</h2>
+                        </a>
                     </div>
                     <div class="rounded-lg p-3 mt-2">
                         @livewire('markdown-parser', ['markdown' => $post->markdown])
