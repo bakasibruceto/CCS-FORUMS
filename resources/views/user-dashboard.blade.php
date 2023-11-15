@@ -1,5 +1,6 @@
 <x-app-layout>
     <div class="flex flex-1 overflow-hidden">
+
         <div class="flex flex-col flex-1">
             <div class="block md:grid md:grid-flow-row-dense md:grid-cols-3 md:grid-rows-3 md:ml-6">
                 {{-- <x-sidebar /> --}}
@@ -15,11 +16,10 @@
                                 </div>
                             </div>            
                         </div>
-
                         <div class="container mx-auto px-4 p-6 -mt-16 mb-6">
                             <div class="grid grid-cols-1 lg:grid-cols-2">
                                 <div class="rounded-lg font-semibold text-gray-700">
-                                    <h1>69,420 threads</h1>
+                                    <h1>{{ $forumPosts->total() }} threads</h1>
                                 </div>
                                 <div class="rounded-lg flex gap-2 lg:justify-end">
                                     <span class="inline-flex -space-x-px overflow-hidden rounded-md border bg-white shadow-sm">
@@ -45,10 +45,10 @@
                                         </button>
                                     </div>
 
+
                                 </div>
                             </div>
                         </div>
-
                             
                             @foreach ($forumPosts as $post)
                             <div class="container mx-auto px-4 p-6 -mt-12">
@@ -82,12 +82,14 @@
                         @endforeach
 
 
-                            <div class="container mx-auto px-4 p-6">
-                                showing 1-20 or 64231 results pagination
-                            </div>
+                            <div>
+                    {{-- Pagination --}}
+                    {{ $forumPosts->links() }}
+                </div>
                         </div>
                         <x-left-box />
                     </div>
+
             </div>
         </div>
     </div>

@@ -11,7 +11,7 @@
         </div>
 
         <div>
-            <button wire:click="togglePreview">Toggle Preview</button>
+            <button wire:click.prevent="togglePreview">Toggle Preview</button>
         </div>
 
         @if ($previewMode)
@@ -21,5 +21,4 @@
         @endif
         <button type="submit">Create Thread</button>
     </form>
-
 </div>

@@ -41,12 +41,12 @@ class MarkdownEditor extends Component
     public function savePost()
     {
         try {
-            // Validate the input if needed
-            // $this->validate([
-            //     'subject' => 'required|max:255',
-            //     'tags' => 'required|max:255',
-            //     'markdown' => 'required',
-            // ]);
+           // Validate the input if needed
+            $this->validate([
+                'subject' => 'required|max:255',
+                'tags' => 'required|max:255',
+                'markdown' => 'required',
+            ]);
 
             // Save the post to the database
             ForumPost::create([
