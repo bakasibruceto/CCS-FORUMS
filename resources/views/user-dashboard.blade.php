@@ -63,8 +63,10 @@
                         @livewire('markdown-parser', ['markdown' => $post->markdown])
                     </div>
                     <div class="rounded-lg bg-gray-100 p-3 mt-2">
-                        {{-- Total Likes: {{ $post->likes->count() }} --}}
-                        {{-- Total Discussions: {{ $post->discussions->count() }} --}}
+                        Total Likes:
+                        {{-- {{ $post->likes->count() }} --}}
+                        Total Discussions:
+                        {{-- {{ $post->discussions->count() }} --}}
                         {{-- @if ($post->solved)
                             Solved
                         @else
