@@ -9,14 +9,9 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($previousSearch)
+    public function index()
     {
-        if (!empty($previousSearch)) {
-
-            $previousSearch = null;
-        }
-
-        return view('user-dashboard', compact('previousSearch'));
+        return view('user-dashboard');
     }
 
     /**

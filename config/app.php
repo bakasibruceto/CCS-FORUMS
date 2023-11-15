@@ -170,7 +170,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
-        Livewire\LivewireServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -184,9 +183,8 @@ return [
     |
     */
 
-
     'aliases' => Facade::defaultAliases()->merge([
-        'Markdom' => Sinnbeck\Markdom\Facades\Markdom::class,
+        // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
 ];

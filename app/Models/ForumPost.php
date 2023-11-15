@@ -10,10 +10,8 @@ class ForumPost extends Model
     use HasFactory;
 
     protected $fillable = [
+        'text',
         'user_id',
-        'title',
-        'tags',
-        'markdown',
     ];
 
     public function user()

@@ -1,5 +1,5 @@
   <!--   start::Sidebar    -->
-  <div class="hidden sm:block lg:block bg-white w-56 overflow-y-auto pt-40">
+  <div class="hidden sm:block lg:block bg-white w-56 overflow-y-auto pt-5">
     <div class="px-4 pb-6 fixed pt-20">
         <ul class="flex flex-col w-full font-semibold">
             <li class="my-px">
