@@ -14,6 +14,13 @@ class MarkdownEditor extends Component
     public $tags = '';
     public $previewMode = false;
 
+    public $user;
+
+    public function mount()
+    {
+        $this->user = Auth::user();
+    }
+
     public function render()
     {
         return view('livewire.markdown-editor', [
@@ -35,26 +42,18 @@ class MarkdownEditor extends Component
     {
         try {
             // Validate the input if needed
-            $this->validate([
-                'subject' => 'required|max:255',
-                'tags' => 'required|max:255',
-                'markdown' => 'required',
-            ]);
-
-            // Debugging: Dump the validated data
-            dump([
-                'user_id' => Auth::user()->id,
-                'subject' => $this->subject,
-                'tags' => $this->tags,
-                'content' => $this->markdown,
-            ]);
+            // $this->validate([
+            //     'subject' => 'required|max:255',
+            //     'tags' => 'required|max:255',
+            //     'markdown' => 'required',
+            // ]);
 
             // Save the post to the database
             ForumPost::create([
-                'user_id' => Auth::user()->id,
-                'subject' => $this->subject,
+                'user_id' => $this->user->id,
+                'title' => $this->subject,
                 'tags' => $this->tags,
-                'content' => $this->markdown,
+                'markdown' => $this->markdown,
             ]);
 
             // Reset the form fields after saving
@@ -63,15 +62,16 @@ class MarkdownEditor extends Component
             $this->markdown = '';
 
             // Optionally, you can redirect the user after saving
-            session()->flash('success', 'Post saved successfully!');
-            return redirect()->route('/'); // Replace with the actual route name
+            // session()->flash('success', 'Post saved successfully!');
+            return redirect()->route('/');
 
         } catch (\Exception $e) {
             // Log the exception for debugging
             \Log::error($e);
 
-            session()->flash('error', 'An error occurred while saving the post.');
+            // session()->flash('error', 'An error occurred while saving the post.');
             return redirect()->back();
+            // return redirect()->route('/');
         }
     }
 
