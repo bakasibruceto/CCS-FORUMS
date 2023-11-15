@@ -2,7 +2,6 @@ import './bootstrap';
 
 
 import hljs from 'highlight.js/lib/core';
-import 'highlight.js/styles/atom-one-dark.css';
 document.addEventListener('DOMContentLoaded', (event) => {
     hljs.initHighlightingOnLoad();
   });
