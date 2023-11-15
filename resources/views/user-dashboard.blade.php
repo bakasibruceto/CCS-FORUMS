@@ -60,7 +60,7 @@
                         <h2>{{ $post->title }}</h2>
                     </div>
                     <div class="rounded-lg p-3 mt-2">
-                        {!! Parsedown::instance()->text($post->markdown) !!}
+                        @livewire('markdown-parser', ['markdown' => $post->markdown])
                     </div>
                     <div class="rounded-lg bg-gray-100 p-3 mt-2">
                         {{-- Total Likes: {{ $post->likes->count() }} --}}

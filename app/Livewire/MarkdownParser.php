@@ -10,6 +10,12 @@ class MarkdownParser extends Component
     public $markdown;
     public $parsedMarkdown;
 
+    public function mount()
+    {
+        $this->parseMarkdown();
+    }
+
+
     public function render()
     {
         return view('livewire.markdown-parser');
