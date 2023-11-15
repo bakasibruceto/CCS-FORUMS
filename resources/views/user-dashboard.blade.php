@@ -63,8 +63,11 @@
                             </a>
                         </div>
                         <div class="rounded-lg p-3 mt-2">
-                            @livewire('markdown-parser', ['markdown' => $post->markdown])
-                            {{-- {!! Parsedown::instance()->text($post->markdown) !!} --}}
+                            {{-- @livewire('markdown-parser', ['markdown' => $post->markdown]) --}}
+                            {{-- {!! Parsedown::instance()->text(\Illuminate\Support\Str::limit($post->markdown, 50)) !!} --}}
+                            {{-- {{$post->markdown}} --}}
+                            <p>{{ \Illuminate\Support\Str::limit($post->markdown, 50) }}</p>
+                            <a href="{{ route('user-post.show',['postId' => $post->id]) }}">Read more</a>
                         </div>
                         <div class="rounded-lg bg-gray-100 p-3 mt-2">
                             Total Likes:
