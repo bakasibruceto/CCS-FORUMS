@@ -63,6 +63,7 @@
                     </div>
                     <div class="rounded-lg p-3 mt-2">
                         @livewire('markdown-parser', ['markdown' => $post->markdown])
+                        {{-- {!! Parsedown::instance()->text($post->markdown) !!} --}}
                     </div>
                     <div class="rounded-lg bg-gray-100 p-3 mt-2">
                         Total Likes:

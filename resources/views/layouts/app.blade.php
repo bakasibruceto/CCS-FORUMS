@@ -11,12 +11,21 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+
+    <!-- Include a11y-dark theme -->
+    <link rel="stylesheet" href="{{ asset('path/to/highlight.js/styles/a11y-dark.css') }}">
     {{-- <link rel="icon" href="favicon.ico" type="image"> --}}
     <!-- Scripts -->
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/css/a11y-dark.css','resources/js/app.js'])
 
     <!-- Styles -->
+
+    {{-- <script src="{{ asset('path/to/highlight.js') }}"></script> --}}
+
+    {{-- <!-- Include a11y-dark theme -->
+    <link rel="stylesheet" href="{{ asset('css/a11y-dark.css') }}"> --}}
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
