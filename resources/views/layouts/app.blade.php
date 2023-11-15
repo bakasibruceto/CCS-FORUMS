@@ -19,8 +19,8 @@
     <!-- Styles -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" integrity="sha256-xTg6uIeQsLq5l6I8TNEz3ZI3EPkN3Y62e42IeBf2L3w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js" integrity="sha256-+TQxhDX3e7jcM1n9lV6F2Q8euzfN7S26r4+4B9T+Ei0=" crossorigin="anonymous"></script>
+
+
 
 
     @livewireStyles

@@ -9,7 +9,7 @@
                     </div>
                     <div class="rounded-lg bg-gray-100">
                         <a class="inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
-                            href="#">
+                            href="{{route('create-thread')}}">
                             Create Thread
                         </a>
                     </div>
@@ -45,22 +45,35 @@
                     </div>
 
                 </div>
-                {{-- for each --}}
+                @foreach ($forumPosts as $post)
                 <div class="pt-3">
-                    <div class="rounded-lg bg-gray-100">
-                        profile username posted time tags
+                    <div class="rounded-lg bg-gray-100 p-3">
+                        <div>
+                            <img src="{{$post->user->profile_photo_url}}" alt="">
+                            <strong>{{ $post->user->username }}</strong> posted {{ $post->created_at->diffForHumans() }}
+                        </div>
+                        <div>
+                            Tags: {{ $post->tags }}
+                        </div>
                     </div>
-                    <div class="rounded-lg bg-gray-100">
-                        title
+                    <div class="rounded-lg bg-gray-100 p-3 mt-2">
+                        <h2>{{ $post->title }}</h2>
                     </div>
-                    <div class="rounded-lg bg-gray-100">
-                        description
+                    <div class="rounded-lg p-3 mt-2">
+                        {!! Parsedown::instance()->text($post->markdown) !!}
                     </div>
-                    <div class="rounded-lg bg-gray-100">
-                        total likes total discussion Solved
+                    <div class="rounded-lg bg-gray-100 p-3 mt-2">
+                        {{-- Total Likes: {{ $post->likes->count() }} --}}
+                        {{-- Total Discussions: {{ $post->discussions->count() }} --}}
+                        {{-- @if ($post->solved)
+                            Solved
+                        @else
+                            Unsolved
+                        @endif --}}
                     </div>
                 </div>
-                {{-- endforeach --}}
+            @endforeach
+
 
                 <div>
                     showing 1-20 or 64231 results pagination
