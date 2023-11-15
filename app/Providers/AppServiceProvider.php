@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 use Sinnbeck\Markdom\Facades\Markdom;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,6 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Markdom::registerBladeDirectives();
+        Paginator::useTailwind();
     }
 }

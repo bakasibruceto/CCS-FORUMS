@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function show(Request $request)
     {
-        $forumPosts = ForumPost::with('user')->latest()->get();
+        $forumPosts = ForumPost::with('user')->latest()->paginate(1);
 
         return view('user-dashboard', compact('forumPosts'));
     }
