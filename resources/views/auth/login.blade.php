@@ -1,5 +1,5 @@
-<x-guest-layout >
-    <x-authentication-card >
+<x-guest-layout>
+    <x-authentication-card>
         {{-- <div>
             <div>
                 testing
@@ -8,7 +8,7 @@
                 testing
             </div>
         </div> --}}
-        <x-slot name="logo">
+        <x-slot name="logo" >
             <x-authentication-card-logo />
         </x-slot>
 
@@ -19,19 +19,20 @@
                 {{ session('status') }}
             </div>
         @endif
-        <h2 class="text-4xl font-extrabold pb-10">Welcome, clever fox!</h2>
+
+        <div class="flex flex-col space-y-2 text-center mb-5">
+            <h1 class="text-gray-800 font-bold text-3xl">Hello, Clever Fox!</h1>
+            <p class="text-sm">Join the Fox-clusive Student Forum: Where Curiosity Meets Cunning!</p>
+        </div>
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <div>
-                <x-label for="email" value="{{ __('Email / Username') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="text" placeholder="Email / Username"
+            <div class="flex items-center">
+                <x-input id="email" class="block mt-1 w-full " type="text" placeholder="Email / Username"
                     name="login" :value="old('login')" autofocus autocomplete="name" />
             </div>
-
-
+    
             <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" placeholder="Password" name="password"
                     autocomplete="current-password" />
             </div>
@@ -74,3 +75,4 @@
         </form>
     </x-authentication-card>
 </x-guest-layout>
+
