@@ -6,6 +6,7 @@ use App\Http\Controllers\EditorController;
 use App\Http\Controllers\PostController;
 use App\Livewire\MarkdownEditor;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\ShowThread;
 use Michelf\Markdown;
 
 // Initial route
@@ -43,18 +44,16 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/', [PostController::class, 'show'])->name('/');
 
     // Forum post
-    Route::get('/forumpost', function () {
-        return view('user-post');
-    });
+    // Route::get('/forumpost', function () {
+    //     return view('user-post');
+    // });
 
     Route::get('/createthread', function () {
 
         return view('create-thread');
     });
 
-    // Route::get('/createthread', 'create-thread');
-
-
+    Route::get('/thread/{postId}', [PostController::class, 'get'])->name('user-post.show');
 
     // Used the 'username' as the route name for showing user profile
     Route::get('{user:username}', [SearchController::class, 'show'])->name('user.show');
