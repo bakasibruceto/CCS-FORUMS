@@ -1,6 +1,6 @@
-<div>
+<div class="w-full border border-red-500"> <!-- Add a border for debugging -->
     @if($parsedMarkdown)
-        <div class="mt-4 prose">
+        <div class="prose">
             {!! $parsedMarkdown !!}
         </div>
     @endif

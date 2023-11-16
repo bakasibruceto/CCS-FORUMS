@@ -1,13 +1,9 @@
 <?php
-use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\SearchController;
-use App\Http\Controllers\EditorController;
 use App\Http\Controllers\PostController;
 use App\Livewire\MarkdownEditor;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\ShowThread;
-use Michelf\Markdown;
 
 // Initial route
 Route::get('/', function () {
@@ -43,16 +39,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('search', [SearchController::class, 'search'])->name('search');
     Route::get('/', [PostController::class, 'show'])->name('/');
 
-    // Forum post
-    // Route::get('/forumpost', function () {
-    //     return view('user-post');
-    // });
-
+    // Create Thread
     Route::get('/createthread', function () {
-
         return view('create-thread');
     });
 
+    // Single page Thread
     Route::get('/thread/{postId}', [PostController::class, 'get'])->name('user-post.show');
 
     // Used the 'username' as the route name for showing user profile
