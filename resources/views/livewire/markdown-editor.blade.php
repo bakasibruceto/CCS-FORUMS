@@ -19,7 +19,10 @@
                 @if ($previewMode)
                     <div>{!! $parsedMarkdown !!}</div>
                 @else
-                    <textarea class="w-full resize-none rounded-md border border-gray-400 bg-gray-200 py-3 px-3 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" wire:model="markdown"></textarea>
+                    <textarea wire:model="markdown"  x-data="{ resize: () => { $el.style.height = '5px'; $el.style.height = $el.scrollHeight + 'px' } }"
+                            x-init="resize ()"
+                            @input="resize ()"
+                            class="text-base bg-gray-100 border border-gray-300 w-full max-h-58 rounded-md focus:outline-none focus:ring-0 resize-none"></textarea>
                 @endif
                 <div class="flex item-end justify-end">
                     <button class="mt-2 hover:shadow-form rounded-md hover:bg-sky-900 bg-sky-950 py-3 px-8 text-base font-semibold text-white outline-none" type="submit">Create Thread</button>
@@ -28,3 +31,4 @@
         </div>
     </div>  
 </div>
+
