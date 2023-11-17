@@ -16,6 +16,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "alpinejs": "^3.13.2",
         "highlight.js": "^11.9.0",
         "marked": "^10.0.0",
         "prismjs": "^1.29.0",
