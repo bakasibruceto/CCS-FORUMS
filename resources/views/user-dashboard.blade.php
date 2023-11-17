@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="flex flex-1 overflow-hidden -mt-4">
+    <div class="flex flex-1 overflow-hidden">
         <div class="flex flex-col flex-1">
             <div class="block md:grid md:grid-flow-row-dense md:grid-cols-3 md:grid-rows-3 md:ml-6">
                 {{-- <x-sidebar /> --}}
@@ -24,23 +24,23 @@
                                 <div class="rounded-lg flex gap-2 lg:justify-end">
                                     <span class="inline-flex -space-x-px overflow-hidden rounded-md border bg-white shadow-sm">
                                         <button
-                                            class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:text-white hover:bg-sky-950 focus:relative">
+                                            class="inline-block px-4 py-2 text-sm font-medium text-white bg-sky-900 hover:bg-sky-950 focus:relative">
                                             Recent
                                         </button>
 
                                         <button
-                                            class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:text-white hover:bg-sky-950 focus:relative">
+                                            class="inline-block px-4 py-2 text-sm font-medium text-white bg-sky-900 hover:bg-sky-950 focus:relative">
                                             Resolved
                                         </button>
 
                                         <button
-                                            class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:text-white hover:bg-sky-950 focus:relative">
+                                            class="inline-block px-4 py-2 text-sm font-medium text-white bg-sky-900 hover:bg-sky-950 focus:relative">
                                             Unresolved
                                         </button>
                                     </span>
                                     <div class="inline-flex -space-x-px overflow-hidden rounded-md border bg-white shadow-sm">
                                         <button
-                                            class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:text-white hover:bg-sky-950 focus:relative">
+                                            class="inline-block px-4 py-2 text-sm font-medium text-white bg-sky-900 hover:bg-sky-950 focus:relative">
                                             Tag Filter
                                         </button>
                                     </div>
@@ -69,7 +69,9 @@
                                     </div>
                                     <div class="rounded-lg bg-gray-100 p-3 mt-2">
                                         {{-- Total Likes: {{ $post->likes->count() }} --}}
+                                        
                                         {{-- Total Discussions: {{ $post->discussions->count() }} --}}
+                                        
                                         {{-- @if ($post->solved)
                                             Solved
                                         @else
