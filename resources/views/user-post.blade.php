@@ -67,7 +67,7 @@
     </x-slot>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-0 flex justify-between grid-cols-3 w-full">
         <div class="flex flex-col flex-1">
-            <div class="block md:grid md:grid-flow-row-dense md:grid-cols-3 md:grid-rows-3 md:ml-6">
+            <div class="block md:grid md:grid-flow-row-dense md:grid-cols-3 md:ml-6">
 
                 <div class="col-span-2">
                     <div class="container mx-auto px-4 p-6 mt-5">

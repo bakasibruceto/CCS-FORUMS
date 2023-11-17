@@ -1,7 +1,7 @@
 <x-app-layout>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-0 flex justify-between grid-cols-3 w-full">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-0">
         <div class="flex flex-col flex-1">
-            <div class="block md:grid md:grid-flow-row-dense md:grid-cols-3 md:grid-rows-3 md:ml-6">
+            <div class="block md:grid md:grid-flow-row-dense md:grid-cols-3 md:ml-6">
                 {{-- <x-sidebar /> --}}
                 <div class="col-span-2">
                     <div class="container mx-auto px-0 p-6">
@@ -21,8 +21,7 @@
                                 <h1>{{ $forumPosts->total() }} Threads</h1>
                             </div>
                             <div class="rounded-lg flex gap-2 lg:justify-end">
-                                <span
-                                    class="inline-flex -space-x-px overflow-hidden rounded-md border shadow-sm">
+                                <span class="inline-flex -space-x-px overflow-hidden rounded-md border shadow-sm">
                                     <button
                                         class="bg-sky-950 inline-block px-4 py-2 text-sm font-medium text-white hover:text-white hover:bg-sky-700 focus:relative active:bg-sky-950 active:text-white">
                                         Recent
@@ -52,15 +51,20 @@
                         </div>
                     </div>
 
-                    @foreach ($forumPosts as $post)
-                        <div class="container mx-auto px-4 p-6 -mt-12">
+
+                    <div class="container mx-auto px-4 p-6 -mt-12">
+                        @foreach ($forumPosts as $post)
                             <div class="bg-white shadow rounded-lg mb-5 p-3 md:w-full">
-                                <div class="flex items-center mb-3 gap-1 ">
-                                    <img class="rounded-full mr-2 ml-1 w-10 h-10"
-                                        src="{{ $post->user->profile_photo_url }}" alt="">
-                                    <strong class="mr-2">{{ $post->user->username }}</strong> posted
-                                    {{ $post->created_at->diffForHumans() }}
-                                    Tags: {{ $post->tags }}
+                                <div class="flex items-center mb-3 gap-1 justify-between">
+                                    <div class="flex items-center gap-1">
+                                        <img class="rounded-full mr-2 ml-1 w-10 h-10"
+                                            src="{{ $post->user->profile_photo_url }}" alt="">
+                                        <strong class="mr-2">{{ $post->user->username }}</strong> posted
+                                        {{ $post->created_at->diffForHumans() }}
+                                    </div>
+                                    <div class="inline-block bg-slate-300 text-black px-2 py-1 rounded text-sm">
+                                        {{ $post->tags }}
+                                    </div>
                                 </div>
                                 <div class="rounded-lg pl-3 text-2xl font-bold ">
                                     <a class="hover:underline"
@@ -68,34 +72,29 @@
                                 </div>
 
                                 <div class="rounded-lg p-3 -mt-3 text-slate-500">
-                                    <p>{{ \Illuminate\Support\Str::limit($post->markdown, 50) }}</p>
+                                    <p>{{ \Illuminate\Support\Str::limit(strip_tags((new Parsedown())->text($post->markdown)), 150) }}
+                                    </p>
                                 </div>
-                                <div class="rounded-lg bg-gray-100 p-3 mt-2">
-                                    {{-- Total Likes: {{ $post->likes->count() }} --}}
-                                    {{-- Total Discussions: {{ $post->discussions->count() }} --}}
-                                    {{-- @if ($post->solved)
-                                            Solved
-                                        @else
-                                            Unsolved
-                                        @endif --}}
+                                <div class="rounded-lg p-3 mt-2">
+                                    <ion-icon name="heart-outline" class="text-2xl p-1 -pr-1"></ion-icon>
+                                    <ion-icon name="chatbubble-ellipses-outline" class="text-2xl p-1"></ion-icon>
                                 </div>
                             </div>
+                        @endforeach
+                        <div class="mb-10">
+                            {{-- Pagination --}}
+                            {{ $forumPosts->links() }}
                         </div>
-                    @endforeach
-
-
-                    <div>
-                        {{-- Pagination --}}
-                        {{ $forumPosts->links() }}
                     </div>
+
+
+
+
                 </div>
                 <x-left-box />
             </div>
-
         </div>
     </div>
-    </div>
-
 </x-app-layout>
 
 {{-- <p>{{ \Illuminate\Support\Str::limit($post->markdown, 50) }}</p>
