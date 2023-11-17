@@ -1,6 +1,12 @@
 <div class="prose mx-auto md:px-4 px-2">
     <div class="md:w-full w-full">
         <p class="text-2xl font-bold text-gray-800 border-b border-gray-300">Create a new thread...</p>
+        <p class="text-sm -mt-5">
+            Make sure you've read our rules before proceeding.
+
+            Please search for your question before posting your thread by using the search box in the navigation bar.
+            Want to share large code snippets? Share them through our pastebin.
+        </p>
         <form wire:submit.prevent="savePost" class="bg-white rounded-lg p-3">
             <div class="mb-4">
                 <x-label class="font-semibold text-xl text-gray-900" for="subject" value="{{ __('Subject') }}" />
@@ -92,10 +98,10 @@
             </div>
             <div class="flex item-end justify-end">
                 <button
-                    class="mt-2 hover:shadow-form rounded-md hover:bg-sky-900 bg-sky-950 py-3 px-8 text-base font-semibold text-white outline-none"
+                    class="-mt-6 hover:shadow-form rounded-md hover:bg-sky-900 bg-sky-950 py-3 px-8 text-base font-semibold text-white outline-none"
                     type="submit">Create Thread</button>
             </div>
         </form>
     </div>
 </div>
-</div>
+
