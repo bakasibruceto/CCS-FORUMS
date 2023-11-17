@@ -25,15 +25,15 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     });
 
     // Check if role is admin
-    Route::group(['middleware' => 'role:admin'], function () {
-        Route::get('admin', function () {
+    // Route::group(['middleware' => 'role:admin'], function () {
+    //     Route::get('admin', function () {
 
-            // Reset the "previous_search" session value here
-            session()->forget('previous_search');
-            return app(AdminController::class)->index();
+    //         // Reset the "previous_search" session value here
+    //         session()->forget('previous_search');
+    //         return app(AdminController::class)->index();
 
-        })->name('admin.index');
-    });
+    //     })->name('admin.index');
+    // });
 
     // Search Bar
     Route::get('search', [SearchController::class, 'search'])->name('search');
