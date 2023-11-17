@@ -40,23 +40,25 @@
                 {{-- Search --}}
                 <div class="m-auto pl-10">
                     <div class="relative text-gray-600 focus-within:text-gray-400">
-                        <form action="{{ route('search') }}" method="GET">
-                            <div class="flex">
-                                <div class="absolute inset-y-0 left-0 flex items-center pl-5 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="none" viewBox="0 0 20 20">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                                    </svg>
-                                </div>
-
-                                <input
-                                    class="block w-full md:w-80 p-3 pl-12 text-sm rounded-full text-gray-900 border border-gray-300 bg-gray-50 dark:placeholder-gray-400 dark:text"
-                                    type="text"
-                                    placeholder="Search..."
-                                    name="q"
-                                    {{--user session stored value--}}
-                                    value="{{ session('previous_search') }}"
-                                />
+                        @if (auth()->user()->role === 'user')
+                            <form action="{{ route('search') }}" method="GET">
+                            @elseif (auth()->user()->role === 'admin')
+                                <form action="{{ route('admin-search') }}" method="GET">
+                        @endif
+                        <div class="flex">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-5 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="none"
+                                    viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                </svg>
                             </div>
+
+                            <input
+                                class="block w-full md:w-80 p-3 pl-12 text-sm rounded-full text-gray-900 border border-gray-300 bg-gray-50 dark:placeholder-gray-400 dark:text"
+                                type="text" placeholder="Search..." name="q" {{-- user session stored value --}}
+                                value="{{ session('previous_search') }}" />
+                        </div>
                         </form>
                     </div>
                 </div>
@@ -120,7 +122,7 @@
                 @endif
 
                 <div class="relative pr-5">
-                    <ion-icon class="text-2xl ml-1"  name="notifications"></ion-icon>
+                    <ion-icon class="text-2xl ml-1" name="notifications"></ion-icon>
                 </div>
                 <div class="relative pr-5">
                     <ion-icon class="text-2xl ml-1" name="mail"></ion-icon>
@@ -198,7 +200,7 @@
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
                 <div class="relative pr-5">
-                    <ion-icon class="text-2xl ml-1"  name="notifications"></ion-icon>
+                    <ion-icon class="text-2xl ml-1" name="notifications"></ion-icon>
                 </div>
                 <div class="relative pr-5">
                     <ion-icon class="text-2xl ml-1" name="mail"></ion-icon>

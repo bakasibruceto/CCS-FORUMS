@@ -31,5 +31,7 @@ class UserFollow extends Component
         }
 
         $this->following = !$this->following;
+
+        $this->emit('followed', $this->userId);
     }
 }

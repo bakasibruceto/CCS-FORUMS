@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "alpinejs": "^3.13.2",
+        "chart.js": "^4.4.0",
         "highlight.js": "^11.9.0",
         "marked": "^10.0.0",
         "prismjs": "^1.29.0",

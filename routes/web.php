@@ -7,7 +7,11 @@ use Illuminate\Support\Facades\Route;
 
 // Initial route
 Route::get('/', function () {
-    return view('dashboard');
+    return view('auth');
+});
+
+Route::get('/admin', function () {
+    return view('admin-dashboard');
 });
 
 // Check if user is logged
@@ -22,36 +26,53 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             // return app(UserController::class)->index();
 
         })->name('user.index');
+        // Search Bar
+        Route::get('search', [SearchController::class, 'search'])->name('search');
+        Route::get('/', [PostController::class, 'show'])->name('/');
+
+        // Create Thread
+        Route::get('/createthread', function () {
+            return view('create-thread');
+        });
+
+        // Single page Thread
+        Route::get('/thread/{postId}', [PostController::class, 'get'])->name('user-post.show');
+
+        // Used the 'username' as the route name for showing user profile
+        Route::get('{user:username}', [SearchController::class, 'show'])->name('user.show');
+
+        // Route::get('/createthread', MarkdownEditor::class)->name('create-thread');
+        Route::post('/createthread', [MarkdownEditor::class, 'savePost'])->name('create-thread');
     });
 
     // Check if role is admin
-    // Route::group(['middleware' => 'role:admin'], function () {
-    //     Route::get('admin', function () {
+    Route::group(['middleware' => 'role:admin'], function () {
+        Route::get('admin', function () {
+            // Reset the "previous_search" session value here
+            session()->forget('previous_search');
+            return app(AdminController::class)->index();
+        })->name('admin.index');
 
-    //         // Reset the "previous_search" session value here
-    //         session()->forget('previous_search');
-    //         return app(AdminController::class)->index();
+        // Search Bar
+        Route::get('admin/search', [SearchController::class, 'search'])->name('admin-search');
 
-    //     })->name('admin.index');
-    // });
 
-    // Search Bar
-    Route::get('search', [SearchController::class, 'search'])->name('search');
-    Route::get('/', [PostController::class, 'show'])->name('/');
+        // Create Thread
+        // Route::get('/createthread', function () {
+        //     return view('create-thread');
+        // });
 
-    // Create Thread
-    Route::get('/createthread', function () {
-        return view('create-thread');
+        // Single page Thread
+        // Route::get('/thread/{postId}', [PostController::class, 'get'])->name('user-post.show');
+
+        // Used the 'username' as the route name for showing user profile
+        // Route::get('admin/view/{user:username}', [SearchController::class, 'show'])->name('user.show');
+
+        // Route::get('/createthread', MarkdownEditor::class)->name('create-thread');
+        // Route::post('/createthread', [MarkdownEditor::class, 'savePost'])->name('create-thread');
     });
 
-    // Single page Thread
-    Route::get('/thread/{postId}', [PostController::class, 'get'])->name('user-post.show');
 
-    // Used the 'username' as the route name for showing user profile
-    Route::get('{user:username}', [SearchController::class, 'show'])->name('user.show');
-
-    // Route::get('/createthread', MarkdownEditor::class)->name('create-thread');
-    Route::post('/createthread', [MarkdownEditor::class, 'savePost'])->name('create-thread');
 
 
 });
