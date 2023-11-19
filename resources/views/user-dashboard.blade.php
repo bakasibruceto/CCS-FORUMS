@@ -1,7 +1,7 @@
 <x-app-layout>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-0">
+    <div class="max-w-6xl mx-auto sm:px-6 lg:px-0">
         <div class="flex flex-col flex-1">
-            <div class="block md:grid md:grid-flow-row-dense md:grid-cols-3 md:ml-6">
+            <div class="block md:grid md:grid-flow-row-dense md:grid-cols-3 md:ml-10 md:-mr-14">
                 {{-- <x-sidebar /> --}}
                 <div class="col-span-2">
                     <div class="container mx-auto px-0 p-6">
@@ -23,25 +23,25 @@
                             <div class="rounded-lg flex gap-2 lg:justify-end">
                                 <span class="inline-flex -space-x-px overflow-hidden rounded-md border shadow-sm">
                                     <button
-                                        class="bg-sky-950 inline-block px-4 py-2 text-sm font-medium text-white hover:text-white hover:bg-sky-700 focus:relative active:bg-sky-950 active:text-white">
+                                        class="inline-block px-4 py-2 text-sm font-medium text-white bg-sky-900 hover:bg-sky-950 focus:relative active:bg-sky-950 active:text-white">
                                         Recent
                                     </button>
 
                                     <button
-                                        class="bg-white inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-slate-50 focus:relative">
+                                        class="inline-block px-4 py-2 text-sm font-medium text-white bg-sky-900 hover:bg-sky-950 focus:relative">
                                         Resolved
                                     </button>
 
                                     <button
-                                        class="bg-white inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-slate-50 focus:relative">
+                                        class="inline-block px-4 py-2 text-sm font-medium text-white bg-sky-900 hover:bg-sky-950 focus:relative">
                                         Unresolved
                                     </button>
 
                                 </span>
                                 <div
-                                    class="inline-flex -space-x-px overflow-hidden rounded-md border bg-white shadow-sm">
+                                    class="inline-flex -space-x-px overflow-hidden rounded-md border bg-sky-900 shadow-sm">
                                     <button
-                                        class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-slate-50 focus:relative">
+                                        class="inline-block px-4 py-2 text-sm font-medium text-white hover:bg-sky-950 focus:relative">
                                         Tag Filter
                                     </button>
                                 </div>

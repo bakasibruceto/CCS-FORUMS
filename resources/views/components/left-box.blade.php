@@ -1,4 +1,4 @@
-<div class="hidden md:block lg:block w-4/3 pr-10 pt-11 ">  
+<div class="hidden md:block lg:block w-60 md:pt-11 md:ml-3">  
 
     <div class="bg-white shadow rounded-lg mb-6 p-4 w-full h-52">
         <!--   content here   -->
