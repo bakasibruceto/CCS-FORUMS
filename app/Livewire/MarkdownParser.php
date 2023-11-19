@@ -12,8 +12,11 @@ class MarkdownParser extends Component
     public $markdown;
     public $parsedMarkdown;
 
-    public function mount()
+
+
+    public function mount($markdown)
     {
+        $this->markdown = $markdown;
         $this->parseMarkdown();
     }
 
