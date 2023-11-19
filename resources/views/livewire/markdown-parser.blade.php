@@ -1,4 +1,4 @@
-<div> <!-- Add a border for debugging -->
+<div wire:poll.5000ms> <!-- Add a border for debugging -->
     @if ($parsedMarkdown)
         <div class="prose border min-w-full">
             <div x-data x-init="let codeBlocks = $refs.markdown.querySelectorAll('pre code');
