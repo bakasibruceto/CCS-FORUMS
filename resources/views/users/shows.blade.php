@@ -56,15 +56,11 @@
                                                 </a>
                                             </div>
                                             <div class="lg:mr-4 p-3 text-center hover:bg-sky-100 rounded-lg">
-                                                <span
+                                                {{-- <span
                                                     class="text-sm block tracking-wide text-black">{{ $totalFollowing }}</span>
-                                                <span class="text-gray-600">following</span>
+                                                <span class="text-gray-600">following</span> --}}
                                             </div>
-                                            <div class="mr-4 p-3 text-center hover:bg-sky-100 rounded-lg">
-                                                <span
-                                                    class="text-sm block tracking-wide text-black">{{ $totalFollowers }}</span>
-                                                <span class="text-gray-600">followers</span>
-                                            </div>
+                                            <livewire:follower-counter :username="$user->username" />
                                         </div>
                                     </div>
 

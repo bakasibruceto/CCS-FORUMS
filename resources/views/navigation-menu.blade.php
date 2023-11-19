@@ -40,23 +40,25 @@
                 {{-- Search --}}
                 <div class="m-auto pl-10">
                     <div class="relative text-gray-600 focus-within:text-gray-400">
-                        <form action="{{ route('search') }}" method="GET">
-                            <div class="flex">
-                                <div class="absolute inset-y-0 left-0 flex items-center pl-5 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="none" viewBox="0 0 20 20">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                                    </svg>
-                                </div>
-
-                                <input
-                                    class="block w-full md:w-80 p-3 pl-12 text-sm rounded-full text-gray-900 border border-gray-300 bg-gray-50 dark:placeholder-gray-400 dark:text"
-                                    type="text"
-                                    placeholder="Search..."
-                                    name="q"
-                                    {{--user session stored value--}}
-                                    value="{{ session('previous_search') }}"
-                                />
+                        @if (auth()->user()->role === 'user')
+                            <form action="{{ route('search') }}" method="GET">
+                            @elseif (auth()->user()->role === 'admin')
+                                <form action="{{ route('admin-search') }}" method="GET">
+                        @endif
+                        <div class="flex">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-5 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="none"
+                                    viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                </svg>
                             </div>
+
+                            <input
+                                class="block w-full md:w-80 p-3 pl-12 text-sm rounded-full text-gray-900 border border-gray-300 bg-gray-50 dark:placeholder-gray-400 dark:text"
+                                type="text" placeholder="Search..." name="q" {{-- user session stored value --}}
+                                value="{{ session('previous_search') }}" />
+                        </div>
                         </form>
                     </div>
                 </div>
@@ -119,6 +121,7 @@
                     </div>
                 @endif
 
+
                 <div class="flex gap-2">
                     <div class="relative p-2 rounded-full text-white bg-sky-900"> 
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
@@ -130,6 +133,7 @@
                             <path fill-rule="evenodd" d="M4.848 2.771A49.144 49.144 0 0112 2.25c2.43 0 4.817.178 7.152.52 1.978.292 3.348 2.024 3.348 3.97v6.02c0 1.946-1.37 3.678-3.348 3.97a48.901 48.901 0 01-3.476.383.39.39 0 00-.297.17l-2.755 4.133a.75.75 0 01-1.248 0l-2.755-4.133a.39.39 0 00-.297-.17 48.9 48.9 0 01-3.476-.384c-1.978-.29-3.348-2.024-3.348-3.97V6.741c0-1.946 1.37-3.68 3.348-3.97zM6.75 8.25a.75.75 0 01.75-.75h9a.75.75 0 010 1.5h-9a.75.75 0 01-.75-.75zm.75 2.25a.75.75 0 000 1.5H12a.75.75 0 000-1.5H7.5z" clip-rule="evenodd" />
                         </svg>
                     </div>
+
                 </div>
 
                 <!-- Settings Dropdown -->
@@ -204,7 +208,7 @@
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
                 <div class="relative pr-5">
-                    <ion-icon class="text-2xl ml-1"  name="notifications"></ion-icon>
+                    <ion-icon class="text-2xl ml-1" name="notifications"></ion-icon>
                 </div>
                 <div class="relative pr-5">
                     <ion-icon class="text-2xl ml-1" name="mail"></ion-icon>
