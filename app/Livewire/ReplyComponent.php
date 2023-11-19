@@ -27,6 +27,7 @@ class ReplyComponent extends Component
 
     public function render()
     {
+        $this->loadReplies();
         return view('livewire.reply-component');
     }
 }

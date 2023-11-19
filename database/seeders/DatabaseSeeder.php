@@ -28,12 +28,12 @@ class DatabaseSeeder extends Seeder
         //     $table->longText('markdown');
         //     $table->timestamps();
         // });
-        Schema::create('user_reply', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('post_id')->references('id')->on('forum_posts');
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->longText('markdown');
-            $table->timestamps();
-        });
+        // Schema::create('user_reply', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('post_id')->references('id')->on('forum_posts');
+        //     $table->foreignId('user_id')->references('id')->on('users');
+        //     $table->longText('markdown');
+        //     $table->timestamps();
+        // });
     }
 }
