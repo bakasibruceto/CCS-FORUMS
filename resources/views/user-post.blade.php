@@ -62,7 +62,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="font-semibold text-3xl text-gray-800 leading-tight ">
-            CSS FORUM > {{ $post->title }}
+            CSS FORUM &gt; {{ $post->title }}
         </h1>
     </x-slot>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-0 flex justify-between grid-cols-3 w-full">
