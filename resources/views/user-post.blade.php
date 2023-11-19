@@ -67,14 +67,15 @@
     </x-slot>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-0 flex justify-between grid-cols-3 w-full">
         <div class="flex flex-col flex-1">
-            <div class="block md:grid md:grid-flow-row-dense md:grid-cols-3 md:ml-6">
-
-                <div class="col-span-2">
-                    <div class="container mx-auto px-4 p-6 mt-5">
+            <div class="grid grid-cols-1 lg:grid-cols-4 lg:gap-3 p-10">
+                <div class="col-span-3">
+                    <div class="container mx-auto">
                         <div class="bg-white shadow rounded-lg mb-5 p-3 md:w-full">
                             <div class="flex items-center mb-3 gap-2 ">
-                                <img class="rounded-full mr-3 w-10 h-10" src="{{ $post->user->profile_photo_url }}" alt="">
-                                <strong>{{ $post->user->username }}</strong> posted {{ $post->created_at->diffForHumans() }}
+                                <img class="rounded-full mr-3 w-10 h-10" src="{{ $post->user->profile_photo_url }}"
+                                    alt="">
+                                <strong>{{ $post->user->username }}</strong> posted
+                                {{ $post->created_at->diffForHumans() }}
                                 <div>
                                     {{ $post->tags }}
                                 </div>
@@ -83,7 +84,8 @@
 
                             <div class="border-t border-gray-200"></div>
 
-                            <div class="p-3 flex-grow w-full border-green-500">
+
+                            <div class="p-3 flex-grow w-full">
                                 @livewire('markdown-parser', ['markdown' => $post->markdown])
                             </div>
 
@@ -91,18 +93,15 @@
 
                             </div>
                         </div>
+                        @livewire('reply-component', ['post_id' => $post->id])
+                        @livewire('reply-editor', ['post_id' => $post->id])
                     </div>
-
-
-
-
                 </div>
                 <x-left-box />
             </div>
-
         </div>
     </div>
-    </div>
+
 
 </x-app-layout>
 

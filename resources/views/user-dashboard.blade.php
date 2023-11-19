@@ -1,9 +1,9 @@
 <x-app-layout>
-    <div class="max-w-6xl mx-auto sm:px-6 lg:px-0">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-0 flex justify-between grid-cols-3 w-full">
         <div class="flex flex-col flex-1">
-            <div class="block md:grid md:grid-flow-row-dense md:grid-cols-3 md:ml-10 md:-mr-14">
-                {{-- <x-sidebar /> --}}
-                <div class="col-span-2">
+            <div class="grid grid-cols-1 lg:grid-cols-4 lg:gap-3 p-10">
+                <div class="col-span-3">
+                    {{-- <x-sidebar /> --}}
                     <div class="container mx-auto px-0 p-6">
                         <div class="flex items-center justify-between rounded-lg md:w-full mb-5 p-4 w-full">
                             <p class="font-bold text-gray-900 text-4xl pb-2">Forum</p>
@@ -86,10 +86,6 @@
                             {{ $forumPosts->links() }}
                         </div>
                     </div>
-
-
-
-
                 </div>
                 <x-left-box />
             </div>
