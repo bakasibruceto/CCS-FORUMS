@@ -1,5 +1,4 @@
-<div class="hidden md:block lg:block w-60 md:pt-11 md:ml-3">  
-
+<div class="hidden md:block lg:block w-65 ">
     <div class="bg-white shadow rounded-lg mb-6 p-4 w-full h-52">
         <!--   content here   -->
         <p class="font-semibold text-gray-800 text-sm pb-2 border-b border-gray-200">Events</p>
