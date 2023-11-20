@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-0 flex justify-between grid-cols-3 w-full">
             <x-sidebar />
             <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
-                <div class="container  py-8 mx-auto">
+                <div class="container py-8 mx-auto">
                     <div class="mt-2 md:ml-8">
                         <div class="flex flex-wrap">
                             <div class="w-full px-6 sm:w-1/2 xl:w-1/3">
