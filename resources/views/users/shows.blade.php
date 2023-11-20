@@ -6,7 +6,7 @@
     </x-slot> --}}
 
 
-    <div class="py-12">
+    <div class="-mt-8">
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pt-5">
             {{-- <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg"> --}}
@@ -83,6 +83,25 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            <div class="flex mt-6">
+                                <div class="w-1/3 justify-center flex">
+                                    <button class="active:border-blue-600 w-full font-bold text-blue-500 border-b-2 border-blue-500 transition duration-300 ease-in-out">
+                                        Thread posted
+                                    </button>
+                                </div>
+                                <div class="w-1/3 justify-center flex">
+                                    <button class="w-full font-bold text-blue-500 border-b-2 border-transparent hover:border-blue-500 transition duration-300 ease-in-out">
+                                        Replies posted
+                                    </button>
+                                </div>
+                                <div class="w-1/3 justify-center flex">
+                                    <button class="w-full font-bold text-blue-500 border-b-2 border-transparent hover:border-blue-500 transition duration-300 ease-in-out">
+                                        Logs
+                                    </button>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </main>
