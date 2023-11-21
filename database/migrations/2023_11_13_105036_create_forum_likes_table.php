@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_likes', function (Blueprint $table) {
+        Schema::create('forum_likes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('likesbyUser_id')->references('id')->on('users');
-            $table->foreignId('likes_id')->references('id')->on('users');
+            $table->foreignId('post_id')->references('id')->on('forum_posts');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
