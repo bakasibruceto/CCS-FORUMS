@@ -90,6 +90,7 @@
                 <x-left-box />
             </div>
         </div>
+        <x-footer/>
     </div>
 </x-app-layout>
 
