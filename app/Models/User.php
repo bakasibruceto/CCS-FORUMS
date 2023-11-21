@@ -70,7 +70,7 @@ class User extends Authenticatable implements MustVerifyEmail
     // Follow Feature
     public function followers(): belongsToMany //relationship
     {
-                                                 //table name     //foreign key   //related key
+                                                //table name     //foreign key   //related key
         return $this->belongsToMany(User::class, 'user_follower', 'following_id', 'follower_id');
     }
     public function following(): belongsToMany
@@ -78,13 +78,20 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(User::class, 'user_follower', 'follower_id', 'following_id');
     }
 
+    public function likes()
+    {
+        return $this->belongsToMany(ForumPost::class, 'forum_likes', 'user_id', 'post_id');
+    }
+
     // Email Feature
 
-    public function sendPasswordResetNotification($token){
+    public function sendPasswordResetNotification($token)
+    {
         $this->notify(new NewResetPasswordNotification($token));
     }
 
-    public function sendEmailVerificationNotification(){
+    public function sendEmailVerificationNotification()
+    {
         $this->notify(new NewEmailVerificationNotification);
     }
 }

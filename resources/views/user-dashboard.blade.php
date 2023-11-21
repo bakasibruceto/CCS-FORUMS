@@ -75,8 +75,8 @@
                                     <p>{{ \Illuminate\Support\Str::limit(strip_tags((new Parsedown())->text($post->markdown)), 150) }}
                                     </p>
                                 </div>
-                                <div class="rounded-lg p-3 mt-2 flex">
-                                    <ion-icon name="heart-outline" class="text-2xl p-1 -pr-1"></ion-icon>
+                                <div class="rounded-lg p-3 mt-2 flex gap-3">
+                                    @livewire('user-likes', ['post_id' => $post->id])
                                     {{-- <ion-icon name="chatbubble-ellipses-outline" class="text-2xl p-1"></ion-icon> --}}
                                     <a class="hover:text-green-500 hover:fill-current"
                                         href="{{ route('user-post.show', ['postId' => $post->id]) }}">

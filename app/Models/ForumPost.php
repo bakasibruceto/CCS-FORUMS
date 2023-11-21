@@ -26,4 +26,9 @@ class ForumPost extends Model
         return $this->elongsTo(UserReply::class, 'post_id');
     }
 
+    public function likedBy()
+    {
+        return $this->belongsToMany(User::class, 'forum_likes', 'post_id', 'user_id');
+    }
+
 }

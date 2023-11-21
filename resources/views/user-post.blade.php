@@ -82,15 +82,17 @@
                             </div>
 
 
-                            <div class="border-t border-gray-200"></div>
+                            <div class="border-t border-gray-200">
+
+                            </div>
 
 
-                            <div class="p-3 flex-grow w-full">
+                            <div class="p-3 -mt-5 flex-grow w-full">
                                 @livewire('markdown-parser', ['markdown' => $post->markdown])
                             </div>
 
-                            <div class="rounded-lg bg-gray-100 p-3 mt-2">
-
+                            <div class="pl-3">
+                                @livewire('user-likes', ['post_id' => $post->id])
                             </div>
                         </div>
                         @livewire('reply-component', ['post_id' => $post->id])
