@@ -54,7 +54,6 @@
                     </div>     
                 </div>
             </main>
-
         </div>
     </div>
 </x-app-layout>

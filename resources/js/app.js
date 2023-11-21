@@ -4,7 +4,7 @@ import 'alpinejs';
 import hljs from 'highlight.js/lib/core';
 document.addEventListener('DOMContentLoaded', (event) => {
     hljs.highlightAll();
-  });
+});
 
 // import hljs from 'highlight.js';
 
@@ -15,16 +15,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
 // });
 
 
-    function copyCode(button) {
-        var codeElement = button.nextElementSibling.querySelector('code');
-        var textArea = document.createElement('textarea');
-        textArea.value = codeElement.innerText;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-        alert('Code copied to clipboard!');
-    }
+function copyCode(button) {
+    var codeElement = button.nextElementSibling.querySelector('code');
+    var textArea = document.createElement('textarea');
+    textArea.value = codeElement.innerText;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+    alert('Code copied to clipboard!');
+}
+
 
 
 

@@ -65,8 +65,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         // Single page Thread
         // Route::get('/thread/{postId}', [PostController::class, 'get'])->name('user-post.show');
 
-        // Used the 'username' as the route name for showing user profile
-        // Route::get('admin/view/{user:username}', [SearchController::class, 'show'])->name('user.show');
+        //Used the 'username' as the route name for showing user profile
+        Route::get('admin/view/{user:username}', [SearchController::class, 'show'])->name('user.show');
 
         // Route::get('/createthread', MarkdownEditor::class)->name('create-thread');
         // Route::post('/createthread', [MarkdownEditor::class, 'savePost'])->name('create-thread');

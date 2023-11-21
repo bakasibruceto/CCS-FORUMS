@@ -20,13 +20,20 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        Schema::create('forum_posts', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->string('title');
-            $table->string('tags')->nullable(true);
-            $table->longText('markdown');
-            $table->timestamps();
-        });
+        // Schema::create('forum_posts', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('user_id')->references('id')->on('users');
+        //     $table->string('title');
+        //     $table->string('tags')->nullable(true);
+        //     $table->longText('markdown');
+        //     $table->timestamps();
+        // });
+        // Schema::create('user_reply', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('post_id')->references('id')->on('forum_posts');
+        //     $table->foreignId('user_id')->references('id')->on('users');
+        //     $table->longText('markdown');
+        //     $table->timestamps();
+        // });
     }
 }

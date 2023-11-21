@@ -2,41 +2,87 @@
 
 namespace App\Livewire;
 
+use App\Models\UserReply;
 use Livewire\Component;
-use Parsedown;
 use Highlight\Highlighter;
+use Illuminate\Support\Facades\Auth;
+use Parsedown;
 
-class MarkdownParser extends Component
+class ReplyEditor extends Component
 {
+    public $markdown = '';
+    public $previewMode = false;
+    public $user;
+    public $post_id;
+    public $replies;
 
-    public $markdown;
-    public $parsedMarkdown;
-
-
-
-    public function mount($markdown)
+    public function mount($post_id)
     {
-        $this->markdown = $markdown;
-        $this->parseMarkdown();
+        $this->user = Auth::user();
+        $this->post_id = $post_id;
+        $this->loadReplies();
+    }
+
+    public function loadReplies()
+    {
+        $this->replies = UserReply::getRepliesByPostId($this->post_id);
     }
 
     public function render()
     {
-        return view('livewire.markdown-parser');
+
+        return view('livewire.reply-editor', [
+            'parsedMarkdown' => $this->parseMarkdown(),
+        ]);
     }
 
-    public function parseMarkdown()
+    private function parseMarkdown()
     {
-        // Create Parsedown instance
         $parsedown = new Parsedown();
 
         // Parse Markdown content
         $this->parsedMarkdown = $parsedown->text($this->markdown);
 
         // Highlight code blocks using Highlight.js
-        $this->parsedMarkdown = $this->highlightCodeBlocks($this->parsedMarkdown);
+        return $this->parsedMarkdown = $this->highlightCodeBlocks($this->parsedMarkdown);
     }
 
+    public function togglePreview()
+    {
+        $this->previewMode = !$this->previewMode;
+    }
+
+    public function toggleWrite()
+    {
+        $this->previewMode = !$this->previewMode;
+    }
+
+    public function savePost()
+    {
+        try {
+            // Validate the input if needed
+            $this->validate([
+                'markdown' => 'required',
+            ]);
+
+            // Save the post to the database
+            UserReply::create([
+                'user_id' => auth()->id(),
+                'post_id' => $this->post_id,
+                'markdown' => $this->markdown,
+            ]);
+
+            // Emit an event after the reply is saved
+            $this->dispatch('replyAdded');
+
+            // Reset the form fields after saving
+            $this->markdown = '';
+
+            return redirect()->route('user-post', ['id' => $this->post_id]);
+        } catch (\Exception $e) {
+            \Log::error($e->getMessage());
+        }
+    }
     private function highlightCodeBlocks($content)
     {
         // Use Highlight.js for syntax highlighting
@@ -67,12 +113,16 @@ class MarkdownParser extends Component
             // Decode HTML entities before highlighting
             $code = html_entity_decode($code, ENT_QUOTES, 'UTF-8');
 
+
+
             // Highlight the code
             $highlighted = $highlighter->highlight($language, $code);
 
             // Return the highlighted code block
             return '<pre><code class="hljs language-' . $highlighted->language . '">' . $highlighted->value . '</code></pre>';
         }, $content);
+
+
 
         return $content;
     }
