@@ -17,7 +17,7 @@
 <x-app-layout>
     <div class="flex flex-1 overflow-hidden">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-0 flex justify-between grid-cols-3 w-full">
-            <x-searchresult-sidebar />
+            {{-- <x-searchresult-sidebar /> --}}
                 <div class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
                     <div class="container py-8 mx-auto md:px-8">
                         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8 px-6">
@@ -50,10 +50,10 @@
                          <div class="max-w-3xl mx-auto sm:px-6 lg:px-8 px-6 mt-4">
                             <div class="bg-white overflow-hidden shadow-xl rounded-lg p-4">
                                 <p class="font-bold text-gray-800 text-xl pb-2 border-b border-gray-200">Posts</p>
-                               
+
                             </div>
                          </div>
-                       
+
                     </div>
                 </div>
         </div>
