@@ -64,6 +64,6 @@ class SearchController extends Controller
         $totalFollowing = $user->following->count();
         $totalFollowers = $user->followers->count();
 
-        return view('users.shows', compact('user','totalFollowing',"totalFollowers"));
+        return view('users.shows',['username' => $username], compact('user','totalFollowing',"totalFollowers"));
     }
 }
