@@ -59,7 +59,7 @@
                 </div>
 
                 @if ($previewMode)
-                    <div class="prose border min-w-full">
+                    <div wire:ignore class="prose border min-w-full">
                         <div x-data x-init="let codeBlocks = $refs.markdown.querySelectorAll('pre code');
                         codeBlocks.forEach((codeBlock) => {
                             let copyButton = document.createElement('button');

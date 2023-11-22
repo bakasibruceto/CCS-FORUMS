@@ -1,6 +1,6 @@
 <div wire:poll.5000ms> <!-- Add a border for debugging -->
     @if ($parsedMarkdown)
-        <div class="prose min-w-full">
+        <div wire:ignore class="prose min-w-full">
             <div x-data x-init="let codeBlocks = $refs.markdown.querySelectorAll('pre code');
             codeBlocks.forEach((codeBlock) => {
                 let copyButton = document.createElement('button');
