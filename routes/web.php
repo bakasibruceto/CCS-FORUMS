@@ -49,6 +49,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         // Search Bar
         Route::get('admin/search', [SearchController::class, 'search'])->name('admin-search');
 
+        Route::get('/admin/user-table', function () {
+            return view('admin-userTable');
+        })->name('admin.userTable');
 
         // Create Thread
         // Route::get('/createthread', function () {
