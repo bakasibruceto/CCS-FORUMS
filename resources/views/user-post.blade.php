@@ -81,13 +81,9 @@
                                 </div>
                             </div>
 
+                            <div class="border-t border-gray-200"></div>
 
-                            <div class="border-t border-gray-200">
-
-                            </div>
-
-
-                            <div class="p-3 -mt-5 flex-grow w-full">
+                            <div class="p-3  flex-grow w-full">
                                 @livewire('markdown-parser', ['markdown' => $post->markdown])
                             </div>
 
