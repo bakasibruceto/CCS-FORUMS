@@ -83,7 +83,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="flex mt-6">
                                 <div class="w-1/3 justify-center flex">
                                     <button class="active:border-blue-600 w-full font-bold text-blue-500 border-b-2 border-blue-500 transition duration-300 ease-in-out">
@@ -102,7 +102,12 @@
                                 </div>
                             </div>
 
+
                         </div>
+                        <div class="-mt-3">
+                            @livewire('show-all-userthreads', ['username' => $username])
+                        </div>
+
                     </div>
                 </main>
             </div>
