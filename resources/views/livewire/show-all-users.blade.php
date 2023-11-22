@@ -2,6 +2,7 @@
     <table wire:poll class="border-collapse">
         <tr class="border-b border-black p-2 text-center">
             <td class="border-r border-black p-2">id</td>
+            <td class="p-2">picture</td>
             <td class="p-2">name</td>
             <td class="p-2">username</td>
             <td class="p-2">email</td>
@@ -10,6 +11,8 @@
         @foreach ($users as $user)
             <tr class="p-5 hover:bg-green-100">
                 <td>{{ $user->id }}</td>
+                <td><img class="rounded-full mr-2 ml-1 w-10 h-10"
+                    src="{{ $user->profile_photo_url }}" alt=""></td>
                 @if ($editing === $user->id)
                     <td class="p-2">
                         <input type="text" wire:model.defer="name">
