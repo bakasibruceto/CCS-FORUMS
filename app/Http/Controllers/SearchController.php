@@ -43,27 +43,26 @@ class SearchController extends Controller
     public function show($username)
     {
         $user = User::where('username', $username)->first();
-        $totalFollowing = $user->following->count();
-        $totalFollowers = $user->followers->count();
 
-        $role = auth()->user()->role; // Get the role of the user
+        // Get the role of the user
+        $role = auth()->user()->role;
+
+        // Check if the user exists
         if (!$user) {
             if ($role == 'user') {
-
                 // Handle when the user is not found
                 return back();
-
-            } elseif ($role == 'admin') {
-
+            } if ($role == 'admin') {
                 // Redirect to the admin view if the user's role is "admin"
                 return view('admin-dashboard');
-
             } else {
-
                 // Redirect back if the user's role is neither "user" nor "admin"
                 return back();
             }
         }
+
+        $totalFollowing = $user->following->count();
+        $totalFollowers = $user->followers->count();
 
         return view('users.shows', compact('user','totalFollowing',"totalFollowers"));
     }

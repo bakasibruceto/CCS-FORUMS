@@ -10,6 +10,9 @@ class PostController extends Controller
 {
     public function show(Request $request)
     {
+        //resets previous search
+        session()->forget('previous_search');
+
         $forumPosts = ForumPost::with('user')->latest()->paginate(5);
 
         return view('user-dashboard', compact('forumPosts'));

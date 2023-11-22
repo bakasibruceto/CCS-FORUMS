@@ -18,17 +18,10 @@ Route::get('/admin', function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::group(['middleware' => 'role:user'], function () {
-        Route::get('/', function () {
-
-            // Reset the "previous_search" session value here
-            session()->forget('previous_search');
-
-            // return app(UserController::class)->index();
-
-        })->name('user.index');
+        Route::get('/', [PostController::class, 'show'])->name('user.index');
         // Search Bar
         Route::get('search', [SearchController::class, 'search'])->name('search');
-        Route::get('/', [PostController::class, 'show'])->name('/');
+
 
         // Create Thread
         Route::get('/createthread', function () {
@@ -66,7 +59,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         // Route::get('/thread/{postId}', [PostController::class, 'get'])->name('user-post.show');
 
         //Used the 'username' as the route name for showing user profile
-        Route::get('admin/view/{user:username}', [SearchController::class, 'show'])->name('user.show');
+        Route::get('admin/view/{user:username}', [SearchController::class, 'show'])->name('admin.show');
 
         // Route::get('/createthread', MarkdownEditor::class)->name('create-thread');
         // Route::post('/createthread', [MarkdownEditor::class, 'savePost'])->name('create-thread');
@@ -88,6 +81,6 @@ Route::get('dashboard', function () {
 
 
 // Handle undefined routes if user is not logged-in
-Route::fallback(function () {
-    return redirect()->route('login');
-});
+// Route::fallback(function () {
+//     return redirect()->route('login');
+// });
