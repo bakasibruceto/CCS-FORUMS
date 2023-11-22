@@ -175,7 +175,7 @@
 
                             @if (auth()->user()->role === 'admin')
                                 <x-dropdown-link
-                                    href="{{ route('admin.show', ['admin' => auth()->user()->username]) }}
+                                    href="{{ route('admin.show', ['user' => auth()->user()->username]) }}
                                 ">
                                     {{ __('Profile') }}
                                 </x-dropdown-link>
