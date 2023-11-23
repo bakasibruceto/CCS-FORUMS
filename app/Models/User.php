@@ -13,19 +13,16 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Spatie\Activitylog\Contracts\Causer;
+use Illuminate\Support\Facades\Log;
 
 
-class User extends Authenticatable implements MustVerifyEmail, Causer
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
-    use LogsActivity;
-
 
 
     /**
