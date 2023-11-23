@@ -15,7 +15,8 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.2",
         "michelf/php-markdown": "^2.0",
-        "sinnbeck/markdom": "*"
+        "sinnbeck/markdom": "*",
+        "spatie/laravel-activitylog": "^4.7"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
