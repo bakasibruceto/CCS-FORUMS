@@ -22,4 +22,5 @@ class UserLogs extends Component
 
         return $logs;
     }
+
 }
