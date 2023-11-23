@@ -35,5 +35,11 @@ class DatabaseSeeder extends Seeder
         //     $table->longText('markdown');
         //     $table->timestamps();
         // });
+        Schema::create('logs', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->string('actions');
+            $table->timestamps();
+        });
     }
 }
