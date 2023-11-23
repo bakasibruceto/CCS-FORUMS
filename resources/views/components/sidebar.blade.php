@@ -1,8 +1,8 @@
 <!--   start::Sidebar    -->
-<div class="hidden sm:block lg:block -ml-9">
-    <div class="flex flex-col h-screen w-56 bg-gray-100">
+<div class="hidden sm:block lg:block ">
+    <div class="flex flex-col h-screen w-56 bg-gray-100 ">
         <div class="flex flex-col flex-grow  pb-4 bg-sky-950 overflow-y-auto">
-            <div class="mt-5 flex-1 flex flex-col divide-y divide-gray-200 overflow-y-auto">
+            <div class="mt-5 flex-1 flex flex-col divide-y divide-gray-200 overflow-y-auto ">
                 <div class="px-4 space-y-1">
                     <a href="#" class="flex flex-row items-center h-10 px-3 rounded-lg text-white hover:bg-sky-900 w-full">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
