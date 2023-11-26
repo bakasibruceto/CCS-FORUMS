@@ -30,7 +30,7 @@
                     </div> --}}
                     <div class="container mx-auto px-4 p-6">
                         <div class="w-full h-[250px]">
-                            <img src="../Images/header.jpg" class="w-full h-full rounded-tl-lg rounded-tr-lg">
+                            <img src="../cover.jpg" class="w-full h-full rounded-tl-lg rounded-tr-lg">
                         </div>
 
                         <div

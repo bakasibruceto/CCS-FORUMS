@@ -1,7 +1,7 @@
-<div class="bg-white shadow rounded-lg mb-5 p-3 md:w-full">
+<div class="bg-white shadow rounded-lg -mt-6 p-3 pb-2 md:w-full">
     <div class="md:w-full w-full">
         <p class="text-2xl font-bold text-gray-800 border-b border-gray-300">Create a new thread...</p>
-        <p class="text-sm -mt-5">
+        <p class="text-sm ">
             Make sure you've read our rules before proceeding.
 
             Please search for your question before posting your thread by using the search box in the navigation bar.

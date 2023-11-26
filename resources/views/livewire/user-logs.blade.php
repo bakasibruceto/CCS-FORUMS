@@ -1,6 +1,6 @@
-<div>
-    <div class="container mx-auto px-4 sm:px-8 mt-6 ">
+<div class="container mx-auto px-4 sm:px-8 mt-6">
         <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+            <div class="overflow-auto max-h-96">
             <table wire:poll class="table-auto w-full">
                 <thead>
                     <tr>

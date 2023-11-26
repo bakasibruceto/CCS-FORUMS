@@ -98,6 +98,7 @@
                 <x-left-box />
             </div>
         </div>
+        <x-footer class />
     </div>
 
 
