@@ -86,7 +86,7 @@
                             </div>
                         </div>
                     @else
-                        <textarea wire:model="markdown" x-ref="textarea" x-init="count = $refs.textarea.value.length;
+                        <textarea id='ye' wire:model="markdown" x-ref="textarea" x-init="count = $refs.textarea.value.length;
                         resize()"
                             @input="count = $event.target.value.length; resize()"
                             class="text-base bg-gray-100 border -mt-5 border-gray-300 w-full max-h-full rounded-md focus:outline-none focus:ring-0 resize-none overflow-hidden"></textarea>
