@@ -1,17 +1,10 @@
-<footer class="container mx-auto">     
-    <div class="flex flex-col items-center sm:flex-row sm:justify-between">
-        <p class="text-sm text-gray-500">© CSS FORUM 2023. All Rights Reserved.</p>
-
-        <div class="flex mt-3 -mx-2 sm:mt-0">
-            <a href="#" class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit"> 
-                About 
-            </a>
-            <a href="#" class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit"> 
-                Privacy 
-            </a>
-            <a href="#" class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit"> 
-                Cookies 
-            </a>
-        </div>
-    </div>     
-</footer>    
+<footer class="w-full fixed inset-x-0 justify-center bottom-0 transform scale-5">  
+    <div class="flex flex-col">
+        <div class="flex flex-row justify-center gap-4">           
+            <a class="hidden md:block cursor-pointer text-sm text-gray-600 hover:text-gray-900">About</a>
+            <a class="hidden md:block cursor-pointer text-sm text-gray-600 hover:text-gray-900">Services</a>
+            <a class="hidden md:block cursor-pointer text-sm text-gray-600 hover:text-gray-900">Privacy</a>               
+        </div>    
+        <p class="w-full text-center text-sm text-gray-500">© CSS FORUM 2023. All Rights Reserved.</p>
+    </div>
+</footer>      
