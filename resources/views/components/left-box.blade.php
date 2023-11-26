@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="mt-14 flex flex-col items-center">
-                <h1 class="text-gray-800 font-bold">Kai Davi</h1>
+                <h1 class="text-gray-800 font-bold">{{ $post->user->username }}</h1>
                 <p class="text-base font-semibold text-gray-500">kaidavi</p>
                 <p class="text-base font-normal text-gray-600 pt-4">Joined 25 Nov 2023</p>
             </div>
@@ -24,5 +24,5 @@
         <!--   content here   -->
         <p class="font-semibold text-gray-800 text-sm pb-2 border-b border-gray-200">Events</p>
     </div>
-    
+
 </div>
