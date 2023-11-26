@@ -1,11 +1,9 @@
 <div class="bg-white shadow rounded-lg -mt-6 p-3 pb-2 md:w-full">
     <div class="md:w-full w-full">
         <p class="text-2xl font-bold text-gray-800 border-b border-gray-300">Create a new thread...</p>
-        <p class="text-sm ">
+        <p class="text-sm mt-1">
             Make sure you've read our rules before proceeding.
-
             Please search for your question before posting your thread by using the search box in the navigation bar.
-            Want to share large code snippets? Share them through our pastebin.
         </p>
         <form wire:submit.prevent="savePost" class="bg-white rounded-lg p-3">
             <div class="mb-4">
@@ -52,7 +50,6 @@
                                 wire:click.prevent="togglePreview; $dispatch('input')">
                                 Preview
                             </button>
-
                         </span>
                     @endif
 
@@ -100,7 +97,7 @@
             </div>
             <div class="flex item-end justify-end">
                 <button
-                    class="-mt-6 hover:shadow-form rounded-md hover:bg-sky-900 bg-sky-950 py-3 px-8 text-base font-semibold text-white outline-none"
+                    class="hover:shadow-form rounded-md hover:bg-sky-900 bg-sky-950 py-3 px-8 text-base font-semibold text-white outline-none"
                     type="submit">Create Thread</button>
             </div>
         </form>
