@@ -14,7 +14,7 @@
 
     <!-- Scripts -->
 
-    @vite(['resources/css/app.css', 'resources/css/a11y-dark.css','resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/css/a11y-dark.css', 'resources/js/app.js'])
 
     <!-- Styles -->
 
@@ -49,10 +49,8 @@
         <main>
             {{ $slot }}
         </main>
+        <x-footer />
     </div>
-
-    @stack('modals')
-
     @livewireScripts
 </body>
 

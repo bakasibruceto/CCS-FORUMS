@@ -5,6 +5,5 @@
             <livewire:markdown-editor />
 
         </div>
-        <x-footer class />
     </div>
 </x-app-layout>

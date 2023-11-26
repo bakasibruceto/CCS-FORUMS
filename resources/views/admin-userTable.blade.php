@@ -10,7 +10,5 @@
                 </div>
             </main>
         </div>
-        <x-footer class />
     </div>
-
 </x-app-layout>
