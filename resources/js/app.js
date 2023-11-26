@@ -1,20 +1,16 @@
 import './bootstrap';
 import 'alpinejs';
+import hljs from 'highlight.js/lib/common';
 
-import hljs from 'highlight.js/lib/core';
+//Highlight.js
 document.addEventListener('DOMContentLoaded', (event) => {
-    hljs.highlightAll();
+    document.querySelectorAll('pre code').forEach((block) => {
+        block.textContent = block.textContent.trim();
+        hljs.highlightElement(block);
+    });
 });
 
-// import hljs from 'highlight.js';
-
-// document.addEventListener('DOMContentLoaded', (event) => {
-//     document.querySelectorAll('pre code').forEach((block) => {
-//         hljs.highlightBlock(block);
-//     });
-// });
-
-
+//Copy to clipboard
 function copyCode(button) {
     var codeElement = button.nextElementSibling.querySelector('code');
     var textArea = document.createElement('textarea');
