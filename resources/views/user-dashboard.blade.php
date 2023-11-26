@@ -64,10 +64,8 @@
                         </div>
                     </div>
                 </div>
-                <x-left-box />
+                <x-dashbox />
             </div>
-
-            <x-footer class />
         </div>
     </div>
 
