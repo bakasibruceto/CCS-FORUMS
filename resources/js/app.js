@@ -1,14 +1,28 @@
 import './bootstrap';
 import 'alpinejs';
-import hljs from 'highlight.js/lib/common';
+import hljs from 'highlight.js/lib/core';
 
 //Highlight.js
 document.addEventListener('DOMContentLoaded', (event) => {
-    document.querySelectorAll('pre code').forEach((block) => {
-        block.textContent = block.textContent.trim();
+    highlightCodeBlocks('pre code');
+});
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    highlightCodeBlocks('div[x-ref="markdown"] pre code');
+});
+
+window.livewire.on('contentUpdated', () => {
+    setTimeout(() => {
+        highlightCodeBlocks('div[x-ref="markdown"] pre code');
+    }, 0);
+});
+
+function highlightCodeBlocks(selector) {
+    document.querySelectorAll(selector).forEach((block) => {
         hljs.highlightElement(block);
     });
-});
+}
+
 
 //Copy to clipboard
 function copyCode(button) {

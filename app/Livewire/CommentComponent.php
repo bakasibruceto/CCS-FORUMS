@@ -22,6 +22,6 @@ class CommentComponent extends Component
     public function render()
     {
         $this->loadReplies();
-        return view('livewire.comment-component');
+        return view('livewire.counter.comment-component');
     }
 }

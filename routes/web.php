@@ -2,7 +2,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PostController;
-use App\Livewire\MarkdownEditor;
+use App\Livewire\CreateThread;
 use Illuminate\Support\Facades\Route;
 
 // Initial route
@@ -34,8 +34,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         // Used the 'username' as the route name for showing user profile
         Route::get('{user:username}', [SearchController::class, 'show'])->name('user.show');
 
-        // Route::get('/createthread', MarkdownEditor::class)->name('create-thread');
-        Route::post('/createthread', [MarkdownEditor::class, 'savePost'])->name('create-thread');
+        Route::post('/createthread', [CreateThread::class, 'savePost'])->name('create-thread');
     });
 
     // Check if role is admin

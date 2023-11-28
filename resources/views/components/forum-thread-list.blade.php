@@ -20,8 +20,7 @@
         </p>
     </div>
     <div class="rounded-lg p-3 mt-2 flex gap-3">
-        @livewire('user-likes', ['post_id' => $post->id])
-        {{-- <ion-icon name="chatbubble-ellipses-outline" class="text-2xl p-1"></ion-icon> --}}
+        @livewire('like-component', ['post_id' => $post->id])
         <a class="hover:text-green-500 hover:fill-current"
             href="{{ route('user-post.show', ['postId' => $post->id]) }}">
             @livewire('comment-component', ['post_id' => $post->id])</a>

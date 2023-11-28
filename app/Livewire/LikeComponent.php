@@ -5,7 +5,7 @@ use App\Models\ForumPost;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class UserLikes extends Component
+class LikeComponent extends Component
 {
     public $post_id;
     public $liked = false;
@@ -22,7 +22,7 @@ class UserLikes extends Component
         // $this->liked = Auth::user()->likes->contains($this->post_id);
         $totalLikes = ForumPost::find($this->post_id)->likedBy->count();
         // $this->like();
-        return view('livewire.user-likes', ['totalLikes' => $totalLikes]);
+        return view('livewire.counter.like-component', ['totalLikes' => $totalLikes]);
     }
 
     public function like()
