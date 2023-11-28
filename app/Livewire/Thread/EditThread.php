@@ -8,7 +8,7 @@ use Livewire\Component;
 use App\Models\ForumPost;
 use Illuminate\Support\Facades\Auth;
 
-class CreateThread extends Component
+class EditThread extends Component
 {
     use HighlighterJS, MarkdownEditor;
 
@@ -23,7 +23,7 @@ class CreateThread extends Component
 
     public function render()
     {
-        return view('livewire.thread.create-thread', [
+        return view('livewire.thread.edit-thread', [
             'parsedMarkdown' => $this->parseMarkdown(),
         ]);
     }

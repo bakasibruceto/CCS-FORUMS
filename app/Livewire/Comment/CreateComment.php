@@ -28,7 +28,7 @@ class CreateComment extends Component
     }
     public function render()
     {
-        return view('livewire.create.comment', [
+        return view('livewire.comment.create-comment', [
             'parsedMarkdown' => $this->parseMarkdown(),
         ]);
     }

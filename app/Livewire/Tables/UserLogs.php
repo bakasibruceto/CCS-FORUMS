@@ -12,7 +12,7 @@ class UserLogs extends Component
     public function render()
     {
         $this->logs = $this->getLogs();
-        return view('livewire.user-logs');
+        return view('livewire.tables.user-logs');
     }
 
     public function getLogs()

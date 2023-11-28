@@ -13,7 +13,7 @@ class Stats extends Component
     {
         $this->userCount = User::count();
         $this->threadCount = ForumPost::count();
-        return view('livewire.stats');
+        return view('livewire.counter.stats');
     }
 
 
