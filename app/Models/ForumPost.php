@@ -31,4 +31,18 @@ class ForumPost extends Model
         return $this->belongsToMany(User::class, 'forum_likes', 'post_id', 'user_id');
     }
 
+    public function post()
+    {
+        return $this->belongsTo(ForumPost::class);
+    }
+
+    public function tag()
+    {
+        return $this->belongsTo(Tags::class);
+    }
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class, 'post_id');
+    }
 }
