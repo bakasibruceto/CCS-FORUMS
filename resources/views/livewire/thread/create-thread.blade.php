@@ -12,9 +12,50 @@
                     name="subject" autofocus />
             </div>
             <div>
-                <x-label class="font-semibold text-xl text-gray-900" for="tags" value="{{ __('Tags') }}" />
-                <x-input wire:model="tags" id="tags" class="block mt-1 w-full bg-gray-100" type="text"
-                    name="tags" />
+                <div x-data="{ open: false, selectedTag: '' }">
+                    <x-label class="font-semibold text-xl text-gray-900" for="tags" value="{{ __('Tags') }}" />
+
+                    <!-- Display message when maximum number of tags is reached -->
+                    @if (count($tags) >= 3)
+                        <div class="text-red-500">You have reached the maximum number of tags (3).</div>
+                    @endif
+
+                    <div class="relative">
+                        <!-- Div that behaves like a text area -->
+                        <div id="tags" x-ref="dropdown" @click="if (@this.tags.length < 3) { open = !open }"
+                            class="block mt-1 w-full border bg-gray-100 shadow-sm p-2 h-11 rounded-md"
+                            x-bind:class="{ 'border-2 border-indigo-600': open, 'border-gray-300': !open }">
+                            <!-- Display selected tags -->
+                            @foreach ($tags as $tag)
+                                @if (trim($tag) != '')
+                                    <div
+                                        class="inline-block bg-gray-200 rounded-md px-3 py-1 text-md font-semibold text-gray-700 -mt-0.5 mr-2 h-8">
+                                        {{ $tag }}
+                                        <button wire:click="removeTag('{{ $tag }}')"
+                                            class="ml-0.5 hover:text-red-600">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="1 1 24 24"
+                                                stroke="currentColor" class="h-4 w-4 inline-block">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 18L18 6M6 6l12 12"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+
+                        <!-- Dropdown for tag selection -->
+                        <div x-show="open" @click.away="open = false"
+                            class="absolute z-50 bg-white mt-1 w-full border border-gray-300 rounded shadow-lg">
+                            @foreach ($allTags as $tag)
+                                <p class="p-2 hover:bg-gray-200 cursor-pointer"
+                                    x-show="!@this.tags.includes('{{ $tag->name }}')"
+                                    @click="if (@this.tags.length < 3) { selectedTag = '{{ $tag->name }}'; open = false; @this.call('addTag', selectedTag) }">
+                                    {{ $tag->name }}</p>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
             </div>
             <div x-data="{
                 count: 0,
@@ -87,11 +128,10 @@
                         </div>
                     </div>
                 @else
-                    <textarea wire:model="markdown" x-ref="textarea" x-init="count = $refs.textarea.value.length;
-                    resize()"
+                    <textarea wire:model="markdown" x-ref="textarea" x-init="$nextTick(() => { count = $refs.textarea.value.length;
+                        resize() })"
                         @input="count = $event.target.value.length; resize()"
                         class="text-base bg-gray-100 border -mt-5 border-gray-300 w-full max-h-full rounded-md focus:outline-none focus:ring-0 resize-none overflow-hidden"></textarea>
-
                     <div x-text="'Characters: ' + count" class="text-sm text-gray-500 mt-2"></div>
                 @endif
             </div>
