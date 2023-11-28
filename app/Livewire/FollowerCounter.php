@@ -20,7 +20,7 @@ class FollowerCounter extends Component
 
     public function render()
     {
-        return view('livewire.follower-counter');
+        return view('livewire.counter.follower-counter');
     }
 
     public function updateCounter($userId)
