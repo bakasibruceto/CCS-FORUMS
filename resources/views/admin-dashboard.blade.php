@@ -5,8 +5,8 @@
 
             <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
                 <div class="container py-8 mx-auto">
-                    @livewire('stats')
-                    @livewire('user-logs')
+                    @livewire('counter.stats')
+                    @livewire('tables.user-logs')
                 </div>
             </main>
         </div>

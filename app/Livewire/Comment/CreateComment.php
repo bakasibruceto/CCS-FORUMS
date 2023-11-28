@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Comment;
 use App\Livewire\Traits\HighlighterJS;
 use App\Livewire\Traits\MarkdownEditor;
 use App\Models\UserReply;
@@ -8,7 +8,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
 
-class ReplyEditor extends Component
+class CreateComment extends Component
 {
     use HighlighterJS, MarkdownEditor;
     public $user;
@@ -28,7 +28,7 @@ class ReplyEditor extends Component
     }
     public function render()
     {
-        return view('livewire.reply-editor', [
+        return view('livewire.create.comment', [
             'parsedMarkdown' => $this->parseMarkdown(),
         ]);
     }

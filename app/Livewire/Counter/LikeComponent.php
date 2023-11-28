@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Counter;
 use App\Models\ForumPost;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;

@@ -1,29 +1,26 @@
 <?php
 
-
-namespace App\Livewire;
-
+namespace App\Livewire\Counter;
 use Livewire\Component;
 use App\Models\UserReply;
-
-class ReplyComponent extends Component
+class CountComment extends Component
 {
     public $post_id;
-    public $replies;
+    public $totalReplies;
     protected $listeners = ['replyAdded' => 'loadReplies'];
 
     public function mount($post_id)
     {
         $this->post_id = $post_id;
-        $this->loadReplies();
     }
+
     public function loadReplies()
     {
-        $this->replies = UserReply::getRepliesByPostId($this->post_id);
+        $this->totalReplies = UserReply::where('post_id', $this->post_id)->count();
     }
     public function render()
     {
         $this->loadReplies();
-        return view('livewire.reply-component');
+        return view('livewire.counter.comment-component');
     }
 }

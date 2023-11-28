@@ -1,6 +1,4 @@
 <div>
-
-
     <div>
         Write a Reply
     </div>

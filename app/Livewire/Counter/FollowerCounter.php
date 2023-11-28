@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Counter;
 use App\Models\User;
 
 use Livewire\Component;

@@ -46,7 +46,7 @@
             </header>
         @endif
         <!-- Page Content -->
-        <main>
+        <main class="flex flex-col min-h-screen">
             {{ $slot }}
         </main>
         <x-footer />

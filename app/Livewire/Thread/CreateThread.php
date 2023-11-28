@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Thread;
 
 use App\Livewire\Traits\HighlighterJS;
 use App\Livewire\Traits\MarkdownEditor;
@@ -23,7 +23,7 @@ class CreateThread extends Component
 
     public function render()
     {
-        return view('livewire.create-thread', [
+        return view('livewire.create.thread', [
             'parsedMarkdown' => $this->parseMarkdown(),
         ]);
     }

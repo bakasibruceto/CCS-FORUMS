@@ -1,4 +1,4 @@
-<footer class="w-full relative inset-x-0 justify-center bottom-0 transform scale-5 bg-gray-200">
+<footer class="w-full overflow-hidden inset-x-0 justify-center bottom-0 transform scale-5 mt-auto">
     <div class="flex flex-col">
         <div class="flex flex-row justify-center gap-4">
             <a class="hidden md:block cursor-pointer text-sm text-gray-600 hover:text-gray-900">About</a>

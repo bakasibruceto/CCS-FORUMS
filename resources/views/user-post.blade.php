@@ -61,24 +61,19 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="border-t border-gray-200"></div>
-
                             <div class="p-3  flex-grow w-full">
                                 @livewire('markdown-parser', ['markdown' => $post->markdown])
                             </div>
-
                             <div class="pl-3">
-                                @livewire('user-likes', ['post_id' => $post->id])
+                                @livewire('counter.like-component', ['post_id' => $post->id])
                             </div>
                         </div>
-                        @livewire('reply-component', ['post_id' => $post->id])
-                        @livewire('reply-editor', ['post_id' => $post->id])
+                        @livewire('comment.read-comment', ['post_id' => $post->id])
+                        @livewire('comment.create-comment', ['post_id' => $post->id])
                     </div>
                 </div>
-                {{-- <x-left-box /> --}}
                 <div class="hidden md:block lg:block w-65 ">
-
                     <div class="flex flex-col justify-center items-center h-52 my-8">
                         <div
                             class="relative flex flex-col items-center shadow rounded-lg w-full mx-auto p-4 bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
@@ -99,7 +94,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="bg-white shadow rounded-lg mt-16 p-4 w-full h-52">
                         <!--   content here   -->
                         <p class="font-semibold text-gray-800 text-sm pb-2 border-b border-gray-200">Events</p>
@@ -109,11 +103,6 @@
 
             </div>
         </div>
-
     </div>
-
-
 </x-app-layout>
 
-{{-- <p>{{ \Illuminate\Support\Str::limit($post->markdown, 50) }}</p>
-    <a href="{{ route('user-post.show',['postId' => $post->id]) }}">Read more</a> --}}
