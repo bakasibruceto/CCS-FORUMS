@@ -18,8 +18,12 @@
                                     {{ $post->created_at->diffForHumans() }}
                                 </div>
                                 <div class="flex">
-                                    <div class="inline-block bg-slate-300 text-black px-2 py-1 rounded text-sm mr-5">
-                                        {{ $post->tags }}
+                                    <div>
+                                        @foreach ($post->categories as $category)
+                                            <div class="inline-block bg-slate-300 text-black px-2 py-1 rounded text-sm">
+                                                {{ $category->tag->name }}
+                                            </div>
+                                        @endforeach
                                     </div>
                                     <div x-data="{ open: false }" class="relative">
                                         <button @click="open = !open" class="focus:outline-none">

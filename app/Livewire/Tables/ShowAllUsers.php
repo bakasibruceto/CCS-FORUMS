@@ -47,6 +47,6 @@ class ShowAllUsers extends Component
 
     public function render()
     {
-        return view('livewire.show-all-users', ['users' => $this->users]);
+        return view('livewire.tables.show-all-users', ['users' => $this->users]);
     }
 }

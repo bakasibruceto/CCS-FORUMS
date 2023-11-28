@@ -22,6 +22,6 @@ class ReadComment extends Component
     public function render()
     {
         $this->loadReplies();
-        return view('livewire.read.comment');
+        return view('livewire.comment.read-comment');
     }
 }

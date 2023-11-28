@@ -2,7 +2,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PostController;
-use App\Livewire\CreateThread;
+use App\Livewire\Thread\CreateThread;
 use Illuminate\Support\Facades\Route;
 
 // Initial route
