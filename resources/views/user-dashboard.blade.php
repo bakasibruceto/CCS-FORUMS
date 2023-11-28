@@ -66,10 +66,8 @@
                 </div>
                 <x-dashbox />
             </div>
+
         </div>
     </div>
-
 </x-app-layout>
 
-{{-- <p>{{ \Illuminate\Support\Str::limit($post->markdown, 50) }}</p>
-<a href="{{ route('user-post.show',['postId' => $post->id]) }}">Read more</a> --}}
