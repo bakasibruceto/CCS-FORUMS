@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 class DatabaseSeeder extends Seeder
 {
     //php artisan db:seed --class=DatabaseSeeder
@@ -14,6 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        DB::table('tags')->insert([
+            ['name' => 'laravel'],
+            ['name' => 'php'],
+            ['name' => 'javascript'],
+            ['name' => 'c++'],
+            ['name' => 'java'],
+        ]);
     }
 }
