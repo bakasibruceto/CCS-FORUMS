@@ -10,7 +10,6 @@ class ReplyComponent extends Component
 {
     public $post_id;
     public $replies;
-
     protected $listeners = ['replyAdded' => 'loadReplies'];
 
     public function mount($post_id)
@@ -18,13 +17,10 @@ class ReplyComponent extends Component
         $this->post_id = $post_id;
         $this->loadReplies();
     }
-
-
     public function loadReplies()
     {
         $this->replies = UserReply::getRepliesByPostId($this->post_id);
     }
-
     public function render()
     {
         $this->loadReplies();
