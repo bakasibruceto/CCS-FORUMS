@@ -5,7 +5,7 @@
             <main class="flex-1 overflow-x-hidden overflow-y-auto">
                 <div class="container py-8 mx-auto">
                     <div class="mt-2 md:ml-8">
-                        @livewire('show-all-users')
+                        @livewire('tables.show-all-users')
                     </div>
                 </div>
             </main>

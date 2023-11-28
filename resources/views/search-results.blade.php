@@ -31,7 +31,7 @@
                                             </a>
                                                 @auth
                                                 @if(auth()->user()->username != $result->username)
-                                                    @livewire('user-follow', ['userId' => $result->id])
+                                                    @livewire('counter.user-follow', ['userId' => $result->id])
                                                 @endif
                                             @endauth
                                             <br>

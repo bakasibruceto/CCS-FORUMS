@@ -20,9 +20,9 @@
         </p>
     </div>
     <div class="rounded-lg p-3 mt-2 flex gap-3">
-        @livewire('like-component', ['post_id' => $post->id])
+        @livewire('counter.like-component', ['post_id' => $post->id])
         <a class="hover:text-green-500 hover:fill-current"
             href="{{ route('user-post.show', ['postId' => $post->id]) }}">
-            @livewire('comment-component', ['post_id' => $post->id])</a>
+            @livewire('counter.count-comment', ['post_id' => $post->id])</a>
     </div>
 </div>
