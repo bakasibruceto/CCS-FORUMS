@@ -31,6 +31,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         // Single page Thread
         Route::get('/thread/{postId}', [PostController::class, 'get'])->name('user-post.show');
 
+        Route::get('/edit/thread/{postId}', [PostController::class, 'edit'])->name('edit-thread');
         // Used the 'username' as the route name for showing user profile
         Route::get('{user:username}', [SearchController::class, 'show'])->name('user.show');
 

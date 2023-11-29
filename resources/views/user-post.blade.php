@@ -1,7 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="font-semibold text-3xl text-gray-800 leading-tight ">
-            CSS FORUM &gt; {{ $post->title }}
+        <h1 class="font-semibold text-3xl text-gray-800 leading-tight flex">
+           <a href="{{'/'}}" class="hover:underline"> CSS FORUM</a>
+            <div class="p-2 pl-3 pr-3">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                </svg>
+            </div>
+
+            {{ $post->title }}
         </h1>
     </x-slot>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-0 flex justify-between grid-cols-3 w-full">
@@ -38,7 +46,7 @@
                                             class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                                             <div class="py-1" role="menu" aria-orientation="vertical"
                                                 aria-labelledby="options-menu">
-                                                <a href="#"
+                                                <a href="{{route('edit-thread', ['postId' => $post->id]) }}"
                                                     class="px-4 py-2 text-sm hover:bg-gray-100 flex items-center"
                                                     role="menuitem">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20"
@@ -88,13 +96,15 @@
 
                                 <div
                                     class="absolute -bottom-12 flex h-28 w-28 items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
-                                    <img class="h-full w-full rounded-full" src="{{ $post->user->profile_photo_url }}" alt="" />
+                                    <img class="h-full w-full rounded-full" src="{{ $post->user->profile_photo_url }}"
+                                        alt="" />
                                 </div>
                             </div>
                             <div class="mt-14 flex flex-col items-center">
                                 <h1 class="text-gray-800 font-bold">{{ $post->user->username }}</h1>
-                                <p class="text-base font-semibold text-gray-500">{{$post->user->name}}</p>
-                                <p class="text-base font-normal text-gray-600 pt-4">Joined {{$post->user->created_at->format('d M Y')}}</p>
+                                <p class="text-base font-semibold text-gray-500">{{ $post->user->name }}</p>
+                                <p class="text-base font-normal text-gray-600 pt-4">Joined
+                                    {{ $post->user->created_at->format('d M Y') }}</p>
                             </div>
                         </div>
                     </div>
@@ -109,4 +119,3 @@
         </div>
     </div>
 </x-app-layout>
-
