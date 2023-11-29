@@ -38,7 +38,12 @@ class ForumPost extends Model
 
     public function tag()
     {
-        return $this->belongsTo(Tags::class);
+        return $this->belongsToMany(Tags::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tags::class);
     }
 
     public function categories()

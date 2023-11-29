@@ -12,4 +12,9 @@ class Tags extends Model
     protected $table = 'tags';
 
     protected $fillable = ['name'];
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tags::class);
+    }
 }
