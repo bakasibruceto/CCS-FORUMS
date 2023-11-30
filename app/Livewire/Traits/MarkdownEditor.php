@@ -18,6 +18,16 @@ trait MarkdownEditor{
         return $this->parsedMarkdown = $this->highlightCodeBlocks($this->parsedMarkdown);
     }
 
+    private function replyMarkdown($reply)
+    {
+        $parsedown = new Parsedown();
+
+        // Parse Markdown content
+        $this->parsedMarkdown = $parsedown->text($reply);
+
+        // Highlight code blocks using Highlight.js
+        return $this->parsedMarkdown = $this->highlightCodeBlocks($this->parsedMarkdown);
+    }
     public function togglePreview()
     {
         $this->previewMode = !$this->previewMode;

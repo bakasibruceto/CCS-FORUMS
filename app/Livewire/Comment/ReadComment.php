@@ -7,8 +7,13 @@ use App\Models\UserReply;
 class ReadComment extends Component
 {
     public $post_id;
+
+    public $editing = [];
     public $replies;
-    protected $listeners = ['replyAdded' => 'loadReplies'];
+    protected $listeners = ['replyAdded' => 'loadReplies', 'editEvent' => 'toggleEdit', 'markdownUpdated' => 'refreshComment', 'mark' => 'refreshComment'];
+
+    public $edit = false;
+
 
     public function mount($post_id)
     {
@@ -19,9 +24,34 @@ class ReadComment extends Component
     {
         $this->replies = UserReply::getRepliesByPostId($this->post_id);
     }
+
+    public function refreshComment($replyId)
+    {
+        // Find the index of the reply in the replies collection
+        $index = $this->replies->search(function ($reply) use ($replyId) {
+            return $reply->id == $replyId;
+        });
+
+        // If the reply is found in the collection, refresh it
+        if ($index !== false) {
+            // Reload the reply from the database
+            $updatedReply = UserReply::find($replyId);
+
+            // Update the reply in the replies collection
+            $this->replies[$index] = $updatedReply;
+
+            // Re-assign the entire collection to itself to trigger a re-render
+            $this->replies = $this->replies->values();
+        }
+    }
     public function render()
     {
         $this->loadReplies();
         return view('livewire.comment.read-comment');
+    }
+
+    public function toggleEdit($replyId)
+    {
+        $this->editing[$replyId] = !isset($this->editing[$replyId]) ? true : !$this->editing[$replyId];
     }
 }
