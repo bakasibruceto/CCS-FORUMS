@@ -19,6 +19,8 @@
         "alpinejs": "^3.13.2",
         "chart.js": "^4.4.0",
         "highlight.js": "^11.9.0",
-        "marked": "^10.0.0"
+        "laravel-echo": "^1.15.3",
+        "marked": "^10.0.0",
+        "pusher-js": "^8.4.0-rc1"
     }
 }
