@@ -8,17 +8,18 @@ use App\Models\ForumPost;
 
 class ShowAllUserthreads extends Component
 {
-    public $posts;
+    public $username;
 
     public function mount($username)
     {
-        $user = User::where('username', $username)->first();
-        $this->posts = ForumPost::where('user_id', $user->id)->get();
+        $this->username = $username;
     }
 
     public function render()
     {
-        return view('livewire.show-all-userthreads', ['posts' => $this->posts]);
-    }
+        $user = User::where('username', $this->username)->first();
+        $posts = ForumPost::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(5);
 
+        return view('livewire.show-all-userthreads', ['posts' => $posts]);
+    }
 }

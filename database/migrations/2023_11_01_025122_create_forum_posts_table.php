@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->string('title');
-            $table->string('tags')->nullable(true);
             $table->longText('markdown');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

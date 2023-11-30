@@ -23,6 +23,11 @@ class Category extends Model
         return $this->belongsTo(Tags::class);
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tags::class);
+    }
+
     public function post()
     {
         return $this->belongsTo(ForumPost::class, 'post_id');

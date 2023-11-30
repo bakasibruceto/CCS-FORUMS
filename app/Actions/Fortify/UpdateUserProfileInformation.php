@@ -22,11 +22,16 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'username' => ['required','string', 'max:255', Rule::unique('users')->ignore($user->id)],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
+            'background_image' => ['nullable', 'mimes:jpg,jpeg,png', 'max:2048'], // Add validation for the background image
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
         }
+        if (isset($input['background_image'])) {
+            $user->bg_photo_path = $input['background_image']->store('backgrounds', 'public');
+        }
+
 
         if ($input['email'] !== $user->email &&
             $user instanceof MustVerifyEmail) {

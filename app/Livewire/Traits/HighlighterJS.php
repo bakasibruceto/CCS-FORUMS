@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Livewire\Traits;
+
 use Highlight\Highlighter;
 
-trait HighlighterJS{
+trait HighlighterJS
+{
     private function highlightCodeBlocks($content)
     {
         // Use Highlight.js for syntax highlighting
@@ -15,13 +17,14 @@ trait HighlighterJS{
             $code = $matches[2];
             $language = '';
 
-            // Check if the language is specified in the attributes
             if (preg_match('/class=".*?language-(.*?)(?: .*?)?"/', $attributes, $langMatches)) {
+                // Check if the language is specified in the attributes
                 $language = strtolower($langMatches[1]);
             }
 
-            // If language is not specified, attempt to auto-detect it
+
             if (empty($language)) {
+                // If language is not specified, attempt to auto-detect it
                 $autoDetect = $this->autoDetectLanguage($code, $highlighter);
                 $language = $autoDetect;
             }
@@ -41,11 +44,10 @@ trait HighlighterJS{
             return '<pre><code class="hljs language-' . $highlighted->language . '">' . $highlighted->value . '</code></pre>';
         }, $content);
 
-
-
         return $content;
     }
 
+    // This method checks if the given language is a valid language for syntax highlighting.
     private function isValidLanguage($highlighter, $language)
     {
         // List of commonly used language identifiers
@@ -57,17 +59,15 @@ trait HighlighterJS{
         // Check if the normalized language is in the list of commonly used languages
         return in_array($normalizedLanguage, $commonLanguages);
     }
-
+    // This method normalizes a language identifier by replacing special characters.
     private function normalizeLanguage($language)
     {
         // Replace special characters in the language identifier
         return str_replace(['+', '#'], '', $language);
     }
-
+    // This method attempts to auto-detect the language of a code block.
     private function autoDetectLanguage($code, $highlighter)
     {
-        // You can implement your own logic for auto-detection here
-        // This is just a simple example, and you may need to improve it based on your requirements
         $languages = $highlighter->listLanguages();
 
         foreach ($languages as $lang) {
