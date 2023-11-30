@@ -17,7 +17,22 @@ class PostController extends Controller
 
         $forumPosts = ForumPost::with('user')->latest()->paginate(5);
 
-        return view('user-dashboard', compact('forumPosts'));
+        $getTag = Tags::get();
+
+        $tags = $getTag->pluck('name');
+
+        return view('user-dashboard', compact('forumPosts', 'tags'));
+    }
+
+    public function filterByTag($tag)
+    {
+        $forumPosts = ForumPost::whereHas('categories.tag', function ($query) use ($tag) {
+            $query->where('name', $tag);
+        })->with('user')->latest()->paginate(5);
+
+        $tags = Tags::pluck('name');
+
+        return view('user-dashboard', compact('forumPosts', 'tags'));
     }
 
     public function get($id)
