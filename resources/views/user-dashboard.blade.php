@@ -3,10 +3,10 @@
 
         <div class="flex flex-col flex-1">
             @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
             <div class="grid grid-cols-1 lg:grid-cols-4 lg:gap-3 p-10">
                 <div class="col-span-3 -mt-10">
                     {{-- <x-sidebar /> --}}
@@ -49,19 +49,15 @@
                                             Tag Filter
                                         </button>
 
-                                        <div x-show="open" @click.away="open = false"
+                                        <div x-show="open" x-cloak @click.away="open = false"
                                             class="absolute ml-[-100px] mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                                             <div class="py-1" role="menu" aria-orientation="vertical"
                                                 aria-labelledby="options-menu">
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                                    role="menuitem">Option 1</a>
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                                    role="menuitem">Option 2</a>
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                                    role="menuitem">Option 3</a>
+                                                @foreach ($tags as $tag)
+                                                    <a href="{{ route('posts.filter', $tag) }}"
+                                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                                        role="menuitem">{{$tag}}</a>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>

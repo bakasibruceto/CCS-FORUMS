@@ -42,7 +42,7 @@
                                             </svg>
                                         </button>
 
-                                        <div x-show="open" @click.away="open = false"
+                                        <div x-show="open" x-cloak @click.away="open = false"
                                             class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                                             <div class="py-1" role="menu" aria-orientation="vertical"
                                                 aria-labelledby="options-menu">
@@ -71,7 +71,7 @@
                                                             <p class="pl-3">delete</p>
                                                         </div>
                                                         <!-- Modal -->
-                                                        <div x-show="open" class="fixed z-10 inset-0 overflow-y-auto"
+                                                        <div x-show="open" x-cloak class="fixed z-10 inset-0 overflow-y-auto"
                                                             aria-labelledby="modal-title" role="dialog"
                                                             aria-modal="true">
                                                             <div
