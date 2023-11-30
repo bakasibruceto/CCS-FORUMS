@@ -52,6 +52,36 @@
             </div>
         @endif
 
+        <!-- Background Image -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="background_image" value="{{ __('Background Image') }}" />
+            <input id="background_image" type="file" class="mt-1 block w-full" wire:model="state.background_image" x-ref="background_image"
+                   x-on:change="
+                       backgroundImageName = $refs.background_image.files[0].name;
+                       const reader = new FileReader();
+                       reader.onload = (e) => {
+                           backgroundImagePreview = e.target.result;
+                       };
+                       reader.readAsDataURL($refs.background_image.files[0]);
+                   " />
+
+            <x-input-error for="background_image" class="mt-2" />
+
+            <!-- Current Background Image -->
+            <div class="mt-2" x-show="! backgroundImagePreview">
+                <img src="{{ $this->user->bg_photo_path ? asset('storage/' . $this->user->bg_photo_path) : '' }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
+            </div>
+
+            <!-- New Background Image Preview -->
+            <div class="mt-2" x-show="backgroundImagePreview" style="display: none;">
+                <span class="block rounded-full w-20 h-20 bg-cover bg-no-repeat bg-center"
+                      x-bind:style="'background-image: url(\'' + backgroundImagePreview + '\');'">
+                </span>
+            </div>
+        </div>
+
+
+
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="name" value="{{ __('Name') }}" />
