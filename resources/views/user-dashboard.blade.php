@@ -1,6 +1,12 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-0 flex justify-between grid-cols-3 w-full ">
+
         <div class="flex flex-col flex-1">
+            @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
             <div class="grid grid-cols-1 lg:grid-cols-4 lg:gap-3 p-10">
                 <div class="col-span-3 -mt-10">
                     {{-- <x-sidebar /> --}}
@@ -38,15 +44,24 @@
                                 <div
                                     class="inline-flex -space-x-px overflow-hidden rounded-md border bg-sky-900 shadow-sm">
                                     <div x-data="{ open: false }">
-                                        <button @click="open = !open" class="inline-block px-4 py-2 text-sm font-medium text-white hover:bg-sky-950 focus:relative">
+                                        <button @click="open = !open"
+                                            class="inline-block px-4 py-2 text-sm font-medium text-white hover:bg-sky-950 focus:relative">
                                             Tag Filter
                                         </button>
 
-                                        <div x-show="open" @click.away="open = false" class="absolute ml-[-100px] mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                                            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Option 1</a>
-                                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Option 2</a>
-                                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Option 3</a>
+                                        <div x-show="open" @click.away="open = false"
+                                            class="absolute ml-[-100px] mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                                            <div class="py-1" role="menu" aria-orientation="vertical"
+                                                aria-labelledby="options-menu">
+                                                <a href="#"
+                                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                                    role="menuitem">Option 1</a>
+                                                <a href="#"
+                                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                                    role="menuitem">Option 2</a>
+                                                <a href="#"
+                                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                                    role="menuitem">Option 3</a>
                                             </div>
                                         </div>
                                     </div>
@@ -56,7 +71,7 @@
                     </div>
                     <div class="container mx-auto px-4 p-6 -mt-12">
                         @foreach ($forumPosts as $post)
-                           <x-forum-thread-list :post="$post" />
+                            <x-forum-thread-list :post="$post" />
                         @endforeach
                         <div class="mb-10">
                             {{-- Pagination --}}
@@ -70,4 +85,3 @@
         </div>
     </div>
 </x-app-layout>
-
