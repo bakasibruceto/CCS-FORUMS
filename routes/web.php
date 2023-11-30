@@ -19,6 +19,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::group(['middleware' => 'role:user'], function () {
         Route::get('/', [PostController::class, 'show'])->name('user.index');
+        Route::get('/posts/filter/{tag}', [PostController::class, 'filterByTag'])->name('posts.filter');
         // Search Bar
         Route::get('search', [SearchController::class, 'search'])->name('search');
 
