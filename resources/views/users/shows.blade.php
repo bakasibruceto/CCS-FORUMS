@@ -4,7 +4,7 @@
             <main class="container mx-auto p-4">
                 <div class="container mx-auto px-4 p-6">
                     <div class="w-full h-[250px]">
-                        <img src="../cover.jpg" class="w-full h-full rounded-tl-lg rounded-tr-lg">
+                        <img src="{{ asset('storage/' . $user->bg_photo_path) }}" class="w-full h-full rounded-tl-lg rounded-tr-lg">
                     </div>
                     <div class="relative flex flex-col min-w-0 break-words bg-white w-full h-full mb-6 rounded-lg -mt-1">
                         <div class="px-6">
