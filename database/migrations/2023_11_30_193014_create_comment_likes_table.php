@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_reply', function (Blueprint $table) {
+        Schema::create('comment_likes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('post_id')->references('id')->on('forum_posts');
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->longText('markdown');
-            $table->boolean('solution')->default(false);
+            $table->foreignId('comment_id')->references('id')->on('user_reply');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_reply');
+        Schema::dropIfExists('comment_likes');
     }
 };
