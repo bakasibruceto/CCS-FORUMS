@@ -17,6 +17,10 @@ Route::get('/admin', function () {
 // Check if user is logged
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
+    Route::get('/chat/{receiver_id}', function ($receiver_id) {
+        return view('chat', ['receiver_id' => $receiver_id]);
+    })->name('chat');
+
     Route::group(['middleware' => 'role:user'], function () {
         Route::get('/', [PostController::class, 'show'])->name('user.index');
         Route::get('/posts/filter/{tag}', [PostController::class, 'filterByTag'])->name('posts.filter');

@@ -36,6 +36,19 @@ function copyCode(button) {
     alert('Code copied to clipboard!');
 }
 
+Echo.join('chat')
+    .listen('NewMessage', (e) => {
+        // Create a new div element for the message
+        let newMessageDiv = document.createElement('div');
+        newMessageDiv.textContent = e.message;
+
+        // Add the new message to the chat
+        let chatDiv = document.getElementById('chat');
+        chatDiv.appendChild(newMessageDiv);
+
+        // Scroll to the bottom of the chat
+        chatDiv.scrollTop = chatDiv.scrollHeight;
+    });
 
 
 
