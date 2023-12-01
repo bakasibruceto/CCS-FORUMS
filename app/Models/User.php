@@ -15,13 +15,23 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 
-class User extends Authenticatable //implements MustVerifyEmail
+class User extends Authenticatable  //implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+
+    protected static function booted()
+    {
+        static::updated(function ($user) {
+            if ($user->isDirty('profile_photo_path')) {
+                $user->avatar = str_replace('profile-photos/', '', $user->profile_photo_path);
+                $user->save();
+            }
+        });
+    }
 
 
 
