@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.2",
         "michelf/php-markdown": "^2.0",
+        "munafio/chatify": "^1.6",
         "pusher/pusher-php-server": "^7.2",
         "sinnbeck/markdom": "^2.0",
         "spatie/ignition": "^1.11",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c1202a69a410cfe83db4de498a3f04fb",
+    "content-hash": "ca421341057f04e806ffd54feea32eea",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -2595,6 +2595,68 @@
                 }
             ],
             "time": "2023-10-27T15:32:31+00:00"
+        },
+        {
+            "name": "munafio/chatify",
+            "version": "v1.6.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/munafio/chatify.git",
+                "reference": "c7d3c63c56e60607ba1f90ccf93ebd38135cc1f9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/munafio/chatify/zipball/c7d3c63c56e60607ba1f90ccf93ebd38135cc1f9",
+                "reference": "c7d3c63c56e60607ba1f90ccf93ebd38135cc1f9",
+                "shasum": ""
+            },
+            "require": {
+                "pusher/pusher-php-server": "^6.0|^7.0|^7.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Chatify\\ChatifyServiceProvider"
+                    ],
+                    "aliases": {
+                        "Chatify": "Chatify\\Facades\\ChatifyMessenger"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Chatify\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Munaf A. Mahdi",
+                    "email": "munafaqeelmahdi@gmail.com"
+                }
+            ],
+            "description": "A package for Laravel PHP Framework to add a complete real-time chat system.",
+            "homepage": "https://github.com/munafio/chatify",
+            "keywords": [
+                "Messenger",
+                "chat",
+                "chatify",
+                "conversations",
+                "laravel",
+                "php",
+                "pusher",
+                "real-time",
+                "realtime"
+            ],
+            "support": {
+                "issues": "https://github.com/munafio/chatify/issues",
+                "source": "https://github.com/munafio/chatify/tree/v1.6.2"
+            },
+            "time": "2023-07-27T15:01:49+00:00"
         },
         {
             "name": "nesbot/carbon",
