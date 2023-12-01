@@ -1,12 +1,14 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-0 flex justify-between grid-cols-3 w-full ">
-
         <div class="flex flex-col flex-1">
             @if (session('error'))
                 <div class="alert alert-danger">
                     {{ session('error') }}
                 </div>
             @endif
+            <div>
+                error
+            </div>
             <div class="grid grid-cols-1 lg:grid-cols-4 lg:gap-3 p-10">
                 <div class="col-span-3 -mt-10">
                     {{-- <x-sidebar /> --}}
@@ -77,7 +79,6 @@
                 </div>
                 <x-dashbox />
             </div>
-
         </div>
     </div>
 </x-app-layout>
