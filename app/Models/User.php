@@ -23,15 +23,16 @@ class User extends Authenticatable  //implements MustVerifyEmail
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-    protected static function booted()
-    {
-        static::updated(function ($user) {
-            if ($user->isDirty('profile_photo_path')) {
-                $user->avatar = str_replace('profile-photos/', '', $user->profile_photo_path);
-                $user->save();
-            }
-        });
-    }
+    //Chatify
+    // protected static function booted()
+    // {
+    //     static::updated(function ($user) {
+    //         if ($user->isDirty('profile_photo_path')) {
+    //             $user->avatar = str_replace('profile-photos/', '', $user->profile_photo_path);
+    //             $user->save();
+    //         }
+    //     });
+    // }
 
 
 
