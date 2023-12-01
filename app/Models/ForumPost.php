@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ForumPost extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'user_id',
@@ -38,7 +39,12 @@ class ForumPost extends Model
 
     public function tag()
     {
-        return $this->belongsTo(Tags::class);
+        return $this->belongsToMany(Tags::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tags::class);
     }
 
     public function categories()

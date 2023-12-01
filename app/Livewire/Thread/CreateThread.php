@@ -31,6 +31,7 @@ class CreateThread extends Component
         ]);
     }
 
+    // This method searches for tags that match the given search term.
     public function searchTags($search)
     {
         $this->tags = Tags::where('name', 'like', '%' . $search . '%')->get();
@@ -38,21 +39,18 @@ class CreateThread extends Component
 
     public function removeTag($tagToRemove)
     {
-        // $tagsArray = explode(',', $this->tags);
-        // $tagsArray = array_filter($tagsArray, function ($tag) use ($tagToRemove) {
-        //     return trim($tag) !== trim($tagToRemove);
-        // });
-
-        // $this->tags = implode(',', $tagsArray);
-
+        // Use the 'array_filter' function to create a new array that only includes tags that don't match the tag to remove.
         $this->tags = array_filter($this->tags, function ($tag) use ($tagToRemove) {
+            // The 'trim' function is used to remove whitespace from the beginning and end of the tag names before comparing them.
             return trim($tag) !== trim($tagToRemove);
         });
     }
 
     public function addTag($tagName)
     {
+        // Check if the number of tags is less than 3.
         if (count($this->tags) < 3) {
+            // Check if the number of tags is less than 3.
             $this->tags[] = $tagName;
         }
     }
@@ -77,7 +75,8 @@ class CreateThread extends Component
             foreach ($this->tags as $tagName) {
                 // Trim the tag name and skip if it's empty
                 $tagName = trim($tagName);
-                if (!$tagName) continue;
+                if (!$tagName)
+                    continue;
 
                 // Find the tag by its name or create it
                 $tag = Tags::firstOrCreate(['name' => $tagName]);
@@ -94,8 +93,8 @@ class CreateThread extends Component
             $this->tags = '';
             $this->markdown = '';
 
-            // Optionally, you can redirect the user after saving
             // session()->flash('success', 'Post saved successfully!');
+            // Redirect the user to the home page.
             return redirect()->to('/');
 
         } catch (\Exception $e) {
