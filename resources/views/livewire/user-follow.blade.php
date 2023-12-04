@@ -1,7 +1,7 @@
 <div>
     @empty($following)
-        <button class="px-2 py-1 text-sm text-green-700 bg-green-200 rounded-xl hover:text-green-800 hover:bg-green-300" wire:click.prevent="follow">Follow</button>
+        <button class="px-10 py-2 text-md font-semibold border border-blue-700 text-white bg-blue-700 rounded-full hover:text-blue-700 hover:bg-blue-50" wire:click.prevent="follow">Follow</button>
     @else
-        <button class="px-2 py-1 text-sm text-red-700 bg-red-200 rounded-xl hover:text-red-800 hover:bg-red-300" wire:click.prevent="follow">Unfollow</button>
+        <button class="px-7 py-2 text-md font-semibold border border-blue-700 text-white bg-blue-700 rounded-full hover:text-blue-800 hover:bg-blue-50" wire:click.prevent="follow">Unfollow</button>
     @endempty
 </div>
