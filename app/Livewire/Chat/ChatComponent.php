@@ -15,7 +15,7 @@ class ChatComponent extends Component
 
     public $lastMessageId;
 
-    protected $listeners = ['echo-private:chat.{receiver_id},NewMessage' => 'messageReceived'];
+    // protected $listeners = ['echo-private:chat.{receiver_id},NewMessage' => 'messageReceived'];
 
     public function sendMessage()
     {
@@ -29,11 +29,12 @@ class ChatComponent extends Component
 
         $this->dispatch('messageSent');
 
-        event(new NewMessage($newMessage));
+        // event(new NewMessage($newMessage));
     }
 
-    public function messageReceived()
+    public function messageReceived($event)
     {
+        dd($event);
         $this->messages = $this->fetchMessages();
     }
 
@@ -71,8 +72,9 @@ class ChatComponent extends Component
 
     public function getListeners()
     {
+        $auth_id = auth()->user()->id;
         return [
-            "echo-private:chat.{$this->receiver_id},NewMessage" => 'newMessage',
+            "echo-private:chat.{$auth_id},NewMessage" => 'newMessage',
         ];
     }
 

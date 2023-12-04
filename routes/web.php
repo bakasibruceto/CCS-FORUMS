@@ -3,6 +3,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PostController;
 use App\Livewire\Thread\CreateThread;
+use App\Livewire\Chat\CreateChat;
 use Illuminate\Support\Facades\Route;
 
 // Initial route
@@ -17,9 +18,14 @@ Route::get('/admin', function () {
 // Check if user is logged
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-    Route::get('/chat/{receiver_id}', function ($receiver_id) {
-        return view('chat', ['receiver_id' => $receiver_id]);
+    Route::get('/chat{key?}', function () {
+        return view('chat');
     })->name('chat');
+
+    Route::get('/users', function () {
+        return view('users');
+    })->name('users');
+
 
     Route::group(['middleware' => 'role:user'], function () {
         Route::get('/', [PostController::class, 'show'])->name('user.index');

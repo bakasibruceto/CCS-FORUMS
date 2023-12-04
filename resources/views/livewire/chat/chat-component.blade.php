@@ -1,4 +1,4 @@
-<div class="p-6" wire:poll>
+<div class="p-6">
     <div x-data="{ }"
          x-init="
             $refs.chatMessages.scrollTop = $refs.chatMessages.scrollHeight;

@@ -10,21 +10,26 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Message;
+use App\Models\User;
 
 class NewMessage
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $message;
+    public $user;
+    public $reciever;
     /**
      * Create a new event instance.
      *
      * @param  Message  $message
      * @return void
      */
-    public function __construct(Message $message)
+    public function __construct(Message $message, Message $receiver, User $user,)
     {
         $this->message = $message;
+        $this->user = $user;
+        $this->reciever = $receiver;
     }
 
     /**
@@ -55,6 +60,10 @@ class NewMessage
      */
     public function broadcastWith()
     {
-        return ['message' => $this->message];
+        return [
+            'message' => $this->message,
+            'user' => $this->user,
+            'receiver' => $this->reciever,
+        ];
     }
 }
