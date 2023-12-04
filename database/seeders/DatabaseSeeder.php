@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
             ['name' => 'c++'],
             ['name' => 'java'],
         ]);
+        $this->call(UserSeeder::class);
     }
 }
