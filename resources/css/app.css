@@ -6,3 +6,21 @@
     display: none;
 }
 
+/* For Firefox */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: #6b7280 #f3f4f6;
+}
+
+/* For Webkit browsers like Chrome, Safari */
+html::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+html::-webkit-scrollbar-track {
+    @apply bg-gray-200;
+}
+
+html::-webkit-scrollbar-thumb {
+    @apply bg-gray-600;
+}

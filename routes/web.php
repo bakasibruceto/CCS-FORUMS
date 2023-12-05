@@ -33,6 +33,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             return view('create-thread');
         });
 
+        Route::post('/createthread', [CreateThread::class, 'savePost'])->name('create-thread');
+
         // Single page Thread
         Route::get('/thread/{postId}', [PostController::class, 'get'])
             ->name('user-post.show')
@@ -43,8 +45,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             ->middleware('checkUserPost');
         // Used the 'username' as the route name for showing user profile
         Route::get('{user:username}', [SearchController::class, 'show'])->name('user.show');
+        Route::get('{user:username}/replies ', [SearchController::class, 'show'])->name('user.show');
 
-        Route::post('/createthread', [CreateThread::class, 'savePost'])->name('create-thread');
+
     });
 
     // Check if role is admin
