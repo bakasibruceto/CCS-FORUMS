@@ -13,7 +13,7 @@ class LikeComponent extends Component
     public function mount($post_id)
     {
         $this->post_id = $post_id;
-        $this->liked = Auth::user()->likes->contains($this->post_id);
+        $this->liked = Auth::user()->Forumlikes->contains($this->post_id);
     }
 
     public function render()
@@ -28,9 +28,9 @@ class LikeComponent extends Component
     public function like()
     {
         if ($this->liked) {
-            Auth::user()->likes()->detach($this->post_id);
+            Auth::user()->Forumlikes()->detach($this->post_id);
         } else {
-            Auth::user()->likes()->attach($this->post_id);
+            Auth::user()->Forumlikes()->attach($this->post_id);
         }
 
         $this->liked = !$this->liked;

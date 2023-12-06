@@ -15,13 +15,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('tags')->insert([
-            ['name' => 'laravel'],
-            ['name' => 'php'],
-            ['name' => 'javascript'],
-            ['name' => 'c++'],
-            ['name' => 'java'],
-        ]);
-        $this->call(UserSeeder::class);
+        // DB::table('tags')->insert([
+        //     ['name' => 'laravel'],
+        //     ['name' => 'php'],
+        //     ['name' => 'javascript'],
+        //     ['name' => 'c++'],
+        //     ['name' => 'java'],
+        // ]);
+        // $this->call(UserSeeder::class);
+        Schema::create('user_reply_likes', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('reply_id')->references('id')->on('user_reply');
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->timestamps();
+        });
     }
 }

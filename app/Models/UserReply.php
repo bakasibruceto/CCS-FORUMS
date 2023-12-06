@@ -26,4 +26,8 @@ class UserReply extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function likedBy() {
+        return $this->belongsToMany(User::class, 'user_reply_likes', 'reply_id', 'user_id');
+    }
+
 }

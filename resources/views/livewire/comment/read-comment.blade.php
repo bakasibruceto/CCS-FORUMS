@@ -63,9 +63,9 @@
                     <button wire:click='toggleEdit({{ $reply->id }})'>cancel</button>
                 @endif
             </div>
-            {{-- <div>
-                mark as solution
-            </div> --}}
+            <div>
+                @livewire('counter.like-reply',['reply_id' => $reply->id])
+            </div>
         </div>
     @endforeach
 </div>
