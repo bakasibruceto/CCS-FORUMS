@@ -101,20 +101,18 @@ class CreateThread extends Component
             // Redirect the user to the home page.
             return redirect()->to('/');
 
-        } catch (\Exception $e) {
+        }catch (\Exception $e) {
             // Log the exception for debugging
             \Log::error($e);
 
-            // Show an error message
-            session()->flash('error', 'An error occurred while saving the post. Please avoid using profanity.');
+            // Check the exception message
+            if ($e->getMessage() === 'Profanity detected') {
+                session()->flash('error', 'Please avoid using profanity.');
+            } else {
+                session()->flash('error', 'An error occurred while saving the post.');
+            }
 
             return redirect()->back();
         }
     }
-
-
-
-
-
-
 }
