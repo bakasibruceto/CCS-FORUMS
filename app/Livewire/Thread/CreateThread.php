@@ -4,6 +4,7 @@ namespace App\Livewire\Thread;
 
 use App\Livewire\Traits\HighlighterJS;
 use App\Livewire\Traits\MarkdownEditor;
+use App\Livewire\Traits\ProfanityChecker;
 use Livewire\Component;
 use App\Models\ForumPost;
 use App\Models\Category;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CreateThread extends Component
 {
-    use HighlighterJS, MarkdownEditor;
+    use HighlighterJS, MarkdownEditor , ProfanityChecker;
 
     public $subject = '';
     public $tags = [];
@@ -64,6 +65,10 @@ class CreateThread extends Component
                 'markdown' => 'required',
             ]);
 
+            // Check the markdown for profanity
+            $this->markdown = $this->censorCurseWords($this->markdown);
+            $this->subject = $this->censorCurseWords($this->subject);
+
             // Save the post to the database
             $post = ForumPost::create([
                 'user_id' => $this->user->id,
@@ -93,7 +98,6 @@ class CreateThread extends Component
             $this->tags = '';
             $this->markdown = '';
 
-            // session()->flash('success', 'Post saved successfully!');
             // Redirect the user to the home page.
             return redirect()->to('/');
 
@@ -101,11 +105,15 @@ class CreateThread extends Component
             // Log the exception for debugging
             \Log::error($e);
 
-            // session()->flash('error', 'An error occurred while saving the post.');
+            // Show an error message
+            session()->flash('error', 'An error occurred while saving the post. Please avoid using profanity.');
+
             return redirect()->back();
-            // return redirect()->route('/');
         }
     }
+
+
+
 
 
 
