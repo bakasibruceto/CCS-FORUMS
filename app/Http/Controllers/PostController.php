@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ForumPost;
+use App\Models\UserReply;
 use App\Models\Tags;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -21,19 +22,100 @@ class PostController extends Controller
 
         $tags = $getTag->pluck('name');
 
-        return view('user-dashboard', compact('forumPosts', 'tags'));
+        $selectedTag = null; // No selected tag
+
+        return view('user-dashboard', compact('forumPosts', 'tags', 'selectedTag'));
     }
 
     public function filterByTag($tag)
     {
-        $forumPosts = ForumPost::whereHas('categories.tag', function ($query) use ($tag) {
+        $query = ForumPost::whereHas('categories.tag', function ($query) use ($tag) {
             $query->where('name', $tag);
-        })->with('user')->latest()->paginate(5);
+        });
+
+        $forumPosts = $query->with('user')->latest()->paginate(5);
 
         $tags = Tags::pluck('name');
 
-        return view('user-dashboard', compact('forumPosts', 'tags'));
+        $selectedTag = $tag; // Assign the selected tag
+
+        return view('user-dashboard', compact('forumPosts', 'tags', 'selectedTag'));
     }
+
+    public function filterByTagWithSolution($tag = null, $status = null)
+    {
+        $query = ForumPost::query();
+
+        if ($status === 'recent') {
+
+        }
+
+        if ($status === 'resolved') {
+            $query->whereHas('user_reply', function ($query) {
+                $query->where('solution', true);
+            });
+        }
+
+        if ($status === 'unresolved') {
+            $query->whereDoesntHave('user_reply', function ($query) {
+                $query->where('solution', true);
+            });
+        }
+
+        if ($tag) {
+            $query->whereHas('categories.tag', function ($query) use ($tag) {
+                $query->where('name', $tag);
+            });
+        }
+
+        $forumPosts = $query->with('user')->latest()->paginate(5);
+
+        $tags = Tags::pluck('name');
+
+        $selectedTag = $tag; // Assign the selected tag
+
+        return view('user-dashboard', compact('forumPosts', 'tags', 'selectedTag'));
+    }
+
+    public function showResolved()
+    {
+
+        $forumPosts = ForumPost::whereHas('user_reply', function ($query) {
+            $query->where('solution', true);
+        })->with('user')->latest()->paginate(5);
+
+
+
+        $getTag = Tags::get();
+
+        $tags = $getTag->pluck('name');
+
+        $selectedTag = null; // No selected tag
+
+        return view('user-dashboard', compact('forumPosts', 'selectedTag','tags'));
+    }
+
+    public function showUnresolved()
+    {
+        $forumPosts = ForumPost::whereDoesntHave('user_reply', function ($query) {
+            $query->where('solution', true);
+        })->with('user')->latest()->paginate(5);
+
+
+
+        $getTag = Tags::get();
+
+        $tags = $getTag->pluck('name');
+
+        $selectedTag = null; // No selected tag
+
+        return view('user-dashboard', compact('forumPosts', 'selectedTag','tags'));
+    }
+
+
+
+
+
 
     public function get($id)
     {

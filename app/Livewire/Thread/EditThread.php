@@ -4,6 +4,7 @@ namespace App\Livewire\Thread;
 
 use App\Livewire\Traits\HighlighterJS;
 use App\Livewire\Traits\MarkdownEditor;
+use App\Livewire\Traits\ProfanityChecker;
 use Livewire\Component;
 use App\Models\ForumPost;
 use App\Models\Category;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class EditThread extends Component
 {
-    use HighlighterJS, MarkdownEditor;
+    use HighlighterJS, MarkdownEditor, ProfanityChecker;
     public $subject = '';
     public $tags = [];
     public $user;
@@ -53,7 +54,6 @@ class EditThread extends Component
             $this->tags[] = $tagName;
         }
     }
-
     public function savePost()
     {
         try {
@@ -62,6 +62,9 @@ class EditThread extends Component
                 'subject' => 'required|max:255',
                 'markdown' => 'required',
             ]);
+
+            $this->markdown = $this->censorCurseWords($this->markdown);
+            $this->subject = $this->censorCurseWords($this->subject);
 
             // Fetch the post from the database
             $post = ForumPost::find($this->postId);
@@ -121,9 +124,14 @@ class EditThread extends Component
             // Log the exception for debugging
             \Log::error($e);
 
-            // session()->flash('error', 'An error occurred while updating the post.');
+            // Check the exception message
+            if ($e->getMessage() === 'Profanity detected') {
+                session()->flash('error', 'Please avoid using profanity.');
+            } else {
+                session()->flash('error', 'An error occurred while saving the post.');
+            }
+
             return redirect()->back();
-            // return redirect()->route('/');
         }
     }
 

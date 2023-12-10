@@ -4,7 +4,8 @@
             <main class="container mx-auto p-4">
                 <div class="container mx-auto px-4 p-6">
                     <div class="w-full h-[250px]">
-                        <img src="{{ asset('storage/' . $user->bg_photo_path) }}" class="w-full h-full rounded-tl-lg rounded-tr-lg">
+                        <img src="{{ asset('storage/' . $user->bg_photo_path) }}"
+                            class="w-full h-full rounded-tl-lg rounded-tr-lg">
                     </div>
                     <div class="relative flex flex-col min-w-0 break-words bg-white w-full h-full mb-6 rounded-lg -mt-1">
                         <div class="px-6">
@@ -21,12 +22,14 @@
                                     <div class="flex justify-center py-4 lg:pt-1 pt-0 font-semibold ">
                                         <div class="lg:mr-4 p-3 text-center hover:bg-sky-100 rounded-lg">
                                             <a href="">
-                                                <span class="text-sm block tracking-wide text-black">89</span>
+                                                <span
+                                                    class="text-sm block tracking-wide text-black">{{ $postCount }}</span>
                                                 <span class="text-gray-600">post</span>
                                             </a>
                                         </div>
                                         <div class="lg:mr-4 p-3 text-center hover:bg-sky-100 rounded-lg">
-                                            <span class="text-sm block tracking-wide text-black">{{$totalFollowing}}</span>
+                                            <span
+                                                class="text-sm block tracking-wide text-black">{{ $totalFollowing }}</span>
                                             <span class="text-gray-600">following</span>
                                         </div>
                                         @livewire('counter.follower-counter', ['username' => $user->username])
@@ -51,16 +54,21 @@
                         </div>
                         <div class="flex mt-6">
                             <div class="w-1/3 justify-center flex">
+
                                 <button
                                     class="active:border-blue-600 w-full font-bold text-blue-500 border-b-2 border-blue-500 transition duration-300 ease-in-out">
                                     Thread posted
                                 </button>
+
                             </div>
                             <div class="w-1/3 justify-center flex">
+
                                 <button
                                     class="w-full font-bold text-blue-500 border-b-2 border-transparent hover:border-blue-500 transition duration-300 ease-in-out">
                                     Replies posted
                                 </button>
+
+
                             </div>
                             <div class="w-1/3 justify-center flex">
                                 <button
@@ -72,6 +80,7 @@
                     </div>
                     <div class="-mt-3">
                         @livewire('show-all-userthreads', ['username' => $username])
+
                     </div>
                 </div>
             </main>

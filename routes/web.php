@@ -18,21 +18,14 @@ Route::get('/admin', function () {
 // Check if user is logged
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-    Route::get('/chat{key?}', function () {
-        return view('chat');
-    })->name('chat');
-
-    Route::get('/users', function () {
-        return view('users');
-    })->name('users');
-
-
     Route::group(['middleware' => 'role:user'], function () {
         Route::get('/', [PostController::class, 'show'])->name('user.index');
         Route::get('/posts/filter/{tag}', [PostController::class, 'filterByTag'])->name('posts.filter');
+        Route::get('/posts/filter/{tag}/{status?}', [PostController::class, 'filterByTagWithSolution'])->name('posts.filter');
+        Route::get('/posts/resolved', [PostController::class, 'showResolved'])->name('posts.resolved');
+        Route::get('/posts/unresolved', [PostController::class, 'showUnresolved'])->name('posts.unresolved');
         // Search Bar
         Route::get('search', [SearchController::class, 'search'])->name('search');
-
 
         // Create Thread
         Route::get('/createthread', function () {
@@ -41,15 +34,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
         // Single page Thread
         Route::get('/thread/{postId}', [PostController::class, 'get'])
-            ->name('user-post.show')
-            ->middleware('checkUserPost');
+            ->name('user-post.show');
 
         Route::get('/edit/thread/{postId}', [PostController::class, 'edit'])
             ->name('edit-thread')
             ->middleware('checkUserPost');
         // Used the 'username' as the route name for showing user profile
         Route::get('{user:username}', [SearchController::class, 'show'])->name('user.show');
-
+        Route::get('{user:username}/replies ', [SearchController::class, 'show'])->name('user.replies');
         Route::post('/createthread', [CreateThread::class, 'savePost'])->name('create-thread');
     });
 
@@ -68,23 +60,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             return view('admin-userTable');
         })->name('admin.userTable');
 
-        // Create Thread
-        // Route::get('/createthread', function () {
-        //     return view('create-thread');
-        // });
-
-        // Single page Thread
-        // Route::get('/thread/{postId}', [PostController::class, 'get'])->name('user-post.show');
-
         //Used the 'username' as the route name for showing user profile
         Route::get('admin/view/{user:username}', [SearchController::class, 'show'])->name('admin.show');
 
-        // Route::get('/createthread', MarkdownEditor::class)->name('create-thread');
-        // Route::post('/createthread', [MarkdownEditor::class, 'savePost'])->name('create-thread');
     });
-
-
-
 
 });
 
@@ -98,7 +77,7 @@ Route::get('dashboard', function () {
 })->name('dashboard');
 
 
-// Handle undefined routes if user is not logged-in
-// Route::fallback(function () {
-//     return redirect()->route('login');
-// });
+//Handle undefined routes if user is not logged-in or route does not exist
+Route::fallback(function () {
+    return redirect()->route('login');
+});

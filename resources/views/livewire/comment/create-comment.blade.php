@@ -1,10 +1,11 @@
 <div>
-    <div>
-        Write a Reply
-    </div>
+
     <div class="bg-white shadow rounded-lg mb-5 p-3 md:w-full">
 
         <div class="md:w-full w-full">
+            <div>
+                Write a Reply
+            </div>
             <form wire:submit.prevent="savePost" class="bg-white rounded-lg p-3">
 
                 <div x-data="{

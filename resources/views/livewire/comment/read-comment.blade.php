@@ -1,6 +1,6 @@
 <div wire:poll.keep-alive.5000ms>
     @foreach ($replies as $reply)
-        <div class="bg-white shadow rounded-lg mb-5 p-3 md:w-full">
+        <div id="reply-{{ $reply->id }}" class="bg-white shadow rounded-lg mb-5 p-3 md:w-full">
             <div class="flex items-center mb-3 gap-1 justify-between">
                 <div class="flex items-center gap-1">
                     <img class="rounded-full mr-2 ml-1 w-10 h-10" src="{{ $reply->user->profile_photo_url }}"
@@ -22,16 +22,17 @@
                             <div class="py-1" role="menu" aria-orientation="vertical"
                                 aria-labelledby="options-menu">
                                 @if ($reply->user_id == auth()->id())
-                                    @if(!isset($editing[$reply->id]) || !$editing[$reply->id])
-                                    <div wire:click='toggleEdit({{ $reply->id }})'
-                                        class="px-4 py-2 text-sm hover:bg-gray-100 flex items-center" role="menuitem">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                            <path
-                                                d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-                                        </svg>
-                                        <p class="pl-3">edit</p>
-                                    </div>
+                                    @if (!isset($editing[$reply->id]) || !$editing[$reply->id])
+                                        <div wire:click='toggleEdit({{ $reply->id }})'
+                                            class="px-4 py-2 text-sm hover:bg-gray-100 flex items-center"
+                                            role="menuitem">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                                            </svg>
+                                            <p class="pl-3">edit</p>
+                                        </div>
                                     @endif
                                     <a href="#"
                                         class="px-4 py-2 text-sm text-red-500 hover:bg-gray-100 hover:text-red-700 flex items-center"
@@ -55,17 +56,17 @@
             </div>
             <div class="border-t border-gray-200"></div>
             <div class="p-3 flex-grow w-full">
-                @if(!isset($editing[$reply->id]) || !$editing[$reply->id])
+                @if (!isset($editing[$reply->id]) || !$editing[$reply->id])
                     @livewire('markdown-parser', ['markdown' => $reply->markdown], key($reply->id))
-
                 @else
                     @livewire('comment.edit-comment', ['replyId' => $reply->id])
                     <button wire:click='toggleEdit({{ $reply->id }})'>cancel</button>
                 @endif
             </div>
-            {{-- <div>
-                mark as solution
-            </div> --}}
+            <div class="flex justify-between pr-5 pl-3" wire:ignore>
+                @livewire('counter.like-reply',['reply_id' => $reply->id])
+                @livewire('counter.mark-solution', ['postId' => $reply->post_id, 'replyId' => $reply->id])
+            </div>
         </div>
     @endforeach
 </div>

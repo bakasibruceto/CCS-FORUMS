@@ -22,13 +22,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'c++'],
             ['name' => 'java'],
         ]);
-
-        Schema::create('messages', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('sender_id')->constrained('users');
-            $table->foreignId('receiver_id')->constrained('users');
-            $table->text('message');
-            $table->timestamps();
-        });
+        $this->call(UserSeeder::class);
+        $this->call(AdminSeeder::class);
     }
 }

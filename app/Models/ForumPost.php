@@ -24,7 +24,12 @@ class ForumPost extends Model
 
     public function replies()
     {
-        return $this->elongsTo(UserReply::class, 'post_id');
+        return $this->belongsTo(UserReply::class, 'post_id');
+    }
+
+    public function user_reply()
+    {
+        return $this->belongsTo(UserReply::class, 'id');
     }
 
     public function likedBy()

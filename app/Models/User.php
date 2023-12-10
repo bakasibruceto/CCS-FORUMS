@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\NewEmailVerificationNotification;
 use App\Notifications\NewResetPasswordNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -24,17 +23,15 @@ class User extends Authenticatable  //implements MustVerifyEmail
     use TwoFactorAuthenticatable;
 
     //Chatify
-    // protected static function booted()
-    // {
-    //     static::updated(function ($user) {
-    //         if ($user->isDirty('profile_photo_path')) {
-    //             $user->avatar = str_replace('profile-photos/', '', $user->profile_photo_path);
-    //             $user->save();
-    //         }
-    //     });
-    // }
-
-
+    protected static function booted()
+    {
+        static::updated(function ($user) {
+            if ($user->isDirty('profile_photo_path')) {
+                $user->avatar = str_replace('profile-photos/', '', $user->profile_photo_path);
+                $user->save();
+            }
+        });
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -92,6 +89,11 @@ class User extends Authenticatable  //implements MustVerifyEmail
     public function likes()
     {
         return $this->belongsToMany(ForumPost::class, 'forum_likes', 'user_id', 'post_id');
+    }
+
+    public function Replylikes()
+    {
+        return $this->belongsToMany(UserReply::class, 'user_reply_likes', 'user_id', 'reply_id');
     }
 
     public function posts()

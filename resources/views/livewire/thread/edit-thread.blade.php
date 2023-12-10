@@ -5,6 +5,11 @@
         Make sure you've read our rules before proceeding.
         Please search for your question before posting your thread by using the search box in the navigation bar.
     </p>
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <form wire:submit.prevent="savePost" class="bg-white rounded-lg p-3">
         <div class="mb-4">
             <x-label class="font-semibold text-xl text-gray-900" for="subject" value="{{ __('Subject') }}" />
@@ -135,7 +140,7 @@
         <div class="flex item-end justify-end">
             <button
                 class="hover:shadow-form rounded-md hover:bg-sky-900 bg-sky-950 py-3 px-8 text-base font-semibold text-white outline-none"
-                type="submit">Create Thread</button>
+                type="submit">Update Thread</button>
         </div>
     </form>
 </div>

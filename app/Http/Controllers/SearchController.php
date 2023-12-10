@@ -9,22 +9,12 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
-        // not sure how this this work and how I'll user it but it works the same as this:
-        // $user = auth()->user();
-        // $user = auth()->forumpost()->user_id;
-
         $user = User::when(auth()->check(),function($query){
             $query->where('id', '!=', auth()->id());
         })->paginate();
 
-
-        // Select * from forum post
-        // for each
-        // end foreach
-        // input search textfield
         $search = $request->input('q');
 
-        // store search value in session
         session(['previous_search' => $search]);
 
         if (empty($search)) {
@@ -63,7 +53,8 @@ class SearchController extends Controller
 
         $totalFollowing = $user->following->count();
         $totalFollowers = $user->followers->count();
+        $postCount = $user->posts->count();
 
-        return view('users.shows',['username' => $username], compact('user','totalFollowing',"totalFollowers"));
+        return view('users.shows',['username' => $username], compact('user','totalFollowing',"totalFollowers", "postCount"));
     }
 }
