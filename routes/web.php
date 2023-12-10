@@ -44,7 +44,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             ->middleware('checkUserPost');
         // Used the 'username' as the route name for showing user profile
         Route::get('{user:username}', [SearchController::class, 'show'])->name('user.show');
-        Route::get('{user:username}/replies ', [SearchController::class, 'show'])->name('user.show');
+        Route::get('{user:username}/replies ', [SearchController::class, 'show'])->name('user.replies');
 
 
     });
