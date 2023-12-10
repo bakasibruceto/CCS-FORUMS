@@ -13,6 +13,22 @@ class ReadComment extends Component
     protected $listeners = ['replyAdded' => 'loadReplies', 'editEvent' => 'toggleEdit', 'markdownUpdated' => 'refreshComment', 'mark' => 'refreshComment'];
 
     public $edit = false;
+    public $solution = false;
+
+    public function setSolution($replyId)
+    {
+        // Find the reply
+        $reply = UserReply::find($replyId);
+
+        // Set the solution field to true
+        $reply->solution = true;
+
+        // Save the reply
+        $reply->save();
+
+        // Refresh the comment
+        $this->refreshComment($replyId);
+    }
 
 
     public function mount($post_id)
