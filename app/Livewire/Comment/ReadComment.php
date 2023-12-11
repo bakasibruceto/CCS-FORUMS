@@ -44,6 +44,22 @@ class ReadComment extends Component
             $this->replies = $this->replies->values();
         }
     }
+
+    public function deleteComment($replyId)
+    {
+        // Find the reply
+        $reply = UserReply::find($replyId);
+
+        // Check if the current user is the author of the reply
+        if (auth()->user()->id == $reply->user_id) {
+            // Delete the reply
+            $reply->delete();
+
+            // Refresh the replies
+            $this->loadReplies();
+        }
+    }
+
     public function render()
     {
         $this->loadReplies();

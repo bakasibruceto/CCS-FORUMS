@@ -35,6 +35,20 @@ class MarkSolution extends Component
 
         return redirect()->to('/thread/' . $this->postId);
     }
+
+    public function detachSolution()
+    {
+        // Find the reply
+        $reply = UserReply::find($this->replyId);
+
+        // Set the solution field to false
+        $reply->solution = false;
+
+        // Save the reply
+        $reply->save();
+
+        return redirect()->to('/thread/' . $this->postId);
+    }
     public function render()
     {
         return view('livewire.counter.mark-solution');

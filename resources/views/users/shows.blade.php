@@ -79,8 +79,8 @@
                         </div>
                     </div>
                     <div class="-mt-3">
-                        @livewire('show-all-userthreads', ['username' => $username])
-
+                        {{-- @livewire('show-all-userthreads', ['username' => $username]) --}}
+                        @livewire('show-all-comments', ['username' => $username])
                     </div>
                 </div>
             </main>

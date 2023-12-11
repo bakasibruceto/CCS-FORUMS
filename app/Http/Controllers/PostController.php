@@ -57,8 +57,8 @@ class PostController extends Controller
         }
 
         if ($status === 'unresolved') {
-            $query->whereDoesntHave('user_reply', function ($query) {
-                $query->where('solution', true);
+            $query->whereHas('user_reply', function ($query) {
+                $query->where('solution', false);
             });
         }
 
@@ -84,8 +84,6 @@ class PostController extends Controller
             $query->where('solution', true);
         })->with('user')->latest()->paginate(5);
 
-
-
         $getTag = Tags::get();
 
         $tags = $getTag->pluck('name');
@@ -97,11 +95,9 @@ class PostController extends Controller
 
     public function showUnresolved()
     {
-        $forumPosts = ForumPost::whereDoesntHave('user_reply', function ($query) {
-            $query->where('solution', true);
+        $forumPosts = ForumPost::whereHas('user_reply', function ($query) {
+            $query->where('solution', false);
         })->with('user')->latest()->paginate(5);
-
-
 
         $getTag = Tags::get();
 

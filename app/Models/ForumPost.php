@@ -29,7 +29,7 @@ class ForumPost extends Model
 
     public function user_reply()
     {
-        return $this->belongsTo(UserReply::class, 'id');
+        return $this->hasMany(UserReply::class, 'post_id');
     }
 
     public function likedBy()

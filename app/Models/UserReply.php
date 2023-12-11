@@ -31,4 +31,9 @@ class UserReply extends Model
         return $this->belongsToMany(User::class, 'user_reply_likes', 'reply_id', 'user_id');
     }
 
+    public function post()
+    {
+        return $this->belongsTo(ForumPost::class, 'post_id');
+    }
+
 }
