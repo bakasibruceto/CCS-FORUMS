@@ -2,9 +2,10 @@
     <div class="flex items-center mb-3 gap-1 justify-between">
         <div class="flex items-center gap-1">
             <a href="{{ route('user.show', $reply->post->user->username) }}">
-                <img class="rounded-full mr-2 ml-1 w-10 h-10" src="{{ $reply->post->user->profile_photo_url }}" alt="">
+                <img class="rounded-full mr-2 ml-1 w-10 h-10"
+                    src="{{ $reply->post->user->profile_photo_url }}" alt="">
             </a>
-            <strong class="mr-2">{{ $post->user->username }}</strong> posted
+            <strong class="mr-2">{{ $reply->post->user->username }}</strong> posted
             {{ $reply->post->created_at->diffForHumans() }}
         </div>
         <div>
@@ -17,13 +18,14 @@
 
     </div>
     <div class="rounded-lg pl-3 text-2xl font-bold ">
-        <a class="hover:underline" href="{{ route('user-post.show', ['postId' => $reply->post->id]) }}">{{ $post->title }}</a>
+        <a class="hover:underline"
+            href="{{ route('user-post.show', ['postId' => $reply->post->id]) }}">{{ $reply->post->title }}</a>
     </div>
 
     <div class="rounded-lg p-3 -mt-3 text-slate-500">
         {{-- description --}}
         <p>
-            {{ \Illuminate\Support\Str::limit(strip_tags((new Parsedown())->text($reply->markdown)), 150) }}
+            {{ \Illuminate\Support\Str::limit(strip_tags((new Parsedown())->text(str_replace('solution', '', $reply->markdown))), 150) }}
         </p>
     </div>
     <div class="rounded-lg p-3 mt-2 flex gap-3 justify-between">

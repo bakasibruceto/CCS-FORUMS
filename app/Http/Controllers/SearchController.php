@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\ForumPost;
 
 class SearchController extends Controller
 {
@@ -18,16 +19,20 @@ class SearchController extends Controller
         session(['previous_search' => $search]);
 
         if (empty($search)) {
-
             // Redirect back to the previous page.
             return back();
         }
 
-        //Select * from User where username like userInput
-        $results = User::where('username', 'like', '%' . $search . '%')->get();
+        // Select * from User where username like userInput
+        $userResults = User::where('username', 'like', '%' . $search . '%')->get();
+
+        // Select * from ForumPost where title or content like userInput
+        $postResults = ForumPost::where('title', 'like', '%' . $search . '%')
+            ->orWhere('markdown', 'like', '%' . $search . '%')
+            ->get();
 
         // return result
-        return view('search-results', compact('results', 'user') );
+        return view('search-results', compact('userResults', 'postResults', 'user'));
     }
 
     public function show($username)

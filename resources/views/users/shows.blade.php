@@ -2,7 +2,7 @@
     <div class="-mt-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pt-5">
             <main class="container mx-auto p-4">
-                <div class="container mx-auto px-4 p-6">
+                <div x-data="{ tab: 'threads' }" class="container mx-auto px-4 p-6">
                     <div class="w-full h-[250px]">
                         <img src="{{ asset('storage/' . $user->bg_photo_path) }}"
                             class="w-full h-full rounded-tl-lg rounded-tr-lg">
@@ -53,34 +53,27 @@
                             </div>
                         </div>
                         <div class="flex mt-6">
-                            <div class="w-1/3 justify-center flex">
-
-                                <button
-                                    class="active:border-blue-600 w-full font-bold text-blue-500 border-b-2 border-blue-500 transition duration-300 ease-in-out">
+                            <div class="w-1/2 justify-center flex">
+                                <button @click="tab = 'threads'" :class="{ 'border-blue-500': tab === 'threads' }"
+                                    class="w-full font-bold text-blue-500 border-b-2 transition duration-300 ease-in-out">
                                     Thread posted
                                 </button>
-
                             </div>
-                            <div class="w-1/3 justify-center flex">
-
-                                <button
-                                    class="w-full font-bold text-blue-500 border-b-2 border-transparent hover:border-blue-500 transition duration-300 ease-in-out">
+                            <div class="w-1/2 justify-center flex">
+                                <button @click="tab = 'replies'" :class="{ 'border-blue-500': tab === 'replies' }"
+                                    class="w-full font-bold text-blue-500 border-b-2 transition duration-300 ease-in-out">
                                     Replies posted
-                                </button>
-
-
-                            </div>
-                            <div class="w-1/3 justify-center flex">
-                                <button
-                                    class="w-full font-bold text-blue-500 border-b-2 border-transparent hover:border-blue-500 transition duration-300 ease-in-out">
-                                    Logs
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div class="-mt-3">
-                        {{-- @livewire('show-all-userthreads', ['username' => $username]) --}}
-                        @livewire('show-all-comments', ['username' => $username])
+                    <div class="-mt-5">
+                        <div x-show="tab === 'threads'">
+                            @livewire('show-all-userthreads', ['username' => $username])
+                        </div>
+                        <div x-show="tab === 'replies'">
+                            @livewire('show-all-comments', ['username' => $username])
+                        </div>
                     </div>
                 </div>
             </main>

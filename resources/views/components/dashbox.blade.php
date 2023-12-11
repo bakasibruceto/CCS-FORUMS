@@ -9,7 +9,7 @@
 
                 <div
                     class="absolute -bottom-12 flex h-28 w-28 items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
-                    <img class="h-full w-full rounded-full" src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}" alt="" />
+                    <img class="h-full w-full rounded-full" src="{{ auth()->user()->profile_photo_url }}" alt="" />
                 </div>
             </div>
             <div class="mt-14 flex flex-col items-center">
