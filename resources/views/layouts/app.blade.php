@@ -15,7 +15,7 @@
     <!-- Scripts -->
 
     @vite(['resources/css/app.css', 'resources/css/a11y-dark.css', 'resources/js/app.js'])
-
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Styles -->
 
     {{-- <script src="{{ asset('path/to/highlight.js') }}"></script> --}}
