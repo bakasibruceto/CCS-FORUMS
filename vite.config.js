@@ -2,6 +2,12 @@ import { defineConfig } from 'vite';
 import laravel, { refreshPaths } from 'laravel-vite-plugin';
 
 export default defineConfig({
+    build: {
+        outDir: 'resources',
+    },
+    server: {
+        open: false,
+    },
     plugins: [
         laravel({
             input: [
