@@ -14,7 +14,20 @@
 
     <!-- Scripts -->
 
-    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    @vite(['resources/css/app.css', 'resources/css/a11y-dark.css', 'resources/js/app.js'])
+
+    <!-- Styles -->
+
+    {{-- <script src="{{ asset('path/to/highlight.js') }}"></script> --}}
+
+    {{-- <!-- Include a11y-dark theme -->
+    <link rel="stylesheet" href="{{ asset('css/a11y-dark.css') }}"> --}}
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- <link href="{{ url('resources/css/app.css') }}" rel="stylesheet"> --}}
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -157,25 +170,11 @@
             font-style: italic
         }
 
-        /* base0F - Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?> */
-        /*
-
-
-        .hljs-meta,
-        .hljs-meta .hljs-keyword,
-        .hljs-meta .hljs-string {
-            color: #687fbf
-        }
-
-        /* for v10 compatible themes */
         .hljs-meta .hljs-keyword,
         .hljs-meta-keyword {
             font-weight: bold
         }
     </style>
-
-
-
 
 
     @livewireStyles
@@ -239,6 +238,34 @@
             document.body.removeChild(textArea);
             alert('Code copied to clipboard!');
         }
+
+        // Echo.join('chat')
+        //     .listen('NewMessage', (e) => {
+        //         // Create a new div element for the message
+        //         let newMessageDiv = document.createElement('div');
+        //         newMessageDiv.textContent = e.message;
+
+        //         // Add the new message to the chat
+        //         let chatDiv = document.getElementById('chat');
+        //         chatDiv.appendChild(newMessageDiv);
+
+        //         // Scroll to the bottom of the chat
+        //         chatDiv.scrollTop = chatDiv.scrollHeight;
+        //     });
+
+        Echo.private(`chat.${receiver_id}`)
+            .listen('NewMessage', (e) => {
+                // Add the new message to the messages array
+                messages.push(e.message);
+
+                // Rerender the chat
+                renderChat();
+            });
+
+        Echo.private(`chat.${sender_id}`)
+            .listen('NewMessage', (e) => {
+                // Update the UI with the new message
+            });
     </script>
     @livewireScripts
 </body>
