@@ -2,9 +2,13 @@
     "private": true,
     "type": "commonjs",
     "scripts": {
-        "dev": "mix --config webpack.mix.cjs",
-        "watch": "mix watch --config webpack.mix.cjs",
-        "prod": "mix --production --config webpack.mix.cjs"
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production --config webpack.mix.cjs",
+        "production": "mix --production --config webpack.mix.cjs"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
