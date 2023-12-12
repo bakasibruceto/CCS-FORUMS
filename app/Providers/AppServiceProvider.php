@@ -23,9 +23,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useTailwind();
 
-        Blade::directive('vite', function ($expression) {
-            return "<?php echo vite({$expression}, true) ?>";
-        });
+
 
     }
 }
