@@ -29,10 +29,6 @@
 <body>
     <div class="font-sans text-gray-900 antialiased">
         {{ $slot }}
-
-        <div class="test">
-            <h1>Testing</h1>
-        </div>
     </div>
 
 

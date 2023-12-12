@@ -24,6 +24,9 @@
             <h1 class="text-gray-800 font-bold text-3xl">Hello, Clever Fox!</h1>
             <p class="text-sm">Join the Fox-clusive Student Forum: Where Curiosity Meets Cunning!</p>
         </div>
+        <div class="test">
+            <h1>Testing</h1>
+        </div>
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -31,7 +34,7 @@
                 <x-input id="email" class="block mt-1 w-full " type="text" placeholder="Email / Username"
                     name="login" :value="old('login')" autofocus autocomplete="name" />
             </div>
-    
+
             <div class="mt-4">
                 <x-input id="password" class="block mt-1 w-full" type="password" placeholder="Password" name="password"
                     autocomplete="current-password" />
