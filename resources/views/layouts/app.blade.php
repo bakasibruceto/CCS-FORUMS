@@ -16,6 +16,9 @@
 
     @vite(['resources/css/app.css', 'resources/css/a11y-dark.css', 'resources/js/app.js'])
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="{{ asset('css/a11y-dark.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Styles -->
 
     {{-- <script src="{{ asset('path/to/highlight.js') }}"></script> --}}
