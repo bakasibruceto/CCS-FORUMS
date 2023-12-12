@@ -16,7 +16,7 @@
 
     {{-- @vite(['resources/css/app.css', 'resources/css/a11y-dark.css', 'resources/js/app.js']) --}}
     <link href="{{ mix('resources/css/app.css') }}" rel="stylesheet">
-    <link href="{{ mix('resources/css/a11y-dark.css') }}" rel="stylesheet">
+    {{-- <link href="{{ mix('resources/css/a11y-dark.css') }}" rel="stylesheet"> --}}
     <script src="{{ mix('resources/js/app.js') }}"></script>
     <!-- Styles -->
 
