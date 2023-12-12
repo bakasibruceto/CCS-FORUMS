@@ -15,8 +15,4 @@ export default defineConfig({
             ],
         }),
     ],
-    build: {
-        outDir: 'public/build',  // Output directory for the built files
-        emptyOutDir: true,  // Whether to empty the output directory before building
-    },
 });
