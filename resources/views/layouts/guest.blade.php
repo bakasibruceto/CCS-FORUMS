@@ -13,9 +13,9 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" /> --}}
 
     <!-- Scripts -->
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/app.js') }}"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- <link href="{{ url('resources/css/app.css') }}" rel="stylesheet">
+    <script src="{{ url('resources/js/app.js') }}"></script> --}}
     <!-- Styles -->
     @livewireStyles
 </head>
