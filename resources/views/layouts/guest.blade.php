@@ -13,9 +13,9 @@
 
         <!-- Scripts -->
         {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
-        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-
-        <script src="{{ mix('js/app.js') }}"></script>
+        {{-- <link href="{{ mix('css/app.css') }}" rel="stylesheet"> --}}
+        <script src="https://cdn.tailwindcss.com"></script>
+        {{-- <script src="{{ mix('js/app.js') }}"></script> --}}
         <!-- Styles -->
         @livewireStyles
     </head>
