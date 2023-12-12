@@ -205,6 +205,7 @@
         import 'alpinejs';
         import hljs from 'highlight.js/lib/core';
 
+
         //Highlight.js
         document.addEventListener('DOMContentLoaded', (event) => {
             highlightCodeBlocks('pre code');
