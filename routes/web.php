@@ -60,6 +60,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             return view('admin-userTable');
         })->name('admin.userTable');
 
+        Route::get('/admin/threads', function () {
+            return view('admin-threads');
+        })->name('admin.threads');
+
         //Used the 'username' as the route name for showing user profile
         Route::get('admin/view/{user:username}', [SearchController::class, 'show'])->name('admin.show');
 
