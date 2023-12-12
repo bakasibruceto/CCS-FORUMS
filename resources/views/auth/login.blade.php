@@ -24,6 +24,7 @@
             <h1 class="text-gray-800 font-bold text-3xl">Hello, Clever Fox!</h1>
             <p class="text-sm">Join the Fox-clusive Student Forum: Where Curiosity Meets Cunning!</p>
         </div>
+        <p class="bg-primary">This text is important.</p>
         <div class="test">
             <h1>Testing</h1>
         </div>
