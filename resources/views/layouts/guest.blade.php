@@ -18,7 +18,7 @@
     <script src="{{ url('resources/js/app.js') }}"></script> --}}
     <!-- Styles -->
     @livewireStyles
-
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .test{
             color:aqua;
