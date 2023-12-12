@@ -14,8 +14,10 @@
 
     <!-- Scripts -->
 
-    @vite(['resources/css/app.css', 'resources/css/a11y-dark.css', 'resources/js/app.js'])
-
+    {{-- @vite(['resources/css/app.css', 'resources/css/a11y-dark.css', 'resources/js/app.js']) --}}
+    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/a11y-dark.css') }}" rel="stylesheet">
+    <script src="{{ secure_asset('js/app.js') }}"></script>
     <!-- Styles -->
 
     {{-- <script src="{{ asset('path/to/highlight.js') }}"></script> --}}
