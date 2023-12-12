@@ -28,6 +28,7 @@
 
 <body>
     <div class="font-sans text-gray-900 antialiased">
+        <p class="bg-primary">This text is important.</p>
         {{ $slot }}
     </div>
 
