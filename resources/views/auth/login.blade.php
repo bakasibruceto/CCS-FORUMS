@@ -8,7 +8,7 @@
                 testing
             </div>
         </div> --}}
-        <x-slot name="logo" >
+        <x-slot name="logo">
             <x-authentication-card-logo />
         </x-slot>
 
@@ -31,7 +31,7 @@
                 <x-input id="email" class="block mt-1 w-full " type="text" placeholder="Email / Username"
                     name="login" :value="old('login')" autofocus autocomplete="name" />
             </div>
-    
+
             <div class="mt-4">
                 <x-input id="password" class="block mt-1 w-full" type="password" placeholder="Password" name="password"
                     autocomplete="current-password" />
@@ -75,4 +75,3 @@
         </form>
     </x-authentication-card>
 </x-guest-layout>
-
