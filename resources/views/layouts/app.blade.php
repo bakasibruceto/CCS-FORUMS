@@ -17,8 +17,8 @@
     @vite(['resources/css/app.css', 'resources/css/a11y-dark.css', 'resources/js/app.js'])
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <link href="{{ mix('css/a11y-dark.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('resources/css/a11y-dark.css') }}" rel="stylesheet">
+    <link href="{{ asset('resources/css/app.css') }}" rel="stylesheet">
     <!-- Styles -->
 
     {{-- <script src="{{ asset('path/to/highlight.js') }}"></script> --}}
