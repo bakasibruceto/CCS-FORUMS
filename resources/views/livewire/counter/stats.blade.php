@@ -1,5 +1,5 @@
 <div wire:poll>
-    <div class="flex flex-wrap">
+    <div class="flex flex-wrap mx-2">
         <div class="w-full px-6 sm:w-1/2 xl:w-1/3">
             <a href="{{ route('admin.userTable') }}">
                 <div class="flex items-center px-5 py-6 hover:bg-slate-100 bg-white rounded-md shadow-sm">
@@ -22,7 +22,7 @@
 
         <div class="w-full px-6 mt-6 sm:w-1/2 xl:w-1/3 sm:mt-0">
             <a href="{{ route('admin.threads') }}">
-                <div class="flex items-center px-5 py-6 bg-white rounded-md shadow-sm">
+                <div class="flex items-center px-5 py-6 hover:bg-slate-100 bg-white rounded-md shadow-sm">
                     <div class="p-3 text-white bg-orange-600 bg-opacity-75 rounded-full">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">

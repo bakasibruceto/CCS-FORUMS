@@ -9,7 +9,7 @@
                             @if ($userResults->count() > 0)
                                 <ul class="item-center justify-between font-semibold pt-4">
                                     @foreach ($userResults as $result)
-                                        <div class="flex p-3">
+                                        <div class="flex p-3 items-center">
                                             <a href="{{ route('user.show', ['user' => $result->username]) }}">
                                                 <img class="rounded-full mr-2 ml-1 w-10 h-10"
                                                     src="{{ $result->profile_photo_url }}" alt="">
@@ -52,7 +52,7 @@
                                 @endforeach
                             </div>
                         @else
-                            <div class="bg-white overflow-hidden shadow-xl rounded-lg p-4">
+                            <div class="bg-white overflow-hidden shadow-xl rounded-lg p-4 mt-4">
                                 <p>No results found.</p>
                             </div>
                         @endif
