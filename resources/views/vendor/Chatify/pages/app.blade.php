@@ -1,4 +1,5 @@
 @include('Chatify::layouts.headLinks')
+<script src="https://cdn.tailwindcss.com"></script>
 <div class="messenger">
     {{-- ----------------------Users/Groups lists side---------------------- --}}
     <div class="messenger-listView {{ !!$id ? 'conversation-active' : '' }}">
