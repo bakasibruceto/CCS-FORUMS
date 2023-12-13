@@ -38,13 +38,13 @@
             <img class="rounded-full mr-2 ml-1 w-10 h-10" src="{{ $post->user->profile_photo_url }}" alt="">
         </a>
     </td>
-    <td class="w-20">
+    <td class="w-60">
         <strong class="mr-2">{{ $post->user->username }}</strong>
     </td>
     <td class="w-40">
         <a class="hover:underline" href="{{ route('user-post.show', ['postId' => $post->id]) }}">{{ $post->title }}</a>
     </td>
-    <td class="w-40">
+    <td class="w-60">
         @if ($post->categories->count() > 0)
             @foreach ($post->categories as $category)
                 <div class="inline-block bg-slate-300 text-black px-2 py-1 rounded text-sm">
@@ -52,15 +52,30 @@
                 </div>
             @endforeach
         @else
-            null
+            <p class="italic text-slate-500">null</p>
         @endif
     </td>
-    <td class="w-20">
+    <td class="w-40">
         @if ($post->user_reply->where('solution', true)->count() > 0)
             @livewire('check-solution', ['postId' => $post->id])
         @else
-            unsolved
+            <p class="italic text-slate-500">unsolved</p>
         @endif
     </td>
-
+    <td class="w-40">
+        {{ $post->created_at->format('Y-m-d') }}
+    </td>
+    <td class="w-20">
+        @if ($post->trashed())
+            <form action="{{ route('post.restore', $post->id) }}" method="POST">
+                @csrf
+                <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded">Restore</button>
+            </form>
+        @else
+            <form action="{{ route('post.trash', $post->id) }}" method="POST">
+                @csrf
+                <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded">Trash</button>
+            </form>
+        @endif
+    </td>
 </tr>

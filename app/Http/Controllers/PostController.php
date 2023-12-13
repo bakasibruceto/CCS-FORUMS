@@ -22,6 +22,10 @@ class PostController extends Controller
 
         $forumPosts = ForumPost::with('user')->latest()->paginate(5);
 
+        $forumPost = ForumPost::with('user')->get();
+
+        $trashedPosts = ForumPost::onlyTrashed()->get();
+
         $getTag = Tags::get();
 
         $tags = $getTag->pluck('name');
@@ -29,7 +33,7 @@ class PostController extends Controller
         $selectedTag = null; // No selected tag
 
         if (Auth::check() && Auth::user()->role == 'admin') {
-            return view('admin-threads', compact('forumPosts', 'tags', 'selectedTag'));
+            return view('admin-threads', compact('forumPost', 'tags', 'selectedTag', 'trashedPosts'));
         }
         return view('user-dashboard', compact('forumPosts', 'tags', 'selectedTag'));
     }
@@ -97,7 +101,7 @@ class PostController extends Controller
 
         $selectedTag = null; // No selected tag
 
-        return view('user-dashboard', compact('forumPosts', 'selectedTag','tags'));
+        return view('user-dashboard', compact('forumPosts', 'selectedTag', 'tags'));
     }
 
     public function showUnresolved()
@@ -110,13 +114,30 @@ class PostController extends Controller
 
         $selectedTag = null; // No selected tag
 
-        return view('user-dashboard', compact('forumPosts', 'selectedTag','tags'));
+        return view('user-dashboard', compact('forumPosts', 'selectedTag', 'tags'));
     }
 
+    public function trashPost($postId)
+    {
+        $post = ForumPost::find($postId);
 
+        if ($post) {
+            $post->delete();
+        }
 
+        return redirect()->back();
+    }
 
+    public function restorePost($postId)
+    {
+        $post = ForumPost::onlyTrashed()->find($postId);
 
+        if ($post) {
+            $post->restore();
+        }
+
+        return redirect()->back();
+    }
 
     public function get($id)
     {
@@ -144,7 +165,7 @@ class PostController extends Controller
 
         $getTag = Tags::whereIn('id', $tagIds)->get();
 
-        $tags = $getTag->pluck('name');// Fetch the tags that have an ID in the tagIds array
+        $tags = $getTag->pluck('name'); // Fetch the tags that have an ID in the tagIds array
 
         return view('edit-user-post', ['post' => $post, 'tags' => $tags]);
     }

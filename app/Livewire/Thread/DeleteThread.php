@@ -23,5 +23,6 @@ class DeleteThread extends Component
     {
         $post = ForumPost::find($this->postId);
         $post->delete();
+        return redirect()->route('/');
     }
 }
