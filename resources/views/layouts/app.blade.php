@@ -15,7 +15,9 @@
     <!-- Scripts -->
 
     @vite(['resources/css/app.css', 'resources/css/a11y-dark.css', 'resources/js/app.js'])
-    <!-- Scrips -->
+
+    <!-- Styles -->
+    <!-- Scripts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -189,6 +191,7 @@
         </main>
         <x-footer />
     </div>
+
     @livewireScripts
 </body>
 
