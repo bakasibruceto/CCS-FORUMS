@@ -67,7 +67,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="-mt-5">
+                    <div class="-mt-1">
                         <div x-show="tab === 'threads'">
                             @livewire('show-all-userthreads', ['username' => $username])
                         </div>

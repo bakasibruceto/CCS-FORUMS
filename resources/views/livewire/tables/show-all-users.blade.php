@@ -1,5 +1,5 @@
 <div>
-    <div class="container mx-auto px-2 sm:px-8">
+    <div class="container mx-auto px-2 md:-ml-4">
     <h2 class="text-2xl font-semibold leading-tight mb-3">Users</h2>
         <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
             <table wire:poll class="table-auto w-full">
