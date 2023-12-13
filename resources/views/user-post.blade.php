@@ -20,7 +20,7 @@
                         <div class="bg-white shadow rounded-lg mb-5 p-3 md:w-full">
                             <div class="flex items-center mb-3 gap-1 justify-between">
                                 <div class="flex items-center gap-1">
-                                    <img class="rounded-full mr-2 ml-1 w-10 h-10"
+                                    <img class="rounded-full mr-2 ml-1 w-10 h-10 hover:ring-2 hover:ring-blue-600"
                                         src="{{ $post->user->profile_photo_url }}" alt="">
                                     <strong class="mr-2">{{ $post->user->username }}</strong> posted
                                     {{ $post->created_at->diffForHumans() }}
@@ -71,7 +71,8 @@
                                                             <p class="pl-3">delete</p>
                                                         </div>
                                                         <!-- Modal -->
-                                                        <div x-show="open" x-cloak class="fixed z-10 inset-0 overflow-y-auto"
+                                                        <div x-show="open" x-cloak
+                                                            class="fixed z-10 inset-0 overflow-y-auto"
                                                             aria-labelledby="modal-title" role="dialog"
                                                             aria-modal="true">
                                                             <div
@@ -156,13 +157,15 @@
                             class="relative flex flex-col items-center shadow rounded-lg w-full mx-auto p-4 bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
                             <div class="relative flex h-28 w-full justify-center rounded-xl bg-cover">
                                 <!-- for cover photo? -->
-                                <img src="{{ asset('storage/' . $post->user->bg_photo_path) }}"
-                                    class="absolute flex h-28 w-full justify-center rounded-xl bg-cover">
+                                @if (auth()->user()->bg_photo_path)
+                                    <img src="{{ asset('storage/' . auth()->user()->bg_photo_path) }}" alt=""
+                                        class="absolute flex h-28 w-full justify-center rounded-xl bg-cover">
+                                @endif
 
                                 <div
-                                    class="absolute -bottom-12 flex h-28 w-28 items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
-                                    <img class="h-full w-full rounded-full" src="{{ $post->user->profile_photo_url }}"
-                                        alt="" />
+                                    class="absolute -bottom-12 flex h-28 w-28 items-center justify-center rounded-full border-[4px] border-white dark:!border-navy-700">
+                                    <img class="h-full w-full rounded-full hover:ring-2 hover:ring-blue-600"
+                                        src="{{ $post->user->profile_photo_url }}" alt="" />
                                 </div>
                             </div>
                             <div class="mt-14 flex flex-col items-center">
@@ -173,10 +176,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="bg-white shadow rounded-lg mt-16 p-4 w-full h-52">
-                        <!--   content here   -->
+                    {{-- <div class="bg-white shadow rounded-lg mt-16 p-4 w-full h-52">
+
                         <p class="font-semibold text-gray-800 text-sm pb-2 border-b border-gray-200">Events</p>
-                    </div>
+                    </div> --}}
 
                 </div>
 

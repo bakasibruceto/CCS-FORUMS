@@ -2,7 +2,7 @@
     <div class="flex items-center mb-3 gap-1 justify-between">
         <div class="flex items-center gap-1">
             <a href="{{ route('user.show', $post->user->username) }}">
-                <img class="rounded-full mr-2 ml-1 w-10 h-10" src="{{ $post->user->profile_photo_url }}" alt="">
+                <img class="rounded-full mr-2 ml-1 w-10 h-10 hover:ring-2 hover:ring-blue-600" src="{{ $post->user->profile_photo_url }}" alt="">
             </a>
             <strong class="mr-2">{{ $post->user->username }}</strong> posted
             {{ $post->created_at->diffForHumans() }}

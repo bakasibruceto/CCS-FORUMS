@@ -3,7 +3,7 @@
         <div id="reply-{{ $reply->id }}" class="bg-white shadow rounded-lg mb-5 p-3 md:w-full">
             <div class="flex items-center mb-3 gap-1 justify-between">
                 <div class="flex items-center gap-1">
-                    <img class="rounded-full mr-2 ml-1 w-10 h-10" src="{{ $reply->user->profile_photo_url }}"
+                    <img class="rounded-full mr-2 ml-1 w-10 h-10 hover:ring-2 hover:ring-blue-600" src="{{ $reply->user->profile_photo_url }}"
                         alt="">
                     <strong class="mr-2">{{ $reply->user->username }}</strong> posted
                     {{ $reply->created_at->diffForHumans() }}
@@ -95,7 +95,9 @@
                     @livewire('markdown-parser', ['markdown' => $reply->markdown], key($reply->id))
                 @else
                     @livewire('comment.edit-comment', ['replyId' => $reply->id])
-                    <button wire:click='toggleEdit({{ $reply->id }})'>cancel</button>
+                    <div class="flex justify-end">
+                        <button wire:click='toggleEdit({{ $reply->id }})' class="hover:shadow-form rounded-md hover:text-slate-500 -mt-20 mr-52 text-base font-semibold text-black outline-none">cancel</button>
+                    </div>
                 @endif
             </div>
             <div class="flex justify-between pr-5 pl-3" wire:ignore>

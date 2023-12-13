@@ -3,7 +3,7 @@
         <div class="flex max-w-screen-2xl w-full mx-0">
             <main class="flex-1 overflow-x-hidden overflow-y-auto">
                 <div class="container py-8 mx-auto">
-                <h2 class="text-2xl font-semibold leading-tight md:ml-14 mb-3">Logs</h2>
+
                     <div class="mt-2 md:ml-14" x-cloak x-data="{ selected: 'active' }">
                         <select x-model="selected" class="px-4 py-2 bg-sky-900 text-white rounded">
                             <option value="active">Active Posts</option>
@@ -13,7 +13,7 @@
                         <div class="inline-block shadow rounded-lg overflow-hidden mt-4">
                         <div x-show="selected === 'active'">
                             <table class="">
-                                <tr> 
+                                <tr>
                                     <td class="w-20 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-sm text-gray-600 font-semibold uppercase tracking-wider">
                                         Profile
                                     </td>
@@ -33,7 +33,7 @@
                                         created_at
                                     </td>
                                     <td class="w-20 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-sm text-gray-600 uppercase tracking-wider">
-                                       
+
                                     </td>
                                 </tr>
                                 @foreach ($forumPost as $post)
@@ -63,7 +63,7 @@
                                         created_at
                                     </td>
                                     <td class="w-20 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-sm text-gray-600 font-semibold uppercase tracking-wider">
-                                   
+
                                     </td>
                                 </tr>
                                 @foreach ($trashedPosts as $trash)
