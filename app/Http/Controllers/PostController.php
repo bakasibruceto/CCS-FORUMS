@@ -6,6 +6,7 @@ use App\Models\ForumPost;
 use App\Models\UserReply;
 use App\Models\Tags;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 
@@ -13,6 +14,9 @@ class PostController extends Controller
 {
     public function show(Request $request)
     {
+        // If the user is an admin, redirect to the admin dashboard
+
+
         //resets previous search
         session()->forget('previous_search');
 
@@ -24,6 +28,9 @@ class PostController extends Controller
 
         $selectedTag = null; // No selected tag
 
+        if (Auth::check() && Auth::user()->role == 'admin') {
+            return view('admin-threads', compact('forumPosts', 'tags', 'selectedTag'));
+        }
         return view('user-dashboard', compact('forumPosts', 'tags', 'selectedTag'));
     }
 
@@ -95,9 +102,7 @@ class PostController extends Controller
 
     public function showUnresolved()
     {
-        $forumPosts = ForumPost::whereHas('user_reply', function ($query) {
-            $query->where('solution', false);
-        })->with('user')->latest()->paginate(5);
+        $forumPosts = ForumPost::with('user')->latest()->paginate(5);
 
         $getTag = Tags::get();
 
