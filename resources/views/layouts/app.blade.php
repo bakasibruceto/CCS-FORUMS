@@ -15,19 +15,7 @@
     <!-- Scripts -->
 
     @vite(['resources/css/app.css', 'resources/css/a11y-dark.css', 'resources/js/app.js'])
-
-    <!-- Styles -->
-
-    {{-- <script src="{{ asset('path/to/highlight.js') }}"></script> --}}
-
-    {{-- <!-- Include a11y-dark theme -->
-    <link rel="stylesheet" href="{{ asset('css/a11y-dark.css') }}"> --}}
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    {{-- <link href="{{ url('resources/css/app.css') }}" rel="stylesheet"> --}}
+    <!-- Scrips -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -201,74 +189,6 @@
         </main>
         <x-footer />
     </div>
-    <script>
-        import './bootstrap';
-        import 'alpinejs';
-        import hljs from 'highlight.js/lib/core';
-
-
-        //Highlight.js
-        document.addEventListener('DOMContentLoaded', (event) => {
-            highlightCodeBlocks('pre code');
-        });
-
-        document.addEventListener('DOMContentLoaded', (event) => {
-            highlightCodeBlocks('div[x-ref="markdown"] pre code');
-        });
-
-        window.livewire.on('contentUpdated', () => {
-            setTimeout(() => {
-                highlightCodeBlocks('div[x-ref="markdown"] pre code');
-            }, 0);
-        });
-
-        function highlightCodeBlocks(selector) {
-            document.querySelectorAll(selector).forEach((block) => {
-                hljs.highlightElement(block);
-            });
-        }
-
-
-        //Copy to clipboard
-        function copyCode(button) {
-            var codeElement = button.nextElementSibling.querySelector('code');
-            var textArea = document.createElement('textarea');
-            textArea.value = codeElement.innerText;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-            alert('Code copied to clipboard!');
-        }
-
-        // Echo.join('chat')
-        //     .listen('NewMessage', (e) => {
-        //         // Create a new div element for the message
-        //         let newMessageDiv = document.createElement('div');
-        //         newMessageDiv.textContent = e.message;
-
-        //         // Add the new message to the chat
-        //         let chatDiv = document.getElementById('chat');
-        //         chatDiv.appendChild(newMessageDiv);
-
-        //         // Scroll to the bottom of the chat
-        //         chatDiv.scrollTop = chatDiv.scrollHeight;
-        //     });
-
-        Echo.private(`chat.${receiver_id}`)
-            .listen('NewMessage', (e) => {
-                // Add the new message to the messages array
-                messages.push(e.message);
-
-                // Rerender the chat
-                renderChat();
-            });
-
-        Echo.private(`chat.${sender_id}`)
-            .listen('NewMessage', (e) => {
-                // Update the UI with the new message
-            });
-    </script>
     @livewireScripts
 </body>
 
