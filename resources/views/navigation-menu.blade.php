@@ -58,7 +58,6 @@
                                             stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                     </svg>
                                 </div>
-
                                 <input
                                     class="block w-full md:w-80 p-3 pl-12 text-sm rounded-full text-gray-900 border border-gray-300 bg-gray-50 dark:placeholder-gray-400 dark:text"
                                     type="text" placeholder="Search..." name="q" {{-- user session stored value --}}

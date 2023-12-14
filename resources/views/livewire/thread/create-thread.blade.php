@@ -5,12 +5,22 @@
         Make sure you've read our rules before proceeding.
         Please search for your question before posting your thread by using the search box in the navigation bar.
     </p>
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
+
     <form wire:submit.prevent="savePost" class="bg-white rounded-lg p-3">
+        @if (session('error'))
+            <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:text-red-400 dark:border-red-800"
+                role="alert">
+                <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path weh
+                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                </svg>
+                <span class="sr-only">Info</span>
+                <div>
+                    {{ session('error') }}
+                </div>
+            </div>
+        @endif`
         <div class="mb-4">
             <x-label class="font-semibold text-xl text-gray-900" for="subject" value="{{ __('Subject') }}" />
             <x-input wire:model="subject" id="subject" class="block mt-1 w-full bg-gray-100" type="text"
