@@ -106,7 +106,12 @@ class PostController extends Controller
 
     public function showUnresolved()
     {
-        $forumPosts = ForumPost::with('user')->latest()->paginate(5);
+        $forumPosts = ForumPost::whereHas('user_reply', function ($query) {
+            $query->where('solution', false);
+        })->orWhereDoesntHave('user_reply')
+        ->with('user')
+        ->latest()
+        ->paginate(5);
 
         $getTag = Tags::get();
 

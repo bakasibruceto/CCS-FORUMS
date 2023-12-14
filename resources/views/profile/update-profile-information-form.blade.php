@@ -67,11 +67,6 @@
 
             <x-input-error for="background_image" class="mt-2" />
 
-            <!-- Current Background Image -->
-            <div class="mt-2" x-show="! backgroundImagePreview">
-                <img src="{{ $this->user->bg_photo_path ? asset('storage/' . $this->user->bg_photo_path) : '' }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
-            </div>
-
             <!-- New Background Image Preview -->
             <div class="mt-2" x-show="backgroundImagePreview" style="display: none;">
                 <span class="block rounded-full w-20 h-20 bg-cover bg-no-repeat bg-center"

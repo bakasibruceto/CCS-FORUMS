@@ -40,11 +40,14 @@
                                             @if (auth()->user()->username != $user->username)
                                                 @livewire('counter.user-follow', ['userId' => $user->id])
                                             @else
+                                            <a href="{{ route('profile.show') }}">
                                                 <button
-                                                    class="bg-sky-950 hover:bg-sky-800 active:bg-sky-900 text-white hover:shadow-md shadow text-sm px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
-                                                    type="button">
-                                                    edit profile
-                                                </button>
+                                                class="bg-sky-950 hover:bg-sky-800 active:bg-sky-900 text-white hover:shadow-md shadow text-sm px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+                                                type="button">
+                                                edit profile
+                                            </button>
+                                            </a>
+
                                             @endif
                                         @endauth
                                     </div>
