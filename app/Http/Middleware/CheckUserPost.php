@@ -19,6 +19,7 @@ class CheckUserPost
         $postId = $request->route('postId');
         $post = ForumPost::withTrashed()->where('id', $postId)->first();
 
+
         if (!$post) {
             return redirect('/')->with('error', 'The post you are trying to access does not exist.');
         }
@@ -27,8 +28,8 @@ class CheckUserPost
             return redirect('/')->with('error', 'The post you are trying to access has been deleted.');
         }
 
-        if ($post->deleted_at === null && $post->user_id != auth()->id()) {
-            return redirect('/')->with('error', 'You are not authorized to edit this post.');
+        if ($post->deleted_at !== null && auth()->user()->role !== 'admin') {
+            return redirect('/')->with('error', 'The post you are trying to access has been deleted.');
         }
 
         return $next($request);
