@@ -28,8 +28,11 @@ class SearchController extends Controller
 
         // Select * from ForumPost where title or content like userInput
         $postResults = ForumPost::where('title', 'like', '%' . $search . '%')
-            ->orWhere('markdown', 'like', '%' . $search . '%')
-            ->get();
+                    ->orWhere('markdown', 'like', '%' . $search . '%')
+                    ->orWhereHas('user', function ($query) use ($search) {
+                        $query->where('username', 'like', '%' . $search . '%');
+                    })
+                    ->get();
 
         // return result
         return view('search-results', compact('userResults', 'postResults', 'user'));

@@ -193,7 +193,7 @@
 
 
 
-                            <x-dropdown-link href="">
+                            <x-dropdown-link href="{{ route('chatify') }}">
                                 {{ __('Messages') }}
                             </x-dropdown-link>
 
