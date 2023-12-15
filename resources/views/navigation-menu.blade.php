@@ -39,17 +39,13 @@
                 </div>
                 {{-- Search --}}
                 <div class="m-auto pl-10">
-                    <div class="relative text-gray-600 focus-within:text-gray-400">
-                        {{-- @if (auth()->user()->role === 'user')
-                            <form action="{{ route('search') }}" method="GET">
-                            @elseif (auth()->user()->role === 'admin')
-                                <form action="{{ route('admin-search') }}" method="GET">
-                        @endif --}}
-                        @if (auth()->user()->role === 'user')
-                            <form action="{{ route('search') }}" method="GET">
-                                <!-- Your form fields here -->
-                            </form>
-
+                    @if (auth()->user()->role === 'user')
+                        <div class="relative text-gray-600 focus-within:text-gray-400">
+                            @if (auth()->user()->role === 'user')
+                                <form action="{{ route('search') }}" method="GET">
+                                @elseif (auth()->user()->role === 'admin')
+                                    <form action="{{ route('admin-search') }}" method="GET">
+                            @endif
                             <div class="flex">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-5 pointer-events-none">
                                     <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -58,14 +54,15 @@
                                             stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                     </svg>
                                 </div>
+
                                 <input
                                     class="block w-full md:w-80 p-3 pl-12 text-sm rounded-full text-gray-900 border border-gray-300 bg-gray-50 dark:placeholder-gray-400 dark:text"
                                     type="text" placeholder="Search..." name="q" {{-- user session stored value --}}
                                     value="{{ session('previous_search') }}" />
                             </div>
                             </form>
-                        @endif
-                    </div>
+                        </div>
+                    @endif
                 </div>
 
             </div>
@@ -195,6 +192,8 @@
                                     {{ __('Profile') }}
                                 </x-dropdown-link>
                             @endif
+
+
 
                             <x-dropdown-link href="{{ route('chatify') }}">
                                 {{ __('Messages') }}

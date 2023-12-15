@@ -52,6 +52,8 @@ class ReadComment extends Component
 
         // Check if the current user is the author of the reply
         if (auth()->user()->id == $reply->user_id) {
+            // $reply->likedBy()->delete();
+
             // Delete the reply
             $reply->delete();
 
